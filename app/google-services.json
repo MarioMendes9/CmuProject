@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "459238225288",
+    "firebase_url": "https://cmuproject-708ee.firebaseio.com",
+    "project_id": "cmuproject-708ee",
+    "storage_bucket": "cmuproject-708ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459238225288:android:4a90d10b0cafb371adb63d",
+        "android_client_info": {
+          "package_name": "com.example.cmuproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "459238225288-b84obtn7btob3o73icvcfbaijtsrcfh9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cmuproject",
+            "certificate_hash": "8c764ed9fb15d85b0c0af21eddc8b8408b474bd2"
+          }
+        },
+        {
+          "client_id": "459238225288-i8akej4ujd6ohuugh02s6jsjcrh777qg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOe_JSFgMQreO6i0ClGZ4Y_2vDdGRbEP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "459238225288-i8akej4ujd6ohuugh02s6jsjcrh777qg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
