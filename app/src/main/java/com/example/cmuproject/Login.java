@@ -34,8 +34,9 @@ public class Login extends Fragment {
     private EditText userPass;
 
 
-    public Login() {
+    public Login(FirebaseAuth mAuth) {
         // Required empty public constructor
+        this.mAuth=mAuth;
     }
 
 
@@ -59,15 +60,24 @@ public class Login extends Fragment {
             }
         });
         btnRegisto = view.findViewById(R.id.emailCreateAccountButton);
-        btnRegisto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.onFragmentRegistInteraction();
-            }
-        });
+
         userEmail = view.findViewById(R.id.fieldEmail);
         userPass = view.findViewById(R.id.fieldPassword);
-        mAuth = FirebaseAuth.getInstance();
+
+
+        //mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser=mAuth.getCurrentUser();
+
+        if(currentUser!=null){
+            btnRegisto.setEnabled(false);
+        }else {
+            btnRegisto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mListener.onFragmentRegistInteraction();
+                }
+            });
+        }
 
 
         return view;

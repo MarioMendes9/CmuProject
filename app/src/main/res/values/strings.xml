@@ -11,6 +11,8 @@
     <string name="newRegisto">Registar</string>
     <string name="cancel">Cancelar</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="jogos">Jogos</string>
+    <string name="medicamentos">Gerir Medicamentos</string>
+    <string name="RegistarTomas">Registar Tomas</string>
+
 </resources>

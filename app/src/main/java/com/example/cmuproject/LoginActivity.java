@@ -6,17 +6,22 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity implements Login.OnFragmentLoginInteractionListener,RegistoFragment.OnFragmentRegisteInteractionListener {
+public class LoginActivity extends AppCompatActivity implements Login.OnFragmentLoginInteractionListener,RegistoFragment.OnFragmentRegisteInteractionListener {
+
+    private FirebaseAuth mAuth;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mAuth = FirebaseAuth.getInstance();
 
-        Login fragmentLogin=new Login();
+
+        Login fragmentLogin=new Login(mAuth);
         FragmentManager fm=getSupportFragmentManager();
         FragmentTransaction ft=fm.beginTransaction();
 
@@ -42,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
     @Override
     public void onFragmentRegistInteraction() {
 
-        RegistoFragment changeFrag=new RegistoFragment();
+        RegistoFragment changeFrag=new RegistoFragment(mAuth);
 
         FragmentTransaction tr=getSupportFragmentManager().beginTransaction();
         tr.replace(R.id.fragment_container,changeFrag);

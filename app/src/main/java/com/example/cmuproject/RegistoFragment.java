@@ -35,8 +35,8 @@ public class RegistoFragment extends Fragment {
 
 
 
-    public RegistoFragment() {
-        // Required empty public constructor
+    public RegistoFragment(FirebaseAuth mAuth) {
+        this.mAuth=mAuth;
     }
 
 
@@ -44,7 +44,7 @@ public class RegistoFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mAuth = FirebaseAuth.getInstance();
+        //mAuth = FirebaseAuth.getInstance();
 
     }
 
