@@ -36,7 +36,7 @@ public class Login extends Fragment {
 
     public Login(FirebaseAuth mAuth) {
         // Required empty public constructor
-        this.mAuth=mAuth;
+        this.mAuth = mAuth;
     }
 
 
@@ -66,11 +66,11 @@ public class Login extends Fragment {
 
 
         //mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser=mAuth.getCurrentUser();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        if(currentUser!=null){
+        if (currentUser != null) {
             btnRegisto.setEnabled(false);
-        }else {
+        } else {
             btnRegisto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -95,7 +95,6 @@ public class Login extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
 
 
     private void login() {
@@ -155,6 +154,7 @@ public class Login extends Fragment {
 
         /**
          * Metodo para mudar de fragmento quando o login é realizado com sucesso
+         *
          * @param user utilizador que fez login
          */
         void onFragmentLoginInteraction(FirebaseUser user);

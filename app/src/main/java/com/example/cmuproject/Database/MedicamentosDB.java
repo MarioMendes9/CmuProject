@@ -1,19 +1,19 @@
 package com.example.cmuproject.Database;
 
 import android.content.Context;
-import android.provider.ContactsContract;
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.cmuproject.model.Medicamento;
 import com.example.cmuproject.model.MedicamentoDao;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-@Database(entities = {ContactsContract.CommonDataKinds.Note.class}, version = 1,exportSchema = false)
+@Database(entities = {Medicamento.class}, version = 2,exportSchema = false)
 public abstract class MedicamentosDB extends RoomDatabase {
 
     private static final int NUMBER_OF_THREADS=4;

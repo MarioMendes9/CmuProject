@@ -45,13 +45,18 @@ public class MedicamentoAdpter extends RecyclerView.Adapter<MedicamentoAdpter.Me
     @Override
     public void onBindViewHolder(MedicamentoViewHolder viewHolder, int position) {
         Medicamento medicamento=mMedicamentos.get(position);
+        viewHolder.name.setText(medicamento.name);
+        viewHolder.quantidade.setText(""+medicamento.quantity);
+        viewHolder.periodo.setText(medicamento.timeStamp);
 
-        //completar
     }
 
     @Override
     public int getItemCount(){
-        return mMedicamentos.size();
+        if(mMedicamentos!=null){
+            return mMedicamentos.size();
+        }
+        return 0;
     }
 
     public class MedicamentoViewHolder extends RecyclerView.ViewHolder{

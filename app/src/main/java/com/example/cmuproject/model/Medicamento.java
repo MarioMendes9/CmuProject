@@ -1,6 +1,7 @@
 package com.example.cmuproject.model;
 
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -8,17 +9,18 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Medicamento {
 
+    @NonNull
     @PrimaryKey
     public String name;
 
     public long quantity;
 
-    public float periodo;
+    public String timeStamp;
 
-    public Medicamento(String name, long quantity, float periodo) {
+    public Medicamento(String name, long quantity, String timeStamp) {
         this.name = name;
         this.quantity = quantity;
-        this.periodo = periodo;
+        this.timeStamp = timeStamp;
     }
 
     @Override
@@ -26,7 +28,7 @@ public class Medicamento {
         return "Medicamento{" +
                 "name='" + name + '\'' +
                 ", quantity=" + quantity +
-                ", periodo=" + periodo +
+                ", periodo=" + timeStamp +
                 '}';
     }
 }
