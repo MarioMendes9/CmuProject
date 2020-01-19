@@ -12,10 +12,10 @@ import java.util.List;
 public interface MedicamentoDao {
 
     @Insert
-    public void insertMedicamento(Medicamento ... notes);
+    public void insertMedicamento(Medicamento ... medic);
 
     @Delete
-    public void deleteMedicamento(Medicamento ... notes);
+    public void deleteMedicamento(Medicamento ... medic);
 
     @Query("SELECT * FROM Medicamento")
     public LiveData<List<Medicamento>> loadAllMedicamentos();

@@ -46,7 +46,7 @@
                 android:layout_marginStart="@dimen/button_horizontal_margin"
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_weight="1"
-                android:text="@string/medicamentos"
+                android:text="@string/GerirMedicamentos"
                 android:theme="@style/ThemeOverlay.MyDarkButton" />
             <Button
                 android:id="@+id/jogos"

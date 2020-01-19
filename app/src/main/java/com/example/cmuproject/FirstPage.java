@@ -10,14 +10,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 
 public class FirstPage extends Fragment {
 
     private ImageView img;
-
-    private OnFragmentInteractionListener mListener;
+    private Button btnGerirMedic;
+    private OnFragmentFirstPageInteractionListener mListener;
 
     public FirstPage() {
         // Required empty public constructor
@@ -35,27 +36,31 @@ public class FirstPage extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_first_page, container, false);
+        img=view.findViewById(R.id.principalImage);
+        btnGerirMedic=view.findViewById(R.id.gerirMedicamentos);
+
+        btnGerirMedic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.gerirMedicamentosInteraction();
+            }
+        });
+
+        img.setImageResource(R.drawable.bacon);
+
 
 
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
+
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-        //    throw new RuntimeException(context.toString()
-           //         + " must implement OnFragmentInteractionListener");
-        }
+
+        mListener = (OnFragmentFirstPageInteractionListener) context;
+
     }
 
     @Override
@@ -64,8 +69,7 @@ public class FirstPage extends Fragment {
         mListener = null;
     }
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    public interface OnFragmentFirstPageInteractionListener {
+        void gerirMedicamentosInteraction();
     }
 }
