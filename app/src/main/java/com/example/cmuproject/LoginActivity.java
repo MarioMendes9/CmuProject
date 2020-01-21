@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity implements Login.OnFragment
 
     @Override
     public void loadGames() {
-        Intent myIntent = new Intent(this, jogo_memoria.class);
+        Intent myIntent = new Intent(this, RegrasJogo.class);
         startActivity(myIntent);
     }
 

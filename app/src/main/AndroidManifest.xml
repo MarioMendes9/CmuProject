@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".jogo_memoria2"></activity>
-        <activity android:name=".jogo_memoria" />
+        <activity android:name=".JogoMemoria"></activity>
+        <activity android:name=".jogo_memoria2" />
+        <activity android:name=".RegrasJogo" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
