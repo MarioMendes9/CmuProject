@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,10 +34,11 @@ public class jogo_memoria extends AppCompatActivity {
         Random random = new Random();
         int a = random.nextInt(11);
         palavras.setText(listaPalavras[a]);
-
+        runthread();
         resposta.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                palavras.setVisibility(View.VISIBLE);
                 String s1 = value.getText().toString();
                 String s2 = palavras.getText().toString();
                 boolean equals = s1.equals(s2);
@@ -45,6 +47,7 @@ public class jogo_memoria extends AppCompatActivity {
                     respostasCorretas.setText("Tem " +count+ " respostas corretas");
                     int a = random.nextInt(11);
                     palavras.setText(listaPalavras[a]);
+                    runthread();
                 } else {
                     Intent intent = new Intent(getApplicationContext(), jogo_memoria2.class);
                     System.out.println(count);
@@ -62,6 +65,27 @@ public class jogo_memoria extends AppCompatActivity {
         Random random = new Random();
         int a = random.nextInt(5);
         palavras.setText(listaPalavras[a]);
+    }
+
+    private void runthread() {
+        Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        palavras.setVisibility(View.INVISIBLE);
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
     }
 
 
