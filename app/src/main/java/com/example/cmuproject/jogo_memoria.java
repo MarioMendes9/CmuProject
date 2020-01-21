@@ -12,14 +12,14 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class jogo_memoria extends AppCompatActivity {
-    ImageView image;
     TextView palavras;
     EditText value;
     Button resposta;
-
+    TextView respostasCorretas;
     int a=0;
     int count=0;
-    String listaPalavras[] = {"maca", "pera", "laranja", "limao", "caracol", "papagaio", "carrocel", "azul", "eu"};
+
+    String listaPalavras[] = {"maca","carrocel", "pera", "laranja", "limao", "caracol", "papagaio", "carrocel", "azul", "eu", "elefante"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +28,10 @@ public class jogo_memoria extends AppCompatActivity {
         palavras=findViewById(R.id.palavra);
         value=findViewById(R.id.resposta);
         resposta= findViewById(R.id.button8);
-        image=findViewById(R.id.imageView);
+
+        respostasCorretas=findViewById(R.id.respostasCorretas);
         Random random = new Random();
-        int a = random.nextInt(9);
+        int a = random.nextInt(11);
         palavras.setText(listaPalavras[a]);
 
         resposta.setOnClickListener(new View.OnClickListener(){
@@ -41,16 +42,15 @@ public class jogo_memoria extends AppCompatActivity {
                 boolean equals = s1.equals(s2);
                 if(equals == true){
                     count++;
-                    int a = random.nextInt(9);
+                    respostasCorretas.setText("Tem " +count+ " respostas corretas");
+                    int a = random.nextInt(11);
                     palavras.setText(listaPalavras[a]);
                 } else {
-                    //texto.setText("A palavra está errada");
                     Intent intent = new Intent(getApplicationContext(), jogo_memoria2.class);
                     System.out.println(count);
                     intent.putExtra("count", count);
                     startActivity(intent);
                 }
-
             }
         });
     }
