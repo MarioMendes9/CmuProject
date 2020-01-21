@@ -2,6 +2,8 @@ package com.example.cmuproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,8 +30,13 @@ public class jogo_memoria2 extends AppCompatActivity {
         jogar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                //Intent intent = new Intent(this, jogo_memoria.class);
+                //startActivity(intent);
+                Intent it = new Intent(jogo_memoria2.this, jogo_memoria.class);
+                startActivity(it);
+                //setContentView(R.layout.activity_jogo_memoria);
             }
+
         });
     }
 }

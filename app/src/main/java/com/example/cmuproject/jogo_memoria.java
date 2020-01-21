@@ -8,11 +8,11 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.Random;
 
 public class jogo_memoria extends AppCompatActivity {
+    //ImageView img;
     TextView palavras;
     EditText value;
     Button resposta;
@@ -29,12 +29,14 @@ public class jogo_memoria extends AppCompatActivity {
         palavras=findViewById(R.id.palavra);
         value=findViewById(R.id.resposta);
         resposta= findViewById(R.id.button8);
-
+        //img=findViewById(R.id.imageView2);
+        //img.setImageResource(R.drawable.bacon);
         respostasCorretas=findViewById(R.id.respostasCorretas);
         Random random = new Random();
         int a = random.nextInt(11);
         palavras.setText(listaPalavras[a]);
         runthread();
+
         resposta.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -87,8 +89,6 @@ public class jogo_memoria extends AppCompatActivity {
             }
         });
     }
-
-
 }
 
 
