@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.cmuproject.model.MedicamentViewModel;
@@ -81,6 +82,12 @@ public class LoginActivity extends AppCompatActivity implements Login.OnFragment
         tr.replace(R.id.fragment_container,gm);
         tr.addToBackStack(null);
         tr.commit();
+    }
+
+    @Override
+    public void loadGames() {
+        Intent myIntent = new Intent(this, jogo_memoria.class);
+        startActivity(myIntent);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.cmuproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ public class FirstPage extends Fragment {
 
     private ImageView img;
     private Button btnGerirMedic;
+    private Button botaoJogo;
     private OnFragmentFirstPageInteractionListener mListener;
 
     public FirstPage() {
@@ -42,7 +44,19 @@ public class FirstPage extends Fragment {
         btnGerirMedic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 mListener.gerirMedicamentosInteraction();
+            }
+        });
+
+
+        //View viewJogo = inflater.inflate(R.layout.activity_jogo_memoria, container, false);
+        botaoJogo=view.findViewById(R.id.jogos);
+        botaoJogo.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                mListener.loadGames();
             }
         });
 
@@ -71,5 +85,6 @@ public class FirstPage extends Fragment {
 
     public interface OnFragmentFirstPageInteractionListener {
         void gerirMedicamentosInteraction();
+        void loadGames();
     }
 }
