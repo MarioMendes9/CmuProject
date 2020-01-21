@@ -70,6 +70,8 @@ public class Login extends Fragment {
 
         if (currentUser != null) {
             btnRegisto.setEnabled(false);
+            FirebaseUser user = mAuth.getCurrentUser();
+            mListener.onFragmentLoginInteraction(user);
         } else {
             btnRegisto.setOnClickListener(new View.OnClickListener() {
                 @Override
