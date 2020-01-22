@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".JogoMemoria"></activity>
+        <activity android:name=".JogoAritmeticoResultado"></activity>
+        <activity android:name=".JogoAritmetico" />
+        <activity android:name=".MenuJogos" />
+        <activity android:name=".JogoMemoria" />
         <activity android:name=".jogo_memoria2" />
-        <activity android:name=".RegrasJogo" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

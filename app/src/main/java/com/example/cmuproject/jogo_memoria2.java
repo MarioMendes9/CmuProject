@@ -29,7 +29,7 @@ public class jogo_memoria2 extends AppCompatActivity {
         jogar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(this, RegrasJogo.class);
+                //Intent intent = new Intent(this, MenuJogos.class);
                 //startActivity(intent);
                 Intent it = new Intent(jogo_memoria2.this, JogoMemoria.class);
                 startActivity(it);
