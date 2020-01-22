@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.cmuproject.model.MedicamentViewModel;
@@ -89,6 +90,13 @@ public class LoginActivity extends AppCompatActivity implements Login.OnFragment
     @Override
     public void addDialogMedicamento(String name, int qtd, String[] dias, String[] alturas) {
         Medicamento medicamento=new Medicamento(name,qtd, Arrays.toString(dias),Arrays.toString(alturas));
+
+    public void loadMapaFarmacias() {
+        Intent mIntent = new Intent(this, FarmaciaMaps.class);
+        startActivity(mIntent);
+    }
+
+
         medicamentoViewModel.inserMedicamento(medicamento);
     }
 

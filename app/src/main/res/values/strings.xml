@@ -11,6 +11,7 @@
     <string name="cancel">Cancelar</string>
 
     <string name="jogos">Jogos</string>
+    <string name="farmaciaMap">Farmacias Perto de Si</string>
     <string name="GerirMedicamentos">Gerir Medicamentos</string>
     <string name="RegistarTomas">Registar Tomas</string>
 
@@ -65,5 +66,6 @@
         <item>30</item>
 
     </string-array>
+    <string name="title_activity_farmacia_maps">Map</string>
 
 </resources>

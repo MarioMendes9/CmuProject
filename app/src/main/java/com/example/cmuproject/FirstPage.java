@@ -19,6 +19,7 @@ public class FirstPage extends Fragment {
     private ImageView img;
     private Button btnGerirMedic;
     private OnFragmentFirstPageInteractionListener mListener;
+    private Button btnFarmacias;
 
     public FirstPage() {
         // Required empty public constructor
@@ -38,6 +39,7 @@ public class FirstPage extends Fragment {
         View view= inflater.inflate(R.layout.fragment_first_page, container, false);
         img=view.findViewById(R.id.principalImage);
         btnGerirMedic=view.findViewById(R.id.gerirMedicamentos);
+        btnFarmacias=view.findViewById(R.id.farmaciaMap);
 
         btnGerirMedic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +51,12 @@ public class FirstPage extends Fragment {
         img.setImageResource(R.drawable.bacon);
 
 
+        btnFarmacias.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.loadMapaFarmacias();
+            }
+        });
 
         return view;
     }
@@ -71,5 +79,6 @@ public class FirstPage extends Fragment {
 
     public interface OnFragmentFirstPageInteractionListener {
         void gerirMedicamentosInteraction();
+        void loadMapaFarmacias();
     }
 }
