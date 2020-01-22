@@ -50,7 +50,7 @@ public class FirstPage extends Fragment {
         });
 
 
-        //View viewJogo = inflater.inflate(R.layout.activity_jogo_memoria, container, false);
+        //View viewJogo = inflater.inflate(R.layout.activity_jogo_palavras, container, false);
         botaoJogo=view.findViewById(R.id.jogos);
         botaoJogo.setOnClickListener(new View.OnClickListener() {
 

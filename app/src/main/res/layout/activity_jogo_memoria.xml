@@ -4,82 +4,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuJogos">
+    tools:context=".JogoMemoria">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/img1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="168dp"
-        android:text="Jogo das palavras"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="136dp"
+        android:layout_marginEnd="111dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/img2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/palavra"
+        android:id="@+id/img2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginBottom="40dp"
-        android:text="Palavra"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        android:layout_marginTop="136dp"
+        android:layout_marginEnd="98dp"
+        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/img3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="52dp"
-        android:text="Introduza a palavra correta:"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="106dp"
+        android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/palavra" />
+        app:layout_constraintTop_toBottomOf="@+id/img1" />
 
-    <EditText
-        android:id="@+id/resposta"
+    <TextView
+        android:id="@+id/img4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="140dp"
-        android:ems="10"
-        android:inputType="textPersonName"
+        android:layout_marginTop="106dp"
+        android:layout_marginEnd="98dp"
+        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/img2" />
+
+    <TextView
+        android:id="@+id/img5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="106dp"
+        android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/img3" />
+
+    <TextView
+        android:id="@+id/img6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="106dp"
+        android:layout_marginEnd="98dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img4" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="150dp"
-        android:text="Guardar resposta"
+        android:layout_marginStart="175dp"
+        android:layout_marginEnd="148dp"
+        android:layout_marginBottom="197dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resposta" />
-
-    <TextView
-        android:id="@+id/respostasCorretas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="32dp"
-        android:text="Respostas corretas"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resposta" />
-
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

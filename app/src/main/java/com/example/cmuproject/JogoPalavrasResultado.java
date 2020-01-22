@@ -8,19 +8,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class jogo_memoria2 extends AppCompatActivity {
+public class JogoPalavrasResultado extends AppCompatActivity {
 
     TextView resultado;
     TextView respostas;
     Button jogar;
+    Button voltarMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jogo_memoria2);
+        setContentView(R.layout.activity_jogo_palavras_result);
         resultado=findViewById(R.id.textView5);
         respostas=findViewById(R.id.Result);
         jogar=findViewById(R.id.jogarNovamente);
+        voltarMenu=findViewById(R.id.button3);
 
         int text=getIntent().getIntExtra("count", 0);
         System.out.println(text);
@@ -31,9 +33,19 @@ public class jogo_memoria2 extends AppCompatActivity {
             public void onClick(View v) {
                 //Intent intent = new Intent(this, MenuJogos.class);
                 //startActivity(intent);
-                Intent it = new Intent(jogo_memoria2.this, JogoMemoria.class);
+                Intent it = new Intent(JogoPalavrasResultado.this, JogoPalavras.class);
                 startActivity(it);
-                //setContentView(R.layout.activity_jogo_memoria);
+                //setContentView(R.layout.activity_jogo_palavras);
+            }
+
+        });
+
+        voltarMenu.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                Intent it = new Intent(JogoPalavrasResultado.this, MenuJogos.class);
+                startActivity(it);
             }
 
         });

@@ -32,7 +32,7 @@ public class MenuJogos extends AppCompatActivity {
         iniciarJogoPalavras.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(MenuJogos.this, JogoMemoria.class);
+                Intent it = new Intent(MenuJogos.this, JogoPalavras.class);
                 startActivity(it);
 
             }
