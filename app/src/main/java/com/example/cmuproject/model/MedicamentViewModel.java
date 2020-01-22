@@ -33,4 +33,8 @@ public class MedicamentViewModel extends AndroidViewModel {
     public void removeMedicamento(Medicamento medi){
         mRepository.removeMedicamento(medi);
     }
+
+    public void updateMedic(String tempName,int tempQuant,String tempDays,String tempAlturas){
+        mRepository.updateMedicamento(tempName,tempQuant,tempDays,tempAlturas);
+    }
 }
