@@ -90,14 +90,11 @@ public class LoginActivity extends AppCompatActivity implements Login.OnFragment
     @Override
     public void addDialogMedicamento(String name, int qtd, String[] dias, String[] alturas) {
         Medicamento medicamento=new Medicamento(name,qtd, Arrays.toString(dias),Arrays.toString(alturas));
-
+        medicamentoViewModel.inserMedicamento(medicamento);
+    }
     public void loadMapaFarmacias() {
         Intent mIntent = new Intent(this, FarmaciaMaps.class);
         startActivity(mIntent);
-    }
-
-
-        medicamentoViewModel.inserMedicamento(medicamento);
     }
 
     @Override
