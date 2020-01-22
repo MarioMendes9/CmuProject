@@ -38,4 +38,10 @@ public class MedicamentoRepository {
         });
     }
 
+    public void updateMedicamento(String tempName,int tempQuant,String tempDays,String tempAlturas){
+        MedicamentosDB.databaseWriteExecutor.execute(()->{
+                mMedicaDao.updateMedic(tempName,tempQuant,tempDays,tempAlturas);
+        });
+    }
+
 }

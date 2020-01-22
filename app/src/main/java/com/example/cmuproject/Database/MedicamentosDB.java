@@ -13,7 +13,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-@Database(entities = {Medicamento.class}, version = 2,exportSchema = false)
+@Database(entities = {Medicamento.class}, version = 3,exportSchema = false)
 public abstract class MedicamentosDB extends RoomDatabase {
 
     private static final int NUMBER_OF_THREADS=4;

@@ -15,20 +15,17 @@ public class Medicamento {
 
     public long quantity;
 
-    public String timeStamp;
+    public String days;
 
-    public Medicamento(String name, long quantity, String timeStamp) {
+    public String alturas;
+
+
+
+    public Medicamento(String name, long quantity, String days,String alturas) {
         this.name = name;
         this.quantity = quantity;
-        this.timeStamp = timeStamp;
+        this.days= days;
+        this.alturas=alturas;
     }
 
-    @Override
-    public String toString() {
-        return "Medicamento{" +
-                "name='" + name + '\'' +
-                ", quantity=" + quantity +
-                ", periodo=" + timeStamp +
-                '}';
-    }
 }

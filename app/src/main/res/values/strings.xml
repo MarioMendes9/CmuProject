@@ -16,7 +16,22 @@
 
     <string name="MedicamentosName">Nome do medicamento</string>
     <string name="Quantidade">Quantidade</string>
-    <string name="PeriodoDeTempo">Intervalo de tempo para tomar a medicação</string>
+    <string name="PeriodoDeTempo">Dias em que toma a medicaçao:</string>
+    <string name="dayStamp">Altura do dia que toma a madicaçao:</string>
+
+    <string name="Segunda">Segunda</string>
+    <string name="Terça">Terça</string>
+    <string name="Quarta">Quarta</string>
+    <string name="Quinta">Quinta</string>
+    <string name="Sexta">Sexta</string>
+    <string name="Sabado">Sabado</string>
+    <string name="Domingo">Domingo</string>
+
+    <string name="Manha">Manha</string>
+    <string name="Almoço">Almoço</string>
+    <string name="Tarde">Tarde</string>
+    <string name="Jantar">Jantar</string>
+    <string name="Noite">Noite</string>
 
     <string-array name="hours">
         <item>00</item>

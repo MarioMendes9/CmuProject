@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 @Dao
 public interface MedicamentoDao {
 
-    @Insert
+    @Insert (onConflict = OnConflictStrategy.IGNORE)
     public void insertMedicamento(Medicamento ... medic);
 
     @Delete
@@ -23,7 +24,7 @@ public interface MedicamentoDao {
     @Query("SELECT COUNT(*) FROM Medicamento")
     int getCount();
 
-    //Medicamentos abaixo que apenas dao para dois dias
-
+    @Query("UPDATE Medicamento SET quantity=quantity+:tempQuant,days=:tempDays,alturas=:tempAlturas WHERE name=:tempName")
+    public void updateMedic(String tempName,int tempQuant,String tempDays,String tempAlturas);
 
 }
