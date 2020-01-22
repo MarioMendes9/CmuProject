@@ -7,7 +7,6 @@ import androidx.fragment.app.FragmentActivity;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -84,10 +83,11 @@ public class FarmaciaMaps extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void callFarmacias(String regiao) {
-        getApiPharmacy().getPharm(regiao)
+        getApiPharmacy().getPharm(regiao+"+pharmacy")
                 .enqueue(new Callback<List<FarmaciasPerto>>() {
                     @Override
                     public void onResponse(Call<List<FarmaciasPerto>> call, Response<List<FarmaciasPerto>> response) {
+                        System.out.println(call.request());
                         for (int i = 0; i < response.body().size(); i++) {
                             double lat = Double.parseDouble(response.body().get(i).getLat());
                             double lon = Double.parseDouble(response.body().get(i).getLon());

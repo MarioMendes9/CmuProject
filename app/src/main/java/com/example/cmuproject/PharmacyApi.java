@@ -11,7 +11,7 @@ import retrofit2.http.Query;
 public interface PharmacyApi {
 
     @GET("search?format=json")
-    Call<List<FarmaciasPerto>> getPharm(@Query("q") String city);
+    Call<List<FarmaciasPerto>> getPharm(@Query(value = "q", encoded = true) String city);
 
 
 
