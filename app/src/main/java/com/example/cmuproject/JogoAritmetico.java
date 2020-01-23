@@ -17,7 +17,11 @@ public class JogoAritmetico extends AppCompatActivity {
     TextView resposta;
     TextView respostasCorretas;
     Button validar;
-    String listaOperadores[] = {"+","-", "*"};
+    String listaOperadores[] = {
+            "+",
+            "-",
+            "*"};
+    String op;
     int valor1=0;
     int valor2=0;
     int sum=0;
@@ -34,62 +38,47 @@ public class JogoAritmetico extends AppCompatActivity {
         titulo=findViewById(R.id.titulo);
         resposta=findViewById(R.id.resposta);
         validar=findViewById(R.id.validar);
-
+/*
         Random random = new Random();
         int a = random.nextInt(3);
         String op= listaOperadores[a];
         valor1=(int)(Math.random()*10);
         valor2=(int)(Math.random()*10);
         equacao.setText(valor1+ op + valor2 + "=");
+
+*/
+equacao();
+
         validar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String op = listaOperadores[a];
-                System.out.println("OPERADOR:::: " +op);
-                //String palavraCorreta=s2.replaceAll("_","a");
-                equacao();
-                if (listaOperadores[a] == "-") {
-                    sub = (valor1 - valor2);
-                    System.out.println("SUB::::: " +sub);
-                    int s1 = Integer.parseInt(resposta.getText().toString());
-                    System.out.println("S1:::: " +s1);
-                    if (s1==sub) {
+                if(op=="+"){
+                    sum=(valor1+valor2);
+                    if(Integer.parseInt(resposta.getText().toString())==sum){
                         cont++;
-                        respostasCorretas.setText("Tem " + cont + " respostas corretas");
-                        equacao();
+                        respostasCorretas.setText("Tem " +cont+ "respostas corretas");
                     }else{
-                        //errado();
-                        equacao();
+                        errado();
                     }
-                } else if (listaOperadores[a] == "+") {
-                    sum = (valor1 + valor2);
-                    System.out.println("SUm::::: " +sub);
-                    int s2 = Integer.parseInt(resposta.getText().toString());
-                    System.out.println("S2:::: " +s2);
-                    if (s2 == sum) {
+                }else if(op=="-"){
+                    sub=(valor1-valor2);
+                    if(Integer.parseInt(resposta.getText().toString())==sub){
                         cont++;
-                        respostasCorretas.setText("Tem " + cont + " respostas corretas");
-                        equacao();
+                        respostasCorretas.setText("Tem " +cont+ "respostas corretas");
                     }else{
-                       equacao();
-                        // errado();
+                        errado();
                     }
-                } else if (listaOperadores[a] == "*") {
-                    mult = (valor1 * valor2);
-                    System.out.println("MULT:::: " +mult);
-                    int s3 = Integer.parseInt(resposta.getText().toString());
-                    System.out.println("S3:::: " +s3);
-                    if (s3 == mult) {
+                }else if(op=="*"){
+                    mult=(valor1*valor2);
+                    if(Integer.parseInt(resposta.getText().toString())==mult){
                         cont++;
-                        respostasCorretas.setText("Tem " + cont + " respostas corretas");
-                        equacao();
+                        respostasCorretas.setText("Tem " +cont+ "respostas corretas");
                     }else{
-                       // errado();
-                        equacao();
+                        errado();
                     }
                 }
+                    equacao();
             }
-
         });
 
 
@@ -98,19 +87,19 @@ public class JogoAritmetico extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Random random = new Random();
-        int a = random.nextInt(3);
-        valor1=(int)(Math.random()*10);
-        valor2=(int)(Math.random()*10);
-        String op= listaOperadores[a];
-        equacao.setText(valor1 + op + valor2 + "=");
+        cont=0;
+        equacao();
     }
 
     protected void equacao(){
         Random random = new Random();
-        int a = random.nextInt(3);
+        int a = random.nextInt(listaOperadores.length);
+        op= listaOperadores[a];
+        System.out.println("OPERADOR::::: " +op);
         valor1=(int)(Math.random()*10);
         valor2=(int)(Math.random()*10);
         equacao.setText(valor1 + listaOperadores[a] + valor2 + "=");
+        //return op;
     }
 
     protected void errado(){
