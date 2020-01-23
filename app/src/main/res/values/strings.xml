@@ -12,6 +12,8 @@
 
     <string name="jogos">Jogos</string>
     <string name="farmaciaMap">Farmacias Perto de Si</string>
+    <string name="foodDetails">Info nutricional</string>
+    <string name="mealDetails">Info Refeições</string>
     <string name="GerirMedicamentos">Gerir Medicamentos</string>
     <string name="RegistarTomas">Registar Tomas</string>
 
