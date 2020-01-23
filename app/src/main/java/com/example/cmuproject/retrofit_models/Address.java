@@ -1,4 +1,4 @@
-package com.example.cmuproject;
+package com.example.cmuproject.retrofit_models;
 
 public class Address {
     private String hamlet;

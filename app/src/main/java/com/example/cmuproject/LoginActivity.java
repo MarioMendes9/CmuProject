@@ -97,6 +97,13 @@ public class LoginActivity extends AppCompatActivity implements Login.OnFragment
         startActivity(mIntent);
     }
 
+
+    @Override
+    public void foodDetails() {
+        Intent mIntent = new Intent(this, Food.class);
+        startActivity(mIntent);
+    }
+
     @Override
     public void deleteMedicament(Medicamento medi) {
         medicamentoViewModel.removeMedicamento(medi);

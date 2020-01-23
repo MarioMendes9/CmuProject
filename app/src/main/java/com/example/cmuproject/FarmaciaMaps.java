@@ -9,6 +9,8 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 
+import com.example.cmuproject.retrofit_models.FarmaciasPerto;
+import com.example.cmuproject.retrofit_models.RegionDetails;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
@@ -155,9 +157,4 @@ public class FarmaciaMaps extends FragmentActivity implements OnMapReadyCallback
         return getRetrofitPharmacy().create(PharmacyApi.class);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getLastLocation();
-    }
 }
