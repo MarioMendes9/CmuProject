@@ -88,6 +88,15 @@ public class LoginActivity extends AppCompatActivity implements Login.OnFragment
     }
 
     @Override
+    public void loadGames() {
+        Intent myIntent = new Intent(this, MenuJogos.class);
+        startActivity(myIntent);
+    }
+
+    @Override
+    public void addDialogMedicamento(String name, int qtd, String timeStamp) {
+        Medicamento medicamento=new Medicamento(name,qtd,timeStamp);
+
     public void addDialogMedicamento(String name, int qtd, String[] dias, String[] alturas) {
         Medicamento medicamento=new Medicamento(name,qtd, Arrays.toString(dias),Arrays.toString(alturas));
         medicamentoViewModel.inserMedicamento(medicamento);
