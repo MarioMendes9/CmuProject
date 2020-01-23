@@ -8,7 +8,7 @@
         android:id="@+id/name_medicamento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/MedicamentosName" />
+        android:text="@string/MedicamentosName"/>
 
     <EditText
         android:id="@+id/editText_nameMedicamento"
@@ -22,7 +22,7 @@
         android:id="@+id/quantidade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberSigned"
         android:text="@string/Quantidade" />
 
     <EditText
@@ -45,77 +45,77 @@
         android:orientation="horizontal">
 
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chipGroupDias"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupDias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipSegunda"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Segunda"
-            android:textColor="@color/grey_500"
-            android:theme="@style/Theme.MaterialComponents.Light"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            />
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipTerça"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Terça"
-            android:textColor="@color/grey_500"
-            android:theme="@style/Theme.MaterialComponents.Light"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            />
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipQuarta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Quarta"
-            android:textColor="@color/grey_500"
-            android:theme="@style/Theme.MaterialComponents.Light"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            />
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipQuinta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Quinta"
-            android:textColor="@color/grey_500"
-            android:theme="@style/Theme.MaterialComponents.Light"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            />
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipSexta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Sexta"
-            android:textColor="@color/grey_500"
-            android:theme="@style/Theme.MaterialComponents.Light"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            />
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipSabado"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Sabado"
-            android:textColor="@color/grey_500"
-            android:theme="@style/Theme.MaterialComponents.Light"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            />
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipDomingo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Domingo"
-            android:textColor="@color/grey_500"
-            android:theme="@style/Theme.MaterialComponents.Light"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSegunda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Segunda"
+                android:textColor="@color/grey_500"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTerça"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Terça"
+                android:textColor="@color/grey_500"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipQuarta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Quarta"
+                android:textColor="@color/grey_500"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipQuinta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Quinta"
+                android:textColor="@color/grey_500"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSexta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Sexta"
+                android:textColor="@color/grey_500"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSabado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Sabado"
+                android:textColor="@color/grey_500"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipDomingo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Domingo"
+                android:textColor="@color/grey_500"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                />
 
 
-    </com.google.android.material.chip.ChipGroup>
+        </com.google.android.material.chip.ChipGroup>
     </LinearLayout>
     <TextView
         android:id="@+id/dayStamp"

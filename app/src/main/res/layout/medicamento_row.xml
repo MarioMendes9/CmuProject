@@ -9,9 +9,9 @@
     <TextView
         android:id="@+id/name"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:text="TextView"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="name"
         android:layout_marginLeft="5dp"/>
 
     <View
@@ -26,9 +26,9 @@
     <TextView
         android:id="@+id/quantidade"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:text="TextView"
+        android:text="quantidade"
         />
 
     <View
@@ -39,11 +39,23 @@
         android:layout_marginLeft="5dp"/>
 
     <TextView
-        android:id="@+id/periodo"
+        android:id="@+id/dias"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:text="dias" />
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/darker_gray"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"/>
+    <TextView
+        android:id="@+id/altura"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="altura" />
     <View
         android:layout_width="1dp"
         android:layout_height="match_parent"

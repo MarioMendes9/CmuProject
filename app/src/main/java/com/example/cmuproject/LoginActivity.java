@@ -13,10 +13,13 @@ import com.example.cmuproject.model.Medicamento;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Arrays;
+
 public class LoginActivity extends AppCompatActivity implements Login.OnFragmentLoginInteractionListener,
                                                     RegistoFragment.OnFragmentRegisteInteractionListener,
                                                     FirstPage.OnFragmentFirstPageInteractionListener,
-                                                    MedicamentoDialog.MediListernerInterface{
+                                                    MedicamentoDialog.MediListernerInterface,
+                                                EditMedicamentoDialog.MediEditListernerInterface{
 
     private FirebaseAuth mAuth;
     private MedicamentViewModel medicamentoViewModel;
@@ -85,6 +88,10 @@ public class LoginActivity extends AppCompatActivity implements Login.OnFragment
     }
 
     @Override
+    public void addDialogMedicamento(String name, int qtd, String[] dias, String[] alturas) {
+        Medicamento medicamento=new Medicamento(name,qtd, Arrays.toString(dias),Arrays.toString(alturas));
+        medicamentoViewModel.inserMedicamento(medicamento);
+    }
     public void loadMapaFarmacias() {
         Intent mIntent = new Intent(this, FarmaciaMaps.class);
         startActivity(mIntent);
@@ -98,8 +105,12 @@ public class LoginActivity extends AppCompatActivity implements Login.OnFragment
     }
 
     @Override
-    public void addDialogMedicamento(String name, int qtd, String timeStamp) {
-        Medicamento medicamento=new Medicamento(name,qtd,timeStamp);
-        medicamentoViewModel.inserMedicamento(medicamento);
+    public void deleteMedicament(Medicamento medi) {
+        medicamentoViewModel.removeMedicamento(medi);
+    }
+
+    @Override
+    public void editMedicament(String tempName, int tempQuant, String tempDays, String tempAlturas) {
+        medicamentoViewModel.updateMedic(tempName,tempQuant,tempDays,tempAlturas);
     }
 }
