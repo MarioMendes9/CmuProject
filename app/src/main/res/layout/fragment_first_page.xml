@@ -15,8 +15,9 @@
             android:id="@+id/principalImage"
             android:layout_width="wrap_content"
             android:layout_height="320dp"
-            tools:src="@drawable/bacon"
-            android:contentDescription="TODO" />
+            tools:src="@drawable/logo"
+            android:contentDescription="TODO"
+            android:layout_gravity="center"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -37,7 +38,8 @@
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_weight="1"
                 android:text="@string/RegistarTomas"
-                android:theme="@style/ThemeOverlay.MyDarkButton" />
+                android:theme="@style/ThemeOverlay.MyDarkButton"
+                android:drawableTop="@drawable/tomas_icon"/>
 
             <Button
                 android:id="@+id/gerirMedicamentos"
@@ -47,7 +49,9 @@
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_weight="1"
                 android:text="@string/GerirMedicamentos"
-                android:theme="@style/ThemeOverlay.MyDarkButton" />
+                android:theme="@style/ThemeOverlay.MyDarkButton"
+                android:drawableTop="@drawable/med_icon"/>
+
             <Button
                 android:id="@+id/jogos"
                 android:layout_width="0dp"
@@ -56,9 +60,52 @@
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_weight="1"
                 android:text="@string/jogos"
-                android:theme="@style/ThemeOverlay.MyDarkButton" />
+                android:theme="@style/ThemeOverlay.MyDarkButton"
+                android:drawableTop="@drawable/game_icon"/>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/farmaciaMap"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/button_horizontal_margin"
+                android:layout_marginEnd="@dimen/button_horizontal_margin"
+                android:layout_weight="1"
+                android:text="@string/farmaciaMap"
+                android:theme="@style/ThemeOverlay.MyDarkButton"
+                android:drawableTop="@drawable/location_icon"/>
+
+            <Button
+                android:id="@+id/foodDetails"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/button_horizontal_margin"
+                android:layout_marginEnd="@dimen/button_horizontal_margin"
+                android:layout_weight="1"
+                android:text="@string/foodDetails"
+                android:theme="@style/ThemeOverlay.MyDarkButton"
+                android:drawableTop="@drawable/food_icon"
+                />
+
+            <Button
+                android:id="@+id/mealDetails"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/button_horizontal_margin"
+                android:layout_marginEnd="@dimen/button_horizontal_margin"
+                android:layout_weight="1"
+                android:text="@string/mealDetails"
+                android:theme="@style/ThemeOverlay.MyDarkButton"
+                android:drawableTop="@drawable/meal_icon"
+                />
+        </LinearLayout>
+
+
 
 
     </LinearLayout>

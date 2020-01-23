@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-
         android:hint="Insira o nome do medicamento" />
 
     <TextView
@@ -41,47 +40,148 @@
         android:text="@string/PeriodoDeTempo" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Spinner
-            android:id="@+id/spin_Hour"
-            android:layout_width="0dp"
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroupDias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipSegunda"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="10"
-            android:background="@android:drawable/btn_dropdown"
-            android:entries="@array/hours"
-            android:spinnerMode="dropdown" />
-
-        <TextView
-            android:id="@+id/hora"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:text="h"
-            android:textSize="30dp" />
-
-        <Spinner
-            android:id="@+id/spin_Min"
-            android:layout_width="0dp"
+            android:text="@string/Segunda"
+            android:textColor="@color/grey_500"
+            android:theme="@style/Theme.MaterialComponents.Light"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipTerça"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="10"
-            android:background="@android:drawable/btn_dropdown"
-            android:entries="@array/min"
-            android:spinnerMode="dropdown" />
-
-        <TextView
-            android:id="@+id/min"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:text="m"
-            android:textSize="30dp"
-            android:paddingLeft="5dp"
-
+            android:text="@string/Terça"
+            android:textColor="@color/grey_500"
+            android:theme="@style/Theme.MaterialComponents.Light"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipQuarta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Quarta"
+            android:textColor="@color/grey_500"
+            android:theme="@style/Theme.MaterialComponents.Light"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipQuinta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Quinta"
+            android:textColor="@color/grey_500"
+            android:theme="@style/Theme.MaterialComponents.Light"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipSexta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Sexta"
+            android:textColor="@color/grey_500"
+            android:theme="@style/Theme.MaterialComponents.Light"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipSabado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Sabado"
+            android:textColor="@color/grey_500"
+            android:theme="@style/Theme.MaterialComponents.Light"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipDomingo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Domingo"
+            android:textColor="@color/grey_500"
+            android:theme="@style/Theme.MaterialComponents.Light"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
             />
 
+
+    </com.google.android.material.chip.ChipGroup>
     </LinearLayout>
+    <TextView
+        android:id="@+id/dayStamp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dayStamp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupAlturas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipManha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Manha"
+                android:textColor="@color/grey_500"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAlmoço"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Almoço"
+                android:textColor="@color/grey_500"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTarde"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Tarde"
+                android:textColor="@color/grey_500"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipJantar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Jantar"
+                android:textColor="@color/grey_500"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipNoite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Noite"
+                android:textColor="@color/grey_500"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                />
+
+
+
+        </com.google.android.material.chip.ChipGroup>
+    </LinearLayout>
+
 
 </LinearLayout>
