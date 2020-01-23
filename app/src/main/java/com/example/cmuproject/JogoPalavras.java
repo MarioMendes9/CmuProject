@@ -76,11 +76,15 @@ public class JogoPalavras extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         count = 0;
+        /*
         Random random = new Random();
         a = random.nextInt(10);
         palavra = listaPalavras[a];
         System.out.println("PALAVRA::::: " + palavra);
         palavras.setText(listaPalavras[a].replaceAll("[ape]", "_ "));
+
+         */
+        palavra();
     }
 
     private void runthread() {
@@ -102,7 +106,7 @@ public class JogoPalavras extends AppCompatActivity {
             }
         });
     }
-
+/*
     private void palavra() {
         Random random = new Random();
         a = random.nextInt(10);
@@ -110,6 +114,16 @@ public class JogoPalavras extends AppCompatActivity {
         System.out.println("PALAVRA::::: " + palavra);
         palavras.setText(listaPalavras[a].replaceAll("[ape]", "_ "));
     }
-
+*/private String palavra(){
+    Random random = new Random();
+    a = random.nextInt(10);
+    palavra = listaPalavras[a];
+    String palavraTemp= listaPalavras[a];
+    char[]characters = palavraTemp.toCharArray();
+    int rand1 = (int)(Math.random()*palavraTemp.length());
+    characters[rand1]='_';
+    palavras.setText(new String(characters));
+    return new String(characters);
+}
 
 }

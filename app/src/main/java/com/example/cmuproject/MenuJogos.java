@@ -48,5 +48,15 @@ public class MenuJogos extends AppCompatActivity {
             }
 
         });
+
+        iniciarJogoMemoria.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(MenuJogos.this, JogoMemoria.class);
+                startActivity(it);
+
+            }
+
+        });
     }
 }
