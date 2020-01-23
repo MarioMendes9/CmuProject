@@ -375,7 +375,24 @@ public class JogoMemoria extends AppCompatActivity {
         cardNumber=1;
         primeiraCarta=-1;
         segundaCarta=-1;
+        checkEnd();
     }
-
+    private void checkEnd(){
+        if(img1.getVisibility()==View.INVISIBLE &&
+                img2.getVisibility()==View.INVISIBLE &&
+                img3.getVisibility()==View.INVISIBLE &&
+                img4.getVisibility()==View.INVISIBLE &&
+                img5.getVisibility()==View.INVISIBLE &&
+                img6.getVisibility()==View.INVISIBLE &&
+                img7.getVisibility()==View.INVISIBLE&&
+                img8.getVisibility()==View.INVISIBLE&&
+                img9.getVisibility()==View.INVISIBLE&&
+                img10.getVisibility()==View.INVISIBLE&&
+                img11.getVisibility()==View.INVISIBLE&&
+                img12.getVisibility()==View.INVISIBLE){
+            Intent intent = new Intent(JogoMemoria.this, JogoMemoriaResultado.class);
+            startActivity(intent);
+        }
+    }
 
 }
