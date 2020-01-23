@@ -38,16 +38,8 @@ public class JogoAritmetico extends AppCompatActivity {
         titulo=findViewById(R.id.titulo);
         resposta=findViewById(R.id.resposta);
         validar=findViewById(R.id.validar);
-/*
-        Random random = new Random();
-        int a = random.nextInt(3);
-        String op= listaOperadores[a];
-        valor1=(int)(Math.random()*10);
-        valor2=(int)(Math.random()*10);
-        equacao.setText(valor1+ op + valor2 + "=");
 
-*/
-equacao();
+        equacao();
 
         validar.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -56,7 +48,7 @@ equacao();
                     sum=(valor1+valor2);
                     if(Integer.parseInt(resposta.getText().toString())==sum){
                         cont++;
-                        respostasCorretas.setText("Tem " +cont+ "respostas corretas");
+                        respostasCorretas.setText("Tem " +cont+ " respostas corretas");
                     }else{
                         errado();
                     }
@@ -64,7 +56,7 @@ equacao();
                     sub=(valor1-valor2);
                     if(Integer.parseInt(resposta.getText().toString())==sub){
                         cont++;
-                        respostasCorretas.setText("Tem " +cont+ "respostas corretas");
+                        respostasCorretas.setText("Tem " +cont+ " respostas corretas");
                     }else{
                         errado();
                     }
@@ -72,7 +64,7 @@ equacao();
                     mult=(valor1*valor2);
                     if(Integer.parseInt(resposta.getText().toString())==mult){
                         cont++;
-                        respostasCorretas.setText("Tem " +cont+ "respostas corretas");
+                        respostasCorretas.setText("Tem " +cont+ " respostas corretas");
                     }else{
                         errado();
                     }
@@ -99,7 +91,6 @@ equacao();
         valor1=(int)(Math.random()*10);
         valor2=(int)(Math.random()*10);
         equacao.setText(valor1 + listaOperadores[a] + valor2 + "=");
-        //return op;
     }
 
     protected void errado(){

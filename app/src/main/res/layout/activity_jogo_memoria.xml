@@ -1,82 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".JogoMemoria">
+    android:layout_height="match_parent">
+    
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="horizontal"
+       android:weightSum="4"
+       android:layout_weight="1">
 
-    <TextView
-        android:id="@+id/img1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="98dp"
-        android:layout_marginTop="136dp"
-        android:layout_marginEnd="111dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/img2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+       <ImageView
+           android:id="@+id/img11"
+           android:layout_weight="1"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:scaleType="centerInside"
+           android:src="@drawable/download">
 
-    <TextView
-        android:id="@+id/img2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="136dp"
-        android:layout_marginEnd="98dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+       </ImageView>
+       <ImageView
+           android:id="@+id/img12"
+           android:layout_weight="1"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:scaleType="centerInside"
+           android:src="@drawable/download">
 
-    <TextView
-        android:id="@+id/img3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="98dp"
-        android:layout_marginTop="106dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img1" />
+       </ImageView>
+       <ImageView
+           android:id="@+id/img13"
+           android:layout_weight="1"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:scaleType="centerInside"
+           android:src="@drawable/download">
 
-    <TextView
-        android:id="@+id/img4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="106dp"
-        android:layout_marginEnd="98dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img2" />
+       </ImageView>
+       <ImageView
+           android:id="@+id/img14"
+           android:layout_weight="1"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:scaleType="centerInside"
+           android:src="@drawable/download">
 
-    <TextView
-        android:id="@+id/img5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="98dp"
-        android:layout_marginTop="106dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img3" />
+       </ImageView>
 
-    <TextView
-        android:id="@+id/img6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="106dp"
-        android:layout_marginEnd="98dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img4" />
+   </LinearLayout>
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="175dp"
-        android:layout_marginEnd="148dp"
-        android:layout_marginBottom="197dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/img21"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/download">
+
+        </ImageView>
+        <ImageView
+            android:id="@+id/img22"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/download">
+
+        </ImageView>
+        <ImageView
+            android:id="@+id/img23"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/download">
+
+        </ImageView>
+        <ImageView
+            android:id="@+id/img24"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/download">
+
+        </ImageView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/img31"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/download">
+
+        </ImageView>
+        <ImageView
+            android:id="@+id/img32"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/download">
+
+        </ImageView>
+        <ImageView
+            android:id="@+id/img33"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/download">
+
+        </ImageView>
+        <ImageView
+            android:id="@+id/img34"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/download">
+
+        </ImageView>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+

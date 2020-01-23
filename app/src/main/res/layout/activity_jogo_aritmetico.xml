@@ -8,16 +8,17 @@
 
     <TextView
         android:id="@+id/titulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="346dp"
+        android:layout_height="56dp"
         android:layout_marginStart="34dp"
         android:layout_marginTop="84dp"
         android:layout_marginEnd="73dp"
         android:layout_marginBottom="30dp"
-        android:text="Indique a resposta correta da seguinte equação:"
+        android:text="Indique a resposta correta á seguinte equação:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/num1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +62,7 @@
         android:layout_marginTop="88dp"
         android:layout_marginEnd="304dp"
         android:layout_marginBottom="344dp"
-        android:text="TextView"
+        android:text="Respostas Corretas"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
