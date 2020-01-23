@@ -16,8 +16,8 @@ public class JogoMemoriaResultado extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jogo_memoria_resultado);
-        jogarNovamente=findViewById(R.id.button3);
-        menuJogos=findViewById(R.id.button4);
+        jogarNovamente=findViewById(R.id.button4);
+        menuJogos=findViewById(R.id.button5);
 
         menuJogos.setOnClickListener(new View.OnClickListener(){
             @Override
