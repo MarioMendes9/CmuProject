@@ -29,7 +29,20 @@ public class JogoPalavras extends AppCompatActivity {
     String replace;
     String palavra;
 
-    String listaPalavras[] = {"maca", "carrocel", "pera", "laranja", "limao", "caracol", "papagaio", "azul", "eu", "elefante"};
+    String listaPalavras[] = {
+            "carro",
+            "carrocel",
+            "pera",
+            "laranja",
+            "limao",
+            "caracol",
+            "papagaio",
+            "azul",
+            "elefante",
+            "policia",
+            "filosofo"
+
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,25 +61,17 @@ public class JogoPalavras extends AppCompatActivity {
             public void onClick(View v) {
                 String s1 = value.getText().toString();
                 System.out.println("PALAVRA::::::  " + palavra);
-                //String palavraCorreta=s2.replaceAll("_","a");
                 boolean equals = s1.equals(palavra);
                 if (equals == true) {
                     count++;
                     respostasCorretas.setText("Tem " + count + " respostas corretas");
                     palavra();
-
                 } else {
-
                     Intent intent = new Intent(getApplicationContext(), JogoPalavrasResultado.class);
                     System.out.println(count);
                     intent.putExtra("count", count);
                     startActivity(intent);
-
-
-
                 }
-
-
             }
         });
 
@@ -76,17 +81,9 @@ public class JogoPalavras extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         count = 0;
-        /*
-        Random random = new Random();
-        a = random.nextInt(10);
-        palavra = listaPalavras[a];
-        System.out.println("PALAVRA::::: " + palavra);
-        palavras.setText(listaPalavras[a].replaceAll("[ape]", "_ "));
-
-         */
         palavra();
     }
-
+/*
     private void runthread() {
         Handler handler = new Handler();
         handler.post(new Runnable() {
@@ -106,24 +103,22 @@ public class JogoPalavras extends AppCompatActivity {
             }
         });
     }
+
+ */
 /*
-    private void palavra() {
-        Random random = new Random();
-        a = random.nextInt(10);
-        palavra = listaPalavras[a];
-        System.out.println("PALAVRA::::: " + palavra);
-        palavras.setText(listaPalavras[a].replaceAll("[ape]", "_ "));
-    }
-*/private String palavra(){
+   */
+    private void palavra(){
     Random random = new Random();
-    a = random.nextInt(10);
+    a = random.nextInt(listaPalavras.length);
     palavra = listaPalavras[a];
     String palavraTemp= listaPalavras[a];
     char[]characters = palavraTemp.toCharArray();
     int rand1 = (int)(Math.random()*palavraTemp.length());
-    characters[rand1]='_';
+    characters[rand1]='*';
+    new String(characters);
+    int rand2 = (int)(Math.random()*palavraTemp.length());
+    characters[rand2]='*';
     palavras.setText(new String(characters));
-    return new String(characters);
 }
 
 }
