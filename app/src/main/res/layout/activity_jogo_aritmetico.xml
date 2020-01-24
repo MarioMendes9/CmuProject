@@ -31,7 +31,7 @@
         android:layout_marginEnd="166dp"
         android:layout_marginBottom="51dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:hint="Resposta"
         app:layout_constraintBottom_toTopOf="@+id/respostasCorretas"
         app:layout_constraintEnd_toEndOf="parent"

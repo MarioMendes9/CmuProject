@@ -17,35 +17,38 @@
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            android:scaleType="centerInside"
-           android:src="@drawable/download">
-
+           android:src="@drawable/download"
+           android:background="#FFFF">
        </ImageView>
+
        <ImageView
            android:id="@+id/img12"
            android:layout_weight="1"
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            android:scaleType="centerInside"
-           android:src="@drawable/download">
-
+           android:src="@drawable/download"
+           android:background="#FFFF">
        </ImageView>
+
        <ImageView
            android:id="@+id/img13"
            android:layout_weight="1"
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            android:scaleType="centerInside"
-           android:src="@drawable/download">
-
+           android:src="@drawable/download"
+           android:background="#FFFF">
        </ImageView>
+
        <ImageView
            android:id="@+id/img14"
            android:layout_weight="1"
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            android:scaleType="centerInside"
-           android:src="@drawable/download">
-
+           android:src="@drawable/download"
+           android:background="#FFFF">
        </ImageView>
 
    </LinearLayout>
@@ -63,35 +66,38 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerInside"
-            android:src="@drawable/download">
-
+            android:src="@drawable/download"
+            android:background="#FFFF">
         </ImageView>
+
         <ImageView
             android:id="@+id/img22"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerInside"
-            android:src="@drawable/download">
-
+            android:src="@drawable/download"
+            android:background="#FFFF">
         </ImageView>
+
         <ImageView
             android:id="@+id/img23"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerInside"
-            android:src="@drawable/download">
-
+            android:src="@drawable/download"
+            android:background="#FFFF">
         </ImageView>
+
         <ImageView
             android:id="@+id/img24"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerInside"
-            android:src="@drawable/download">
-
+            android:src="@drawable/download"
+            android:background="#FFFF">
         </ImageView>
 
     </LinearLayout>
@@ -109,35 +115,38 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerInside"
-            android:src="@drawable/download">
-
+            android:src="@drawable/download"
+            android:background="#FFFF">
         </ImageView>
+
         <ImageView
             android:id="@+id/img32"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerInside"
-            android:src="@drawable/download">
-
+            android:src="@drawable/download"
+            android:background="#FFFF">
         </ImageView>
+
         <ImageView
             android:id="@+id/img33"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerInside"
-            android:src="@drawable/download">
-
+            android:src="@drawable/download"
+            android:background="#FFFF">
         </ImageView>
+
         <ImageView
             android:id="@+id/img34"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerInside"
-            android:src="@drawable/download">
-
+            android:src="@drawable/download"
+            android:background="#FFFF">
         </ImageView>
 
     </LinearLayout>

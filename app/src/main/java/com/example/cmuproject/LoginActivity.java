@@ -93,9 +93,7 @@ public class LoginActivity extends AppCompatActivity implements Login.OnFragment
         startActivity(myIntent);
     }
 
-    @Override
-    public void addDialogMedicamento(String name, int qtd, String timeStamp) {
-        Medicamento medicamento=new Medicamento(name,qtd,timeStamp);
+
 
     public void addDialogMedicamento(String name, int qtd, String[] dias, String[] alturas) {
         Medicamento medicamento=new Medicamento(name,qtd, Arrays.toString(dias),Arrays.toString(alturas));

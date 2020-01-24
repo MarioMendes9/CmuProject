@@ -16,28 +16,28 @@ import java.util.Random;
 
 public class JogoMemoria extends AppCompatActivity {
 
-    ImageView img1;
-    ImageView img2;
-    ImageView img3;
-    ImageView img4;
-    ImageView img5;
-    ImageView img6;
-    ImageView img7;
-    ImageView img8;
-    ImageView img9;
-    ImageView img10;
-    ImageView img11;
-    ImageView img12;
+    private ImageView img1;
+    private ImageView img2;
+    private ImageView img3;
+    private ImageView img4;
+    private ImageView img5;
+    private ImageView img6;
+    private ImageView img7;
+    private ImageView img8;
+    private ImageView img9;
+    private ImageView img10;
+    private ImageView img11;
+    private ImageView img12;
 
 
 
-    Integer[] numeros={101,102,103,104,105,106,201,202,203,204,205,206};
-    int carta101,carta102,carta103,carta104,carta105,carta106,carta201,carta202,carta203,carta204,carta205,carta206;
+    private Integer[] numeros={101,102,103,104,105,106,201,202,203,204,205,206};
+    private int carta101,carta102,carta103,carta104,carta105,carta106,carta201,carta202,carta203,carta204,carta205,carta206;
 
 
-    int primeiraCarta, segundaCarta;
-    int primeiraCartaSelecionada, segundaCartaSelecionada;
-    int cardNumber=1;
+    private int primeiraCarta, segundaCarta;
+    private int primeiraCartaSelecionada, segundaCartaSelecionada;
+    private int cardNumber=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,40 +195,51 @@ public class JogoMemoria extends AppCompatActivity {
         //coloca a imagem correta nas cartas
         if (numeros[card] == 101) {
             image.setImageResource(carta101);
+            image.setClickable(false);
             System.out.println(numeros[card] + " entrou");
         } else if (numeros[card] == 102) {
             image.setImageResource(carta102);
+            image.setClickable(false);
             System.out.println(numeros[card] + " entrou");
         } else if (numeros[card] == 103) {
             image.setImageResource(carta103);
+            image.setClickable(false);
             System.out.println(numeros[card] + " entrou");
         } else if (numeros[card] == 104) {
             image.setImageResource(carta104);
+            image.setClickable(false);
             System.out.println(numeros[card] + " entrou");
-
         } else if (numeros[card] == 105) {
             image.setImageResource(carta105);
+            image.setClickable(false);
             System.out.println(numeros[card] + " entrou");
         } else if (numeros[card] == 106) {
             image.setImageResource(carta106);
+            image.setClickable(false);
             System.out.println(numeros[card] + " entrou");
         } else if (numeros[card] == 201) {
             image.setImageResource(carta201);
+            image.setClickable(false);
             System.out.println(numeros[card] + " entrou");
         } else if (numeros[card] == 202) {
             image.setImageResource(carta202);
+            image.setClickable(false);
             System.out.println(numeros[card] + " entrou");
         } else if (numeros[card] == 203) {
             image.setImageResource(carta203);
+            image.setClickable(false);
             System.out.println(numeros[card] + " entrou");
         } else if (numeros[card] == 204) {
             image.setImageResource(carta204);
+            image.setClickable(false);
             System.out.println(numeros[card] + " entrou");
         } else if (numeros[card] == 205) {
             image.setImageResource(carta205);
+            image.setClickable(false);
             System.out.println(numeros[card] + " entrou");
         } else if (numeros[card] == 206) {
             image.setImageResource(carta206);
+            image.setClickable(false);
             System.out.println(numeros[card] + " entrou");
         }
         System.out.println(numeros[card]);
@@ -322,54 +333,79 @@ public class JogoMemoria extends AppCompatActivity {
         }else{
             if(primeiraCartaSelecionada==0){
                 img1.setImageResource(R.drawable.download);
+                img1.setClickable(true);
             }else if(primeiraCartaSelecionada==1){
                 img2.setImageResource(R.drawable.download);
+                img2.setClickable(true);
             }else if(primeiraCartaSelecionada==2){
                 img3.setImageResource(R.drawable.download);
+                img3.setClickable(true);
             }else if(primeiraCartaSelecionada==3){
                 img4.setImageResource(R.drawable.download);
+                img4.setClickable(true);
             }else if(primeiraCartaSelecionada==4){
                 img5.setImageResource(R.drawable.download);
+                img5.setClickable(true);
             }else if(primeiraCartaSelecionada==5){
                 img6.setImageResource(R.drawable.download);
+                img6.setClickable(true);
             }else if(primeiraCartaSelecionada==6){
                 img7.setImageResource(R.drawable.download);
+                img7.setClickable(true);
             }else if(primeiraCartaSelecionada==7){
                 img8.setImageResource(R.drawable.download);
+                img8.setClickable(true);
             }else if(primeiraCartaSelecionada==8){
                 img9.setImageResource(R.drawable.download);
+                img9.setClickable(true);
             }else if (primeiraCartaSelecionada==9){
                 img10.setImageResource(R.drawable.download);
+                img10.setClickable(true);
             }else if(primeiraCartaSelecionada==10){
                 img11.setImageResource(R.drawable.download);
+                img11.setClickable(true);
             }else if(primeiraCartaSelecionada==11){
                 img12.setImageResource(R.drawable.download);
+                img12.setClickable(true);
             }
 
             if(segundaCartaSelecionada==0){
                 img1.setImageResource(R.drawable.download);
+                img1.setClickable(true);
             }else if(segundaCartaSelecionada==1){
                 img2.setImageResource(R.drawable.download);
+                img2.setClickable(true);
             }else if(segundaCartaSelecionada==2){
                 img3.setImageResource(R.drawable.download);
+                img3.setClickable(true);
             }else if(segundaCartaSelecionada==3){
                 img4.setImageResource(R.drawable.download);
+                img4.setClickable(true);
             }else if(segundaCartaSelecionada==4){
                 img5.setImageResource(R.drawable.download);
+                img5.setClickable(true);
             }else if(segundaCartaSelecionada==5){
                 img6.setImageResource(R.drawable.download);
+                img6.setClickable(true);
             }else if(segundaCartaSelecionada==6){
                 img7.setImageResource(R.drawable.download);
+                img7.setClickable(true);
+
             }else if(segundaCartaSelecionada==7){
                 img8.setImageResource(R.drawable.download);
+                img8.setClickable(true);
             }else if(segundaCartaSelecionada==8){
                 img9.setImageResource(R.drawable.download);
+                img9.setClickable(true);
             }else if(segundaCartaSelecionada==9){
                 img10.setImageResource(R.drawable.download);
+                img10.setClickable(true);
             }else if(segundaCartaSelecionada==10){
                 img11.setImageResource(R.drawable.download);
+                img11.setClickable(true);
             }else if(segundaCartaSelecionada==10){
                 img12.setImageResource(R.drawable.download);
+                img12.setClickable(true);
             }
         }
         cardNumber=1;
