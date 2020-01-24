@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Alterar este construtor .... 
+ * Alterar este construtor ....
  */
 
 public class EditMedicamentoDialog extends DialogFragment {
