@@ -8,11 +8,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class JogoMemoria extends AppCompatActivity {
 
@@ -38,6 +38,7 @@ public class JogoMemoria extends AppCompatActivity {
     private int primeiraCarta, segundaCarta;
     private int primeiraCartaSelecionada, segundaCartaSelecionada;
     private int cardNumber=1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,8 @@ public class JogoMemoria extends AppCompatActivity {
 
         frontOfCards();
         Collections.shuffle(Arrays.asList(numeros));
+
+
         img1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -260,6 +263,19 @@ public class JogoMemoria extends AppCompatActivity {
             segundaCartaSelecionada = card;
 
 
+            img1.setClickable(false);
+            img2.setClickable(false);
+            img3.setClickable(false);
+            img4.setClickable(false);
+            img5.setClickable(false);
+            img6.setClickable(false);
+            img7.setClickable(false);
+            img8.setClickable(false);
+            img9.setClickable(false);
+            img10.setClickable(false);
+            img11.setClickable(false);
+            img12.setClickable(false);
+
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
@@ -280,7 +296,7 @@ public class JogoMemoria extends AppCompatActivity {
             if(primeiraCartaSelecionada==0){
                 img1.setVisibility(View.INVISIBLE);
             }else if(primeiraCartaSelecionada==1){
-                img2.setVisibility(View.INVISIBLE);
+                img2.setVisibility(View.INVISIBLE);;
             }else if(primeiraCartaSelecionada==2){
                 img3.setVisibility(View.INVISIBLE);
             }else if(primeiraCartaSelecionada==3){
@@ -390,7 +406,6 @@ public class JogoMemoria extends AppCompatActivity {
             }else if(segundaCartaSelecionada==6){
                 img7.setImageResource(R.drawable.download);
                 img7.setClickable(true);
-
             }else if(segundaCartaSelecionada==7){
                 img8.setImageResource(R.drawable.download);
                 img8.setClickable(true);
@@ -403,11 +418,26 @@ public class JogoMemoria extends AppCompatActivity {
             }else if(segundaCartaSelecionada==10){
                 img11.setImageResource(R.drawable.download);
                 img11.setClickable(true);
-            }else if(segundaCartaSelecionada==10){
+            }else if(segundaCartaSelecionada==11){
                 img12.setImageResource(R.drawable.download);
                 img12.setClickable(true);
             }
+
+
         }
+        img1.setClickable(true);
+        img2.setClickable(true);
+        img3.setClickable(true);
+        img4.setClickable(true);
+        img5.setClickable(true);
+        img6.setClickable(true);
+        img7.setClickable(true);
+        img8.setClickable(true);
+        img9.setClickable(true);
+        img10.setClickable(true);
+        img11.setClickable(true);
+        img12.setClickable(true);
+
         cardNumber=1;
         primeiraCarta=-1;
         segundaCarta=-1;
