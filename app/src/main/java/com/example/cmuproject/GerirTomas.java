@@ -136,46 +136,46 @@ public class GerirTomas extends Fragment {
                 todayIs = "Domingo";
                 break;
         }
+        if (myMedicamentos != null) {
+            for (int i = 0; i < myMedicamentos.size(); i++) {
 
-        for (int i = 0; i < myMedicamentos.size(); i++) {
+                String tempDays = myMedicamentos.get(i).days;
+                tempDays = tempDays.replace(" ", "");
+                tempDays = tempDays.substring(1, tempDays.length() - 1);
+                String[] thisDays = tempDays.split(",");
 
-            String tempDays = myMedicamentos.get(i).days;
-            tempDays = tempDays.replace(" ", "");
-            tempDays = tempDays.substring(1, tempDays.length() - 1);
-            String[] thisDays = tempDays.split(",");
+                for (int j = 0; j < thisDays.length; j++) {
+                    if (thisDays[j].equals(todayIs)) {
+                        //verificar se ja foi tomado
+                        String tempAlturas = myMedicamentos.get(i).alturas;
+                        tempAlturas = tempAlturas.replace(" ", "");
+                        tempAlturas = tempAlturas.substring(1, tempAlturas.length() - 1);
+                        String[] thisAlturas = tempAlturas.split(",");
+                        for (int k = 0; k < thisAlturas.length; k++) {
+                            String theAltura = "";
+                            Boolean found = false;
+                            for (int i2 = 0; i2 < tomas.size() && !found; i2++) {
+                                if (myMedicamentos.get(i).name.equals(tomas.get(i2).medicamentoName)) {
+                                    theAltura = getAltura(tomas.get(i2).hora);
 
-            for (int j = 0; j < thisDays.length; j++) {
-                if (thisDays[j].equals(todayIs)) {
-                    //verificar se ja foi tomado
-                    String tempAlturas = myMedicamentos.get(i).alturas;
-                    tempAlturas = tempAlturas.replace(" ", "");
-                    tempAlturas = tempAlturas.substring(1, tempAlturas.length() - 1);
-                    String[] thisAlturas = tempAlturas.split(",");
-                    for (int k = 0; k < thisAlturas.length; k++) {
-                        String theAltura = "";
-                        Boolean found = false;
-                        for (int i2 = 0; i2 < tomas.size() && !found; i2++) {
-                            if (myMedicamentos.get(i).name.equals(tomas.get(i2).medicamentoName)) {
-                                theAltura = getAltura(tomas.get(i2).hora);
-
-                                if (theAltura.equals(thisAlturas[k])) {
-                                    found = true;
-                                    break;
+                                    if (theAltura.equals(thisAlturas[k])) {
+                                        found = true;
+                                        break;
+                                    }
                                 }
                             }
+                            if (!found) {
+                                System.out.println("adicionou");
+                                pententTomas.add(new PendentToma(thisAlturas[k], myMedicamentos.get(i).name));
+                            }
                         }
-                        if (!found) {
-                            System.out.println("adicionou");
-                            pententTomas.add(new PendentToma(thisAlturas[k], myMedicamentos.get(i).name));
-                        }
+                        break;
                     }
-                    break;
                 }
             }
+            System.out.println("tamanho " + pententTomas.size());
+            medicamentosViewModel.setPendentTomas(pententTomas);
         }
-        System.out.println("tamanho " + pententTomas.size());
-        medicamentosViewModel.setPendentTomas(pententTomas);
-
 
     }
 
