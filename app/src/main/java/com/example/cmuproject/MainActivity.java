@@ -14,7 +14,10 @@ import com.example.cmuproject.model.Medicamento;
 import com.example.cmuproject.model.Toma;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.sql.DatabaseMetaData;
 import java.text.SimpleDateFormat;
 
 import java.util.Arrays;
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
     private FirebaseAuth mAuth;
     private MedicamentosViewModel medicamentoViewModel;
     private List<Medicamento> medis;
+
 
 
     @Override
