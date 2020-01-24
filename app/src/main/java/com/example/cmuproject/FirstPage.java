@@ -73,10 +73,7 @@ public class FirstPage extends Fragment {
             }
         });
 
-        img.setImageResource(R.drawable.logo2);
-
-        //img.setImageResource(R.drawable.logo);
-
+        img.setImageResource(R.drawable.logo);
 
         btnFarmacias.setOnClickListener(new View.OnClickListener() {
             @Override
