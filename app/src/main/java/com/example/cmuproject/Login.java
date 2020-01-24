@@ -34,15 +34,15 @@ public class Login extends Fragment {
     private EditText userPass;
 
 
-    public Login(FirebaseAuth mAuth) {
-        // Required empty public constructor
-        this.mAuth = mAuth;
+    public Login() {
+
     }
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAuth = FirebaseAuth.getInstance();
 
     }
 

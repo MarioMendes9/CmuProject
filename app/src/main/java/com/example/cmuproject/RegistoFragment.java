@@ -2,7 +2,6 @@ package com.example.cmuproject;
 
 import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -35,8 +34,7 @@ public class RegistoFragment extends Fragment {
 
 
 
-    public RegistoFragment(FirebaseAuth mAuth) {
-        this.mAuth=mAuth;
+    public RegistoFragment() {
     }
 
 
@@ -44,7 +42,7 @@ public class RegistoFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
     }
 

@@ -24,7 +24,7 @@
         <activity
             android:name=".FarmaciaMaps"
             android:label="@string/title_activity_farmacia_maps"></activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
