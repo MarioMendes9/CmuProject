@@ -1,71 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuJogos">
+    tools:context=".MenuJogos"
+    android:orientation="vertical"
+    android:gravity="center">
 
     <Button
         android:id="@+id/jogoPalavras"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="117dp"
-        android:layout_marginEnd="51dp"
-        android:text="Iniciar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="51dp"
+        android:layout_marginRight="51dp"
+        android:drawableLeft="@drawable/word_game_icon"
+        android:text="Jogo das Palavras"
+        android:theme="@style/ThemeOverlay.MyDarkButton" />
 
     <Button
         android:id="@+id/jogoAritmetico"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="117dp"
-        android:layout_marginEnd="51dp"
-        android:text="Iniciar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jogoPalavras" />
+        android:text="Jogo Aritmético"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="51dp"
+        android:layout_marginRight="51dp"
+        android:theme="@style/ThemeOverlay.MyDarkButton"
+        android:drawableLeft="@drawable/number_game_icon"
+        />
 
     <Button
         android:id="@+id/jogoMemoria"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="117dp"
-        android:layout_marginEnd="51dp"
-        android:text="Iniciar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jogoAritmetico" />
+        android:text="Jogo da Memória"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="51dp"
+        android:layout_marginRight="51dp"
+        android:theme="@style/ThemeOverlay.MyDarkButton"
+        android:drawableLeft="@drawable/memory_game_icon"
+        />
 
-    <TextView
-        android:id="@+id/textJogoPalavras"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="121dp"
-        android:text="Jogo das palavras"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textJogoAritmetico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="144dp"
-        android:text="Jogo Aritmético"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textJogoPalavras" />
-
-    <TextView
-        android:id="@+id/textJogoMemoria"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="146dp"
-        android:text="Jogo memória"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textJogoAritmetico" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

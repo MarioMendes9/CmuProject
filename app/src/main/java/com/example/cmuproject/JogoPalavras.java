@@ -20,14 +20,14 @@ public class JogoPalavras extends AppCompatActivity {
 
 
     //ImageView img;
-    TextView palavras;
-    EditText value;
-    Button resposta;
-    TextView respostasCorretas;
-    int a = 0;
-    int count = 0;
-    String replace;
-    String palavra;
+    private TextView palavras;
+    private EditText value;
+    private Button resposta;
+    private TextView respostasCorretas;
+    private int a = 0;
+    private int count = 0;
+    private String replace;
+    private String palavra;
 
     String listaPalavras[] = {
             "carro",
@@ -55,6 +55,7 @@ public class JogoPalavras extends AppCompatActivity {
         respostasCorretas = findViewById(R.id.respostasCorretas);
 
         palavra();
+        value.setText("");
 
         resposta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,12 +67,15 @@ public class JogoPalavras extends AppCompatActivity {
                     count++;
                     respostasCorretas.setText("Tem " + count + " respostas corretas");
                     palavra();
+                    value.setText("");
                 } else {
                     Intent intent = new Intent(getApplicationContext(), JogoPalavrasResultado.class);
                     System.out.println(count);
                     intent.putExtra("count", count);
                     startActivity(intent);
                 }
+
+
             }
         });
 

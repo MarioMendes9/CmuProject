@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
     }
 
 
+
     public void addDialogMedicamento(String name, int qtd, String[] dias, String[] alturas) {
         Medicamento medicamento=new Medicamento(name,qtd, Arrays.toString(dias),Arrays.toString(alturas));
         medicamentoViewModel.inserMedicamento(medicamento);

@@ -12,23 +12,24 @@ import java.util.Random;
 
 public class JogoAritmetico extends AppCompatActivity {
 
-    TextView equacao;
-    TextView titulo;
-    TextView resposta;
-    TextView respostasCorretas;
-    Button validar;
-    String listaOperadores[] = {
+    private TextView equacao;
+    private TextView titulo;
+    private TextView resposta;
+    private TextView respostasCorretas;
+    private Button validar;
+    private String listaOperadores[] = {
             "+",
             "-",
             "*"};
-    String op;
-    int valor1=0;
-    int valor2=0;
-    int sum=0;
-    int mult=0;
-    int div=0;
-    int sub=0;
-    int cont=0;
+    private String op;
+    private int valor1=0;
+    private int valor2=0;
+    private int sum=0;
+    private int mult=0;
+    private int sub=0;
+    private int cont=0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +71,7 @@ public class JogoAritmetico extends AppCompatActivity {
                     }
                 }
                     equacao();
+                resposta.setText("");
             }
         });
 

@@ -21,9 +21,6 @@ public class MenuJogos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_jogos);
 
-        jogoMemoria=findViewById(R.id.textJogoMemoria);
-        jogoAritmetico=findViewById(R.id.textJogoAritmetico);
-        jogoPalavras=findViewById(R.id.textJogoPalavras);
 
         iniciarJogoAritmetico=findViewById(R.id.jogoAritmetico);
         iniciarJogoPalavras=findViewById(R.id.jogoPalavras);
