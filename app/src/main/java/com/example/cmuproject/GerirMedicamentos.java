@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,8 +18,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cmuproject.Adapters.MedicamentoAdpter;
-import com.example.cmuproject.model.MedicamentViewModel;
+import com.example.cmuproject.model.MedicamentosViewModel;
 import com.example.cmuproject.model.Medicamento;
+import com.example.cmuproject.model.Toma;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -28,19 +30,20 @@ public class GerirMedicamentos extends Fragment {
 
 
     private OnFragmentGMInteractionListener mListener;
-    private MedicamentViewModel medicamentoViewModel;
+    private MedicamentosViewModel medicamentoViewModel;
     private RecyclerView rc;
     private MedicamentoAdpter medicAdapter;
     private FloatingActionButton fab;
 
-    public GerirMedicamentos(MedicamentViewModel medicamentoViewModel) {
-        this.medicamentoViewModel=medicamentoViewModel;
+    public GerirMedicamentos() {
     }
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        medicamentoViewModel=new ViewModelProvider(getActivity()).get(MedicamentosViewModel.class);
+
     }
 
     @Override
@@ -55,13 +58,13 @@ public class GerirMedicamentos extends Fragment {
         rc.setLayoutManager(new LinearLayoutManager(getContext()));
         RecyclerView.ItemDecoration itemDecoration=new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
         rc.addItemDecoration(itemDecoration);
-        medicAdapter=new MedicamentoAdpter(medicamentoViewModel);
+        medicAdapter=new MedicamentoAdpter();
         rc.setAdapter(medicAdapter);
 
+     //   medicamentoViewModel.inserToma(new Toma("xanax",12,"23/01/2020","16:49","felgueiras"));
         medicamentoViewModel.getallMedicamentos().observe(getActivity(), new Observer<List<Medicamento>>() {
             @Override
             public void onChanged(List<Medicamento> medicamentos) {
-                System.out.println("Dentro do listner");
                 medicAdapter.setmMedicamentos(medicamentos);
             }
         });

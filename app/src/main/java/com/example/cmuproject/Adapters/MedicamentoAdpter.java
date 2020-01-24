@@ -1,7 +1,5 @@
 package com.example.cmuproject.Adapters;
 
-import android.app.Activity;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
@@ -19,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cmuproject.EditMedicamentoDialog;
 import com.example.cmuproject.R;
-import com.example.cmuproject.model.MedicamentViewModel;
+import com.example.cmuproject.model.MedicamentosViewModel;
 import com.example.cmuproject.model.Medicamento;
 
 import java.util.List;
@@ -27,11 +25,9 @@ import java.util.List;
 public class MedicamentoAdpter extends RecyclerView.Adapter<MedicamentoAdpter.MedicamentoViewHolder>{
 
     private List<Medicamento> mMedicamentos;
-    MedicamentViewModel mMedicamentoModel;
     private Context context;
 
-    public MedicamentoAdpter(MedicamentViewModel mMedicamentoModel) {
-        this.mMedicamentoModel = mMedicamentoModel;
+    public MedicamentoAdpter() {
     }
 
 

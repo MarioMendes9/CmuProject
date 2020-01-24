@@ -22,9 +22,12 @@ public interface MedicamentoDao {
     public LiveData<List<Medicamento>> loadAllMedicamentos();
 
     @Query("SELECT COUNT(*) FROM Medicamento")
-    int getCount();
+    public int getCount();
 
     @Query("UPDATE Medicamento SET quantity=quantity+:tempQuant,days=:tempDays,alturas=:tempAlturas WHERE name=:tempName")
     public void updateMedic(String tempName,int tempQuant,String tempDays,String tempAlturas);
+
+    @Query("UPDATE Medicamento SET quantity=quantity-:qtd WHERE name=:name")
+    public void removeQuantidade(String name,int qtd);
 
 }
