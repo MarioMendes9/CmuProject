@@ -3,6 +3,7 @@ package com.example.cmuproject;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -18,6 +19,7 @@ import java.text.SimpleDateFormat;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements Login.OnFragmentLoginInteractionListener,
                                                     RegistoFragment.OnFragmentRegisteInteractionListener,
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     private FirebaseAuth mAuth;
     private MedicamentosViewModel medicamentoViewModel;
+    private List<Medicamento> medis;
 
 
     @Override
@@ -36,6 +39,14 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
         mAuth = FirebaseAuth.getInstance();
 
         medicamentoViewModel=new ViewModelProvider(this).get(MedicamentosViewModel.class);
+
+        medicamentoViewModel.getallMedicamentos().observe(this, new Observer<List<Medicamento>>() {
+            @Override
+            public void onChanged(List<Medicamento> medicamentos) {
+                medis=medicamentos;
+            }
+        });
+
 
         Login fragmentLogin=new Login();
         FragmentManager fm=getSupportFragmentManager();
@@ -148,5 +159,15 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
         System.out.println(newToma.toString());
 
         medicamentoViewModel.inserToma(newToma);
+    }
+
+    @Override
+    public long checkQuantity(String medicaName) {
+        for (int i = 0; i < medis.size(); i++) {
+            if (medis.get(i).name == medicaName) {
+                return medis.get(i).quantity;
+            }
+        }
+        return 0;
     }
 }
