@@ -53,7 +53,6 @@ public class MedicamentoDialog extends DialogFragment {
 
                         }
 
-                        System.out.println("Medicamento nome: "+chipDias.getChildCount());
                         if (quantidade.getText().toString().matches("") || name.toString().matches("") || tempdias.size()==0 || tempdias.size()==0) {
                             Toast.makeText(getActivity(), "Medicamento invalido",
                                     Toast.LENGTH_SHORT).show();

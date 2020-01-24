@@ -8,21 +8,25 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.cmuproject.model.MedicamentViewModel;
+import com.example.cmuproject.model.MedicamentosViewModel;
 import com.example.cmuproject.model.Medicamento;
+import com.example.cmuproject.model.Toma;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Arrays;
+import java.text.SimpleDateFormat;
 
-public class LoginActivity extends AppCompatActivity implements Login.OnFragmentLoginInteractionListener,
+import java.util.Arrays;
+import java.util.Date;
+
+public class MainActivity extends AppCompatActivity implements Login.OnFragmentLoginInteractionListener,
                                                     RegistoFragment.OnFragmentRegisteInteractionListener,
                                                     FirstPage.OnFragmentFirstPageInteractionListener,
                                                     MedicamentoDialog.MediListernerInterface,
-                                                EditMedicamentoDialog.MediEditListernerInterface{
+                                                EditMedicamentoDialog.MediEditListernerInterface,TomaDialog.TomaListernerInterface{
 
     private FirebaseAuth mAuth;
-    private MedicamentViewModel medicamentoViewModel;
+    private MedicamentosViewModel medicamentoViewModel;
 
 
     @Override
@@ -31,9 +35,9 @@ public class LoginActivity extends AppCompatActivity implements Login.OnFragment
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
 
-        medicamentoViewModel=new ViewModelProvider(this).get(MedicamentViewModel.class);
+        medicamentoViewModel=new ViewModelProvider(this).get(MedicamentosViewModel.class);
 
-        Login fragmentLogin=new Login(mAuth);
+        Login fragmentLogin=new Login();
         FragmentManager fm=getSupportFragmentManager();
         FragmentTransaction ft=fm.beginTransaction();
 
@@ -59,7 +63,7 @@ public class LoginActivity extends AppCompatActivity implements Login.OnFragment
     @Override
     public void onFragmentRegistInteraction() {
 
-        RegistoFragment changeFrag=new RegistoFragment(mAuth);
+        RegistoFragment changeFrag=new RegistoFragment();
 
         FragmentTransaction tr=getSupportFragmentManager().beginTransaction();
         tr.replace(R.id.fragment_container,changeFrag);
@@ -79,7 +83,7 @@ public class LoginActivity extends AppCompatActivity implements Login.OnFragment
 
     @Override
     public void gerirMedicamentosInteraction() {
-        GerirMedicamentos gm=new GerirMedicamentos(medicamentoViewModel);
+        GerirMedicamentos gm=new GerirMedicamentos();
 
         FragmentTransaction tr=getSupportFragmentManager().beginTransaction();
         tr.replace(R.id.fragment_container,gm);
@@ -104,7 +108,15 @@ public class LoginActivity extends AppCompatActivity implements Login.OnFragment
         startActivity(mIntent);
     }
 
+    @Override
+    public void gerirTomas() {
+        GerirTomas gt=new GerirTomas();
 
+        FragmentTransaction tr=getSupportFragmentManager().beginTransaction();
+        tr.replace(R.id.fragment_container,gt);
+        tr.addToBackStack(null);
+        tr.commit();
+    }
     @Override
     public void foodDetails() {
         Intent mIntent = new Intent(this, Food.class);
@@ -119,5 +131,22 @@ public class LoginActivity extends AppCompatActivity implements Login.OnFragment
     @Override
     public void editMedicament(String tempName, int tempQuant, String tempDays, String tempAlturas) {
         medicamentoViewModel.updateMedic(tempName,tempQuant,tempDays,tempAlturas);
+    }
+
+    @Override
+    public void addTomaDialog(String medicName, int quantidade) {
+        medicamentoViewModel.removeQtd(medicName,quantidade);
+
+
+        String pattern = "dd/MM/yyyy";
+        String dateInString =new SimpleDateFormat(pattern).format(new Date());
+
+        String hour=new SimpleDateFormat("HH:mm").format(new Date());
+
+        //Alterar o local
+        Toma newToma=new Toma(medicName,quantidade,dateInString,hour,"Felgueiras");
+        System.out.println(newToma.toString());
+
+        medicamentoViewModel.inserToma(newToma);
     }
 }
