@@ -6,16 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class MenuJogos extends AppCompatActivity {
- TextView jogoMemoria;
- TextView jogoAritmetico;
- TextView jogoPalavras;
 
- Button iniciarJogoPalavras;
- Button iniciarJogoAritmetico;
- Button iniciarJogoMemoria;
+
+    private  Button iniciarJogoPalavras;
+    private Button iniciarJogoAritmetico;
+    private Button iniciarJogoMemoria;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +50,6 @@ public class MenuJogos extends AppCompatActivity {
                 startActivity(it);
 
             }
-
         });
     }
 }

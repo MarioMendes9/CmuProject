@@ -12,7 +12,7 @@ public class JogoMemoriaResultado extends AppCompatActivity {
 
     private Button jogarNovamente;
     private Button menuJogos;
-    private TextView tempo;
+    private TextView texto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +20,7 @@ public class JogoMemoriaResultado extends AppCompatActivity {
         setContentView(R.layout.activity_jogo_memoria_resultado);
         jogarNovamente=findViewById(R.id.button4);
         menuJogos=findViewById(R.id.button5);
+        texto=findViewById(R.id.tempo);
 
         menuJogos.setOnClickListener(new View.OnClickListener(){
             @Override

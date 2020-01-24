@@ -8,12 +8,12 @@
 
     <TextView
         android:id="@+id/titulo"
-        android:layout_width="346dp"
-        android:layout_height="56dp"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
         android:layout_marginStart="34dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="73dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="20dp"
         android:text="Indique a resposta correta à seguinte equação:"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/num1"
@@ -22,64 +22,64 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <EditText
         android:id="@+id/resposta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="63dp"
-        android:layout_marginEnd="166dp"
-        android:layout_marginBottom="51dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="34dp"
         android:ems="10"
-        android:inputType="number"
         android:hint="Resposta"
-        app:layout_constraintBottom_toTopOf="@+id/respostasCorretas"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/num1" />
-
-    <Button
-        android:id="@+id/validar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="162dp"
-        android:layout_marginTop="217dp"
-        android:layout_marginEnd="162dp"
-        android:layout_marginBottom="176dp"
-        android:text="Validar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resposta" />
+        app:layout_constraintTop_toBottomOf="@+id/titulo" />
 
     <TextView
         android:id="@+id/respostasCorretas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="304dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="290dp"
         android:layout_marginBottom="344dp"
         android:text="Respostas Corretas"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resposta"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.285" />
+
+    <Button
+        android:id="@+id/validar"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="217dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="176dp"
+        android:text="Validar"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resposta"
+        app:layout_constraintVertical_bias="0.475" />
 
     <TextView
         android:id="@+id/num1"
-        android:layout_width="262dp"
-        android:layout_height="86dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="46dp"
+        android:layout_width="253dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="72dp"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintBottom_toTopOf="@+id/resposta"
+        app:layout_constraintEnd_toStartOf="@+id/resposta"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titulo" />
 

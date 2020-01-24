@@ -96,8 +96,7 @@ public class JogoAritmetico extends AppCompatActivity {
     }
 
     protected void errado(){
-        Intent intent = new Intent(getApplicationContext(), JogoAritmeticoResultado.class);
-        System.out.println(cont);
+        Intent intent = new Intent(JogoAritmetico.this, JogoAritmeticoResultado.class);
         intent.putExtra("cont", cont);
         startActivity(intent);
     }

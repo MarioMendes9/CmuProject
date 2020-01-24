@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MenuJogos"
+    android:orientation="vertical"
+    android:background="#FFFF">
+
+
+    <ImageView
+        android:id="@+id/word_game"
+        android:layout_width="304dp"
+        android:layout_height="262dp"
+        android:layout_gravity="center"
+        android:background="#FFFF"
+        android:paddingTop="50dp"
+        android:paddingBottom="50dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/word_game" />
+
+    <TextView
+        android:id="@+id/palavra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Palavra"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"/>
+
+
+    <EditText
+        android:id="@+id/resposta"
+        android:layout_width="490dp"
+        android:layout_height="76dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:ems="15"
+        android:hint="Palavra Correta"
+        android:inputType="text"
+        android:textSize="30dp" />
+
+
+    <TextView
+        android:id="@+id/respostasCorretas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Respostas corretas"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="50dp"
+        />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="93dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="Guardar resposta"
+        android:textSize="30dp"
+        android:theme="@style/ThemeOverlay.MyDarkButton" />
+
+</LinearLayout>

@@ -8,27 +8,30 @@
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="161dp"
-        android:layout_marginTop="242dp"
-        android:layout_marginEnd="162dp"
+        android:layout_width="313dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="125dp"
         android:text="Jogar novamente"
+        android:textSize="30dp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tempo" />
 
     <Button
         android:id="@+id/button5"
-        android:layout_width="157dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="126dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="197dp"
+        android:layout_width="313dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="125dp"
         android:text="Menu Jogos"
+        android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button4" />
 
@@ -39,8 +42,8 @@
         android:layout_marginStart="171dp"
         android:layout_marginTop="158dp"
         android:layout_marginEnd="181dp"
-        android:text="Parabéns! "
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:text="Parabéns"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
