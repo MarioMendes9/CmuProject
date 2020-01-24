@@ -92,11 +92,16 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
     }
 
     @Override
+    public void loadGames() {
+        Intent myIntent = new Intent(this, MenuJogos.class);
+        startActivity(myIntent);
+    }
+
+
     public void addDialogMedicamento(String name, int qtd, String[] dias, String[] alturas) {
         Medicamento medicamento=new Medicamento(name,qtd, Arrays.toString(dias),Arrays.toString(alturas));
         medicamentoViewModel.inserMedicamento(medicamento);
     }
-
     public void loadMapaFarmacias() {
         Intent mIntent = new Intent(this, FarmaciaMaps.class);
         startActivity(mIntent);
@@ -110,6 +115,11 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
         tr.replace(R.id.fragment_container,gt);
         tr.addToBackStack(null);
         tr.commit();
+    }
+    @Override
+    public void foodDetails() {
+        Intent mIntent = new Intent(this, Food.class);
+        startActivity(mIntent);
     }
 
     @Override
