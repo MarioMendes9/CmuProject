@@ -3,18 +3,23 @@ package com.example.cmuproject;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
+
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -25,10 +30,8 @@ import com.example.cmuproject.model.Medicamento;
 import com.example.cmuproject.model.Toma;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import java.sql.DatabaseMetaData;
+
 import java.text.SimpleDateFormat;
 
 import java.util.Arrays;
@@ -77,14 +80,14 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
         medicamentoViewModel.getallMedicamentos().observe(this, new Observer<List<Medicamento>>() {
             @Override
             public void onChanged(List<Medicamento> medicamentos) {
-                medis=medicamentos;
+                medis = medicamentos;
             }
         });
 
 
-        Login fragmentLogin=new Login();
-        FragmentManager fm=getSupportFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
+        Login fragmentLogin = new Login();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
 
         ft.replace(R.id.fragment_container, fragmentLogin);
         ft.commit();
@@ -238,4 +241,6 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
         }
         return 0;
     }
+
+
 }
