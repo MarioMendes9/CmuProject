@@ -10,5 +10,6 @@ public interface SpoonacularApi {
 
     @GET("recipes/search")
     Call<Recipes> searchRecipes(@Query("diet") String diet,
-                                     @Query("apiKey") String key);
+                                @Query("apiKey") String key,
+                                @Query("excludeIngredients") String aler);
 }

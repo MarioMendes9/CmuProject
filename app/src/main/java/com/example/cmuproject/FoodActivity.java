@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.cmuproject.retrofit_models.FoodDetails;
@@ -100,6 +102,7 @@ public class FoodActivity extends AppCompatActivity {
                                     sugarButton.setBackgroundResource(R.drawable.buttonshapelow);
                                 } else if(response.body().getProduct().getNutrient_levels().getSugars().equals("high")){
                                     sugarButton.setBackgroundResource(R.drawable.buttonshapehigh);
+                                    Toast.makeText(getApplicationContext(), "To much SUGAR!", Toast.LENGTH_LONG).show();
                                     //new AlertDialog.Builder(getApplicationContext()).setTitle("Too much Sugar!").setMessage("This product have too much sugar!").setNeutralButton("Close", null).show();
                                 } else {
                                     sugarButton.setBackgroundResource(R.drawable.buttonshapemoderate);
@@ -109,6 +112,7 @@ public class FoodActivity extends AppCompatActivity {
                                     sodiumButton.setBackgroundResource(R.drawable.buttonshapelow);
                                 } else if(response.body().getProduct().getNutrient_levels().getSalt().equals("high")){
                                     sodiumButton.setBackgroundResource(R.drawable.buttonshapehigh);
+                                    Toast.makeText(getApplicationContext(), "To much SALT!", Toast.LENGTH_LONG).show();
                                     //new AlertDialog.Builder(getApplicationContext()).setTitle("Too much Salt!").setMessage("This product have too much salt!").setNeutralButton("Close", null).show();
                                 } else {
                                     sodiumButton.setBackgroundResource(R.drawable.buttonshapemoderate);
@@ -118,6 +122,7 @@ public class FoodActivity extends AppCompatActivity {
                                     fatButton.setBackgroundResource(R.drawable.buttonshapelow);
                                 } else if(response.body().getProduct().getNutrient_levels().getFat().equals("high")){
                                     fatButton.setBackgroundResource(R.drawable.buttonshapehigh);
+                                    Toast.makeText(getApplicationContext(), "To much FAT!", Toast.LENGTH_LONG).show();
                                    //new AlertDialog.Builder(getApplicationContext()).setTitle("Too much Fat!").setMessage("This product have too much fat!").setNeutralButton("Close", null).show();
                                 } else {
                                     fatButton.setBackgroundResource(R.drawable.buttonshapemoderate);
@@ -127,6 +132,7 @@ public class FoodActivity extends AppCompatActivity {
                                     saturated_fatButton.setBackgroundResource(R.drawable.buttonshapelow);
                                 } else if(response.body().getProduct().getNutrient_levels().getSaturated_fat().equals("high")){
                                     saturated_fatButton.setBackgroundResource(R.drawable.buttonshapehigh);
+                                    Toast.makeText(getApplicationContext(), "To much SATURATED FAT!", Toast.LENGTH_LONG).show();
                                     //new AlertDialog.Builder(getApplicationContext()).setTitle("Too much Saturated Fat!").setMessage("This product have too much saturated fat!").setNeutralButton("Close", null).show();
                                 } else {
                                     saturated_fatButton.setBackgroundResource(R.drawable.buttonshapemoderate);

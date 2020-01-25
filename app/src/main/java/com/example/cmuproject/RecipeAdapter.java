@@ -17,16 +17,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     private Recipes mRecipe;
 
     public RecipeAdapter(Context mContext, Recipes mRecipe) {
-        System.out.println("ENTROU AQUI");
         this.mContext = mContext;
         this.mRecipe = mRecipe;
-        System.out.println(mRecipe.toString());
     }
 
     @NonNull
     @Override
     public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        System.out.println("ENTROU VIEW HOLDER");
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -38,23 +35,19 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
 
         Recipe rec = mRecipe.getResults().get(position);
-        System.out.println("RECIPE :::::::::::::::: " + rec.toString());
         TextView title = holder.title;
-        System.out.println("TITLE ::::::::::::::::: " + rec.getTitle());
         title.setText(rec.getTitle());
 
         TextView ready = holder.ready;
-        System.out.println("READY ::::::::::::::::: " + rec.getReadyInMinutes());
-        ready.setText(rec.getReadyInMinutes());
+        ready.setText("Ready In Minutes: "+rec.getReadyInMinutes());
 
         TextView servings = holder.servings;
-        System.out.println("SERVINGS ::::::::::::::::: " + rec.getServings());
-        servings.setText(rec.getServings());
+        servings.setText("Servings: "+rec.getServings());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mRecipe.getResults().size();
     }
 
     public class RecipeViewHolder extends RecyclerView.ViewHolder {
@@ -64,7 +57,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
         public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
-            System.out.println("ENTROU RECIPE VIEW HOLDER");
             this.title=itemView.findViewById(R.id.title);
             this.ready=itemView.findViewById(R.id.ready);
             this.servings = itemView.findViewById(R.id.servings);

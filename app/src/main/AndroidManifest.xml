@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecipesActivity"></activity>
+        <activity android:name=".RecipesActivity"
+            android:configChanges="uiMode"></activity>
         <activity
             android:name=".SettingsActivity"
             android:configChanges="uiMode" />
@@ -28,7 +29,8 @@
         <activity android:name=".MenuJogos" />
         <activity android:name=".JogoPalavras" />
         <activity android:name=".JogoPalavrasResultado" />
-        <activity android:name=".FoodActivity" />
+        <activity android:name=".FoodActivity"
+            android:configChanges="uiMode"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
