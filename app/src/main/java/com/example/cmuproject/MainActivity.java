@@ -1,12 +1,17 @@
 package com.example.cmuproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.Manifest;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import com.example.cmuproject.model.MedicamentosViewModel;
@@ -25,10 +30,10 @@ import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements Login.OnFragmentLoginInteractionListener,
-                                                    RegistoFragment.OnFragmentRegisteInteractionListener,
-                                                    FirstPage.OnFragmentFirstPageInteractionListener,
-                                                    MedicamentoDialog.MediListernerInterface,
-                                                EditMedicamentoDialog.MediEditListernerInterface,TomaDialog.TomaListernerInterface{
+        RegistoFragment.OnFragmentRegisteInteractionListener,
+        FirstPage.OnFragmentFirstPageInteractionListener,
+        MedicamentoDialog.MediListernerInterface,
+        EditMedicamentoDialog.MediEditListernerInterface, TomaDialog.TomaListernerInterface {
 
     private FirebaseAuth mAuth;
     private MedicamentosViewModel medicamentoViewModel;
@@ -42,21 +47,25 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
 
-        medicamentoViewModel=new ViewModelProvider(this).get(MedicamentosViewModel.class);
+        //locationService = new TrackService("MyService");
+
+
+
+        medicamentoViewModel = new ViewModelProvider(this).get(MedicamentosViewModel.class);
 
         medicamentoViewModel.getallMedicamentos().observe(this, new Observer<List<Medicamento>>() {
             @Override
             public void onChanged(List<Medicamento> medicamentos) {
-                medis=medicamentos;
+                medis = medicamentos;
             }
         });
 
 
-        Login fragmentLogin=new Login();
-        FragmentManager fm=getSupportFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
+        Login fragmentLogin = new Login();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
 
-        ft.replace(R.id.fragment_container,fragmentLogin);
+        ft.replace(R.id.fragment_container, fragmentLogin);
         ft.commit();
 
 
@@ -65,10 +74,10 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     public void onFragmentLoginInteraction(FirebaseUser user) {
-        FirstPage changeFrag=new FirstPage();
+        FirstPage changeFrag = new FirstPage();
 
-        FragmentTransaction tr=getSupportFragmentManager().beginTransaction();
-        tr.replace(R.id.fragment_container,changeFrag);
+        FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
+        tr.replace(R.id.fragment_container, changeFrag);
         tr.addToBackStack(null);
         tr.commit();
 
@@ -78,30 +87,30 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
     @Override
     public void onFragmentRegistInteraction() {
 
-        RegistoFragment changeFrag=new RegistoFragment();
+        RegistoFragment changeFrag = new RegistoFragment();
 
-        FragmentTransaction tr=getSupportFragmentManager().beginTransaction();
-        tr.replace(R.id.fragment_container,changeFrag);
+        FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
+        tr.replace(R.id.fragment_container, changeFrag);
         tr.addToBackStack(null);
         tr.commit();
     }
 
     @Override
     public void onFragmentRegisteInteraction(FirebaseUser user) {
-        FirstPage changeFrag=new FirstPage();
+        FirstPage changeFrag = new FirstPage();
 
-        FragmentTransaction tr=getSupportFragmentManager().beginTransaction();
-        tr.replace(R.id.fragment_container,changeFrag);
+        FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
+        tr.replace(R.id.fragment_container, changeFrag);
         tr.addToBackStack(null);
         tr.commit();
     }
 
     @Override
     public void gerirMedicamentosInteraction() {
-        GerirMedicamentos gm=new GerirMedicamentos();
+        GerirMedicamentos gm = new GerirMedicamentos();
 
-        FragmentTransaction tr=getSupportFragmentManager().beginTransaction();
-        tr.replace(R.id.fragment_container,gm);
+        FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
+        tr.replace(R.id.fragment_container, gm);
         tr.addToBackStack(null);
         tr.commit();
     }
@@ -113,11 +122,11 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
     }
 
 
-
     public void addDialogMedicamento(String name, int qtd, String[] dias, String[] alturas) {
-        Medicamento medicamento=new Medicamento(name,qtd, Arrays.toString(dias),Arrays.toString(alturas));
+        Medicamento medicamento = new Medicamento(name, qtd, Arrays.toString(dias), Arrays.toString(alturas));
         medicamentoViewModel.inserMedicamento(medicamento);
     }
+
     public void loadMapaFarmacias() {
         Intent mIntent = new Intent(this, FarmaciaMaps.class);
         startActivity(mIntent);
@@ -125,13 +134,14 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     public void gerirTomas() {
-        GerirTomas gt=new GerirTomas();
+        GerirTomas gt = new GerirTomas();
 
-        FragmentTransaction tr=getSupportFragmentManager().beginTransaction();
-        tr.replace(R.id.fragment_container,gt);
+        FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
+        tr.replace(R.id.fragment_container, gt);
         tr.addToBackStack(null);
         tr.commit();
     }
+
     @Override
     public void foodDetails() {
         Intent mIntent = new Intent(this, Food.class);
@@ -145,21 +155,21 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     public void editMedicament(String tempName, int tempQuant, String tempDays, String tempAlturas) {
-        medicamentoViewModel.updateMedic(tempName,tempQuant,tempDays,tempAlturas);
+        medicamentoViewModel.updateMedic(tempName, tempQuant, tempDays, tempAlturas);
     }
 
     @Override
     public void addTomaDialog(String medicName, int quantidade) {
-        medicamentoViewModel.removeQtd(medicName,quantidade);
+        medicamentoViewModel.removeQtd(medicName, quantidade);
 
 
         String pattern = "dd/MM/yyyy";
-        String dateInString =new SimpleDateFormat(pattern).format(new Date());
+        String dateInString = new SimpleDateFormat(pattern).format(new Date());
 
-        String hour=new SimpleDateFormat("HH:mm").format(new Date());
+        String hour = new SimpleDateFormat("HH:mm").format(new Date());
 
         //Alterar o local
-        Toma newToma=new Toma(medicName,quantidade,dateInString,hour,"Felgueiras");
+        Toma newToma = new Toma(medicName, quantidade, dateInString, hour, "Felgueiras");
         System.out.println(newToma.toString());
 
         medicamentoViewModel.inserToma(newToma);
@@ -174,4 +184,6 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
         }
         return 0;
     }
+
+
 }

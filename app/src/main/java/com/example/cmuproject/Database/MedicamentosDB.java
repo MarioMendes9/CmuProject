@@ -10,12 +10,15 @@ import com.example.cmuproject.model.Medicamento;
 import com.example.cmuproject.model.MedicamentoDao;
 import com.example.cmuproject.model.Toma;
 import com.example.cmuproject.model.TomaDao;
+import com.example.cmuproject.model.UserLocation;
+import com.example.cmuproject.model.UserLocationDao;
+
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-@Database(entities = {Medicamento.class, Toma.class}, version = 3,exportSchema = false)
+@Database(entities = {Medicamento.class, Toma.class, UserLocation.class}, version = 4,exportSchema = false)
 public abstract class MedicamentosDB extends RoomDatabase {
 
     private static final int NUMBER_OF_THREADS=4;
@@ -40,4 +43,6 @@ public abstract class MedicamentosDB extends RoomDatabase {
     public abstract MedicamentoDao getMedicamentosDao();
 
     public abstract TomaDao getTomasDao();
+
+    public abstract UserLocationDao getUserLocationDao();
 }

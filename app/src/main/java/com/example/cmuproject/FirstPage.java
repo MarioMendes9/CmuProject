@@ -1,8 +1,11 @@
 package com.example.cmuproject;
 
+import android.Manifest;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 
@@ -10,6 +13,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -52,6 +56,9 @@ public class FirstPage extends Fragment {
     private DatabaseReference childRef;
     private TextView info;
 
+    private static final int REQUEST_FINE_LOCATION = 100;
+
+
     public FirstPage() {
         // Required empty public constructor
     }
@@ -60,6 +67,18 @@ public class FirstPage extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //start serviço
+
+        getLastLocation();
+        System.out.println(isMyServiceRunning(TrackService.class));
+        if (!isMyServiceRunning(TrackService.class)) {
+
+            Intent i = new Intent(getContext(), TrackService.class);
+            getContext().startService(i);
+        }
+
+
         auth = FirebaseAuth.getInstance();
         mRootRef = FirebaseDatabase.getInstance().getReference();
         String email = auth.getCurrentUser().getEmail();
@@ -167,6 +186,27 @@ public class FirstPage extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    private void getLastLocation() {
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions();
+            return;
+        }
+    }
+
+    private void requestPermissions() {
+        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_FINE_LOCATION);
+    }
+
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public interface OnFragmentFirstPageInteractionListener {
