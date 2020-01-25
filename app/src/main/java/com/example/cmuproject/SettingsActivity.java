@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -22,6 +23,13 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Bundle bundle = getIntent().getExtras();
+        String s = bundle.getString("theme");
+        if(s.equals("light")){
+            setTheme(R.style.ThemeLight);
+        } else if(s.equals("dark")){
+            setTheme(R.style.ThemeDark);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 

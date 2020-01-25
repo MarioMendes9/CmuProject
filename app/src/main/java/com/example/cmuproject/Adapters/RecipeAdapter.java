@@ -1,4 +1,4 @@
-package com.example.cmuproject;
+package com.example.cmuproject.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import com.example.cmuproject.R;
+import com.example.cmuproject.retrofit_models.Recipe;
+import com.example.cmuproject.retrofit_models.Recipes;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 

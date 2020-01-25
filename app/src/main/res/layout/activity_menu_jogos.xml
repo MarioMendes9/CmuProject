@@ -17,8 +17,7 @@
         android:layout_marginLeft="51dp"
         android:layout_marginRight="51dp"
         android:drawableLeft="@drawable/word_game_icon"
-        android:text="Jogo das Palavras"
-        android:theme="@style/ThemeOverlay.MyDarkButton" />
+        android:text="Jogo das Palavras"/>
 
     <Button
         android:id="@+id/jogoAritmetico"
@@ -28,7 +27,6 @@
         android:layout_marginBottom="50dp"
         android:layout_marginLeft="51dp"
         android:layout_marginRight="51dp"
-        android:theme="@style/ThemeOverlay.MyDarkButton"
         android:drawableLeft="@drawable/number_game_icon"
         />
 
@@ -40,7 +38,6 @@
         android:layout_marginBottom="50dp"
         android:layout_marginLeft="51dp"
         android:layout_marginRight="51dp"
-        android:theme="@style/ThemeOverlay.MyDarkButton"
         android:drawableLeft="@drawable/memory_game_icon"
         />
 
