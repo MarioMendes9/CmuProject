@@ -3,6 +3,7 @@ package com.example.cmuproject;
 import android.Manifest;
 import android.app.ActivityManager;
 import android.content.Context;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -23,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toolbar;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,6 +51,7 @@ public class FirstPage extends Fragment {
     private Button btnFood;
     private Button btnMeal;
 
+    private Toolbar myToolbar;
     private Button btnTomas;
 
     private FirebaseAuth auth;
@@ -118,6 +121,7 @@ public class FirstPage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_first_page, container, false);
         img = view.findViewById(R.id.principalImage);
         btnGerirMedic = view.findViewById(R.id.gerirMedicamentos);
@@ -127,7 +131,6 @@ public class FirstPage extends Fragment {
         btnMeal = view.findViewById(R.id.mealDetails);
         info = view.findViewById(R.id.info);
 
-        view.setBackgroundColor(getResources().getColor(android.R.color.white));
 
         btnGerirMedic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,8 +140,6 @@ public class FirstPage extends Fragment {
             }
         });
 
-
-        //View viewJogo = inflater.inflate(R.layout.activity_jogo_palavras, container, false);
         botaoJogo = view.findViewById(R.id.jogos);
         botaoJogo.setOnClickListener(new View.OnClickListener() {
 
@@ -167,6 +168,12 @@ public class FirstPage extends Fragment {
             @Override
             public void onClick(View view) {
                 mListener.foodDetails();
+            }
+        });
+        btnMeal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.loadRecipes();
             }
         });
 
@@ -219,6 +226,7 @@ public class FirstPage extends Fragment {
         void gerirTomas();
 
         void foodDetails();
+        void loadRecipes();
 
     }
 }

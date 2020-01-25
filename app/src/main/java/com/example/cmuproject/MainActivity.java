@@ -1,28 +1,37 @@
 package com.example.cmuproject;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
+
+
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
+
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.Manifest;
-import android.app.ActivityManager;
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+
 import android.os.Bundle;
+
+import android.view.Menu;
+import android.view.MenuItem;
+
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.cmuproject.model.MedicamentosViewModel;
 import com.example.cmuproject.model.Medicamento;
 import com.example.cmuproject.model.Toma;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import java.sql.DatabaseMetaData;
+
 import java.text.SimpleDateFormat;
 
 import java.util.Arrays;
@@ -37,19 +46,34 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     private FirebaseAuth mAuth;
     private MedicamentosViewModel medicamentoViewModel;
+    private Toolbar myToolbar;
+    private SharedPreferences mSettings;
     private List<Medicamento> medis;
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mSettings= getSharedPreferences("themeMode", MODE_PRIVATE);
+        String s = mSettings.getString("mode","");
+        System.out.println("S ::::::::::::::::::::::::::::: " + s);
+        System.out.println("THEME :::::::::::::::::: " + getTheme());
+        if(s.equals("light")){
+            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            System.out.println("ENTROU LIGHT");
+            //setTheme(R.style.ThemeLight);
+        } else if(s.equals("dark")){
+            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            System.out.println("ENTROU DARK");
+            //setTheme(R.style.ThemeDark);
+        }
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+        myToolbar = findViewById(R.id.toolbar);
+        myToolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.setting));
+        setSupportActionBar(myToolbar);
+
         mAuth = FirebaseAuth.getInstance();
-
-        //locationService = new TrackService("MyService");
-
-
 
         medicamentoViewModel = new ViewModelProvider(this).get(MedicamentosViewModel.class);
 
@@ -68,8 +92,8 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
         ft.replace(R.id.fragment_container, fragmentLogin);
         ft.commit();
 
-
     }
+
 
 
     @Override
@@ -128,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
     }
 
     public void loadMapaFarmacias() {
-        Intent mIntent = new Intent(this, FarmaciaMaps.class);
+        Intent mIntent = new Intent(this, FarmaciaMapsActivity.class);
         startActivity(mIntent);
     }
 
@@ -144,7 +168,13 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     public void foodDetails() {
-        Intent mIntent = new Intent(this, Food.class);
+        Intent mIntent = new Intent(this, FoodActivity.class);
+        startActivity(mIntent);
+    }
+
+    @Override
+    public void loadRecipes() {
+        Intent mIntent = new Intent(this, RecipesActivity.class);
         startActivity(mIntent);
     }
 
@@ -176,6 +206,33 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_def:
+
+                Intent mIntent = new Intent(this, SettingsActivity.class);
+                startActivity(mIntent);
+
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+
     public long checkQuantity(String medicaName) {
         for (int i = 0; i < medis.size(); i++) {
             if (medis.get(i).name == medicaName) {
