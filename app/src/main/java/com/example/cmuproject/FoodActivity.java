@@ -1,13 +1,20 @@
 package com.example.cmuproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.cmuproject.retrofit_models.FoodDetails;
 
@@ -17,7 +24,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Food extends AppCompatActivity {
+public class FoodActivity extends AppCompatActivity {
 
     private Button btnSearch;
     private EditText inputBarcode;
@@ -30,9 +37,24 @@ public class Food extends AppCompatActivity {
     private TextView saturatedFatTextView;
     private Button fatButton;
     private Button saturated_fatButton;
+    private Toolbar myToolbar;
+    private SharedPreferences mSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mSettings= getSharedPreferences("themeMode", MODE_PRIVATE);
+        String s = mSettings.getString("mode","");
+        System.out.println("S ::::::::::::::::::::::::::::: " + s);
+        System.out.println("THEME :::::::::::::::::: " + getTheme());
+        if(s.equals("light")){
+            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            System.out.println("ENTROU LIGHT");
+            //setTheme(R.style.ThemeLight);
+        } else if(s.equals("dark")){
+            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            System.out.println("ENTROU DARK");
+            //setTheme(R.style.ThemeDark);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
 
@@ -48,6 +70,9 @@ public class Food extends AppCompatActivity {
         fatButton = findViewById(R.id.fatButton);
         saturated_fatButton = findViewById(R.id.saturated_fatButton);
 
+        myToolbar = findViewById(R.id.toolbar);
+        myToolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.setting));
+        setSupportActionBar(myToolbar);
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +157,25 @@ public class Food extends AppCompatActivity {
 
     private OpenFoodApi getApiFood() {
         return getRetrofitFood().create(OpenFoodApi.class);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_def:
+                Intent mIntent = new Intent(this, SettingsActivity.class);
+                startActivity(mIntent);
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 
 }

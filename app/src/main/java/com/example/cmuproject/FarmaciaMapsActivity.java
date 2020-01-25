@@ -32,7 +32,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class FarmaciaMaps extends FragmentActivity implements OnMapReadyCallback {
+public class FarmaciaMapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private static final int REQUEST_FINE_LOCATION = 100;

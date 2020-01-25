@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CmuProject</string>
+    <string name="app_name">Sempre Contigo</string>
 
 
     <string name="sign_in">Sign In</string>
@@ -69,5 +69,6 @@
 
     </string-array>
     <string name="title_activity_farmacia_maps">Map</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 
 </resources>

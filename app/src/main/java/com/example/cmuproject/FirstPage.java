@@ -1,9 +1,6 @@
 package com.example.cmuproject;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 
 import android.os.Bundle;
 
@@ -14,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toolbar;
 
 
 public class FirstPage extends Fragment {
@@ -26,6 +24,7 @@ public class FirstPage extends Fragment {
     private Button btnFood;
     private Button btnMeal;
 
+    private Toolbar myToolbar;
     private Button btnTomas;
 
     public FirstPage() {
@@ -44,6 +43,7 @@ public class FirstPage extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_first_page, container, false);
+
         img=view.findViewById(R.id.principalImage);
         btnGerirMedic=view.findViewById(R.id.gerirMedicamentos);
         btnFarmacias=view.findViewById(R.id.farmaciaMap);
@@ -51,7 +51,6 @@ public class FirstPage extends Fragment {
         btnFood = view.findViewById(R.id.foodDetails);
         btnMeal = view.findViewById(R.id.mealDetails);
 
-        view.setBackgroundColor(getResources().getColor(android.R.color.white));
 
         btnGerirMedic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,8 +61,6 @@ public class FirstPage extends Fragment {
         });
 
 
-
-        //View viewJogo = inflater.inflate(R.layout.activity_jogo_palavras, container, false);
         botaoJogo=view.findViewById(R.id.jogos);
         botaoJogo.setOnClickListener(new View.OnClickListener() {
 
@@ -94,6 +91,12 @@ public class FirstPage extends Fragment {
                 mListener.foodDetails();
             }
         });
+        btnMeal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.loadRecipes();
+            }
+        });
 
         return view;
     }
@@ -120,6 +123,7 @@ public class FirstPage extends Fragment {
         void loadMapaFarmacias();
         void gerirTomas();
         void foodDetails();
+        void loadRecipes();
 
     }
 }
