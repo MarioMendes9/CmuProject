@@ -1,6 +1,6 @@
-package com.example.cmuproject;
+package com.example.cmuproject.services;
 
-import java.util.List;
+import com.example.cmuproject.retrofit_models.Recipes;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

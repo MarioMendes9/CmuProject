@@ -12,10 +12,10 @@
 
     <string name="jogos">Jogos</string>
     <string name="farmaciaMap">Farmacias Perto de Si</string>
-    <string name="foodDetails">Info nutricional</string>
-    <string name="mealDetails">Info Refeições</string>
-    <string name="GerirMedicamentos">Gerir Medicamentos</string>
-    <string name="RegistarTomas">Registar Tomas</string>
+    <string name="foodDetails">Nutrição</string>
+    <string name="mealDetails">Refeições</string>
+    <string name="GerirMedicamentos">Medicamentos</string>
+    <string name="RegistarTomas">Tomas</string>
 
     <string name="MedicamentosName">Nome do medicamento</string>
     <string name="Quantidade">Quantidade</string>

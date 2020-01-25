@@ -44,6 +44,7 @@ public class RegistoFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
 
+
     }
 
     @Override

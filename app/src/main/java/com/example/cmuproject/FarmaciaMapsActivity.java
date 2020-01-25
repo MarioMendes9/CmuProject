@@ -11,6 +11,8 @@ import android.os.Bundle;
 
 import com.example.cmuproject.retrofit_models.FarmaciasPerto;
 import com.example.cmuproject.retrofit_models.RegionDetails;
+import com.example.cmuproject.services.OpenStreetService;
+import com.example.cmuproject.services.PharmacyApi;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;

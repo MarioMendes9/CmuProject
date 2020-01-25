@@ -1,22 +1,26 @@
 package com.example.cmuproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.cmuproject.Adapters.RecipeAdapter;
+import com.example.cmuproject.retrofit_models.Recipes;
+import com.example.cmuproject.services.SpoonacularApi;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,18 +44,13 @@ public class RecipesActivity extends AppCompatActivity {
     private SharedPreferences mSettings;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {mSettings= getSharedPreferences("themeMode", MODE_PRIVATE);
+    protected void onCreate(Bundle savedInstanceState) {
+        mSettings= getSharedPreferences("themeMode", MODE_PRIVATE);
         String s = mSettings.getString("mode","");
-        System.out.println("S ::::::::::::::::::::::::::::: " + s);
-        System.out.println("THEME :::::::::::::::::: " + getTheme());
         if(s.equals("light")){
-            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            System.out.println("ENTROU LIGHT");
-            //setTheme(R.style.ThemeLight);
+            setTheme(R.style.ThemeLight);
         } else if(s.equals("dark")){
-            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            System.out.println("ENTROU DARK");
-            //setTheme(R.style.ThemeDark);
+            setTheme(R.style.ThemeDark);
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipies);
@@ -65,6 +64,7 @@ public class RecipesActivity extends AppCompatActivity {
         myToolbar = findViewById(R.id.toolbar);
         myToolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.setting));
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         aler.setText("Alergenios");
 
@@ -181,5 +181,31 @@ public class RecipesActivity extends AppCompatActivity {
 
     private SpoonacularApi getApiMeal() {
         return getRetrofitMeal().create(SpoonacularApi.class);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_def:
+                Intent mIntent = new Intent(this, SettingsActivity.class);
+                mIntent.putExtra("theme", mSettings.getString("mode",""));
+                startActivity(mIntent);
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

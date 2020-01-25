@@ -44,18 +44,14 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println(getTheme());
+        setTheme(R.style.ThemeLight);
         mSettings= getSharedPreferences("themeMode", MODE_PRIVATE);
         String s = mSettings.getString("mode","");
-        System.out.println("S ::::::::::::::::::::::::::::: " + s);
-        System.out.println("THEME :::::::::::::::::: " + getTheme());
         if(s.equals("light")){
-            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            System.out.println("ENTROU LIGHT");
-            //setTheme(R.style.ThemeLight);
+            setTheme(R.style.ThemeLight);
         } else if(s.equals("dark")){
-            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            System.out.println("ENTROU DARK");
-            //setTheme(R.style.ThemeDark);
+            setTheme(R.style.ThemeDark);
         }
         super.onCreate(savedInstanceState);
 
@@ -200,6 +196,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
             case R.id.action_def:
 
                 Intent mIntent = new Intent(this, SettingsActivity.class);
+                mIntent.putExtra("theme", mSettings.getString("mode",""));
                 startActivity(mIntent);
 
                 break;
