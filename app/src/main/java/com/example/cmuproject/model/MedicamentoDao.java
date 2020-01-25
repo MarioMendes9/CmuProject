@@ -30,4 +30,5 @@ public interface MedicamentoDao {
     @Query("UPDATE Medicamento SET quantity=quantity-:qtd WHERE name=:name")
     public void removeQuantidade(String name,int qtd);
 
+
 }
