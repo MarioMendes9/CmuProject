@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CmuProject</string>
+    <string name="app_name">Sempre Contigo</string>
 
 
     <string name="sign_in">Sign In</string>
@@ -36,6 +36,25 @@
     <string name="Jantar">Jantar</string>
     <string name="Noite">Noite</string>
 
+    <string name="laticinios">Laticínios</string>
+    <string name="ovo">Ovo</string>
+    <string name="gluten">Glúten</string>
+    <string name="grao">Grão</string>
+    <string name="amendoim">Amendoim</string>
+    <string name="frutosMar">Frutos do Mar</string>
+    <string name="sesamo">Sésamo</string>
+    <string name="marisco">Marisco</string>
+    <string name="soja">Soja</string>
+    <string name="sulfito">Sulfito</string>
+    <string name="frutosSecos">Frutos Secos</string>
+    <string name="trigo">Trigo</string>
+
+    <string name="vegetariano">Vegetariano</string>
+    <string name="vegan">Vegan</string>
+    <string name="semGluten">Sem Glúten</string>
+
+
+
     <string-array name="hours">
         <item>00</item>
         <item>1</item>
@@ -69,5 +88,6 @@
 
     </string-array>
     <string name="title_activity_farmacia_maps">Map</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 
 </resources>

@@ -5,20 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Food">
+    tools:context=".FoodActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimaryDark"
+            app:title="@string/app_name"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
 
 
     <EditText
         android:id="@+id/barcode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="BARCODE" />
+        android:hint="BARCODE"
+        android:layout_marginTop="50dp"/>
 
     <Button
         android:id="@+id/searchBC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search" />
+        android:text="Search"
+        android:layout_marginTop="20dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
