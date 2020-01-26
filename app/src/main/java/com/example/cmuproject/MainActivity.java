@@ -1,12 +1,13 @@
 package com.example.cmuproject;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
+
 import androidx.core.content.ContextCompat;
 
 import androidx.fragment.app.FragmentManager;
@@ -14,12 +15,19 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+
+
 import android.Manifest;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+
 import android.graphics.Color;
 import android.location.Location;
+
 import android.os.Bundle;
 
 import android.view.Menu;
@@ -42,7 +50,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.text.SimpleDateFormat;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -63,12 +73,13 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
     private Toolbar myToolbar;
     private SharedPreferences mSettings;
     private List<Medicamento> medis;
-    private static final int REQUEST_FINE_LOCATION = 100;
-    private FusedLocationProviderClient mFusedLocationClient;
+
+    private PendingIntent myPi;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         System.out.println(getTheme());
         setTheme(R.style.ThemeLight);
         mSettings= getSharedPreferences("themeMode", MODE_PRIVATE);
@@ -106,6 +117,30 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode) {
+            case 100:
+
+                if (permissions[0].equals(Manifest.permission.ACCESS_FINE_LOCATION) && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Intent i = new Intent(this, TrackService.class);
+                    startService(i);
+                } else if (permissions[0].equals(Manifest.permission.SEND_SMS) && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startAlarm();
+                }
+                else if (permissions[1].equals(Manifest.permission.SEND_SMS) &&grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                        startAlarm();
+                    }
+
+
+                break;
+
+
+        }
+
+    }
 
 
     @Override
@@ -300,15 +335,80 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
         return 0;
     }
 
-    private void getLastLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions();
-            return;
-        }
-    }
+    private void startAlarm() {
 
-    private void requestPermissions() {
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_FINE_LOCATION);
+        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        ArrayList<PendingIntent> intentArray = new ArrayList<PendingIntent>();
+
+        Date dat = new Date();
+        Calendar calNow = Calendar.getInstance();
+        calNow.setTime(dat);
+
+
+        //jantar 20
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 20);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        if (calendar.before(calNow)) {
+            calendar.add(Calendar.DATE, 1);
+        }
+        //Noite 22
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTimeInMillis(System.currentTimeMillis());
+        calendar2.set(Calendar.HOUR_OF_DAY, 22);
+        calendar2.set(Calendar.MINUTE, 0);
+        calendar2.set(Calendar.SECOND, 0);
+        if (calendar2.before(calNow)) {
+            calendar2.add(Calendar.DATE, 1);
+        }
+        //Manha 6
+        Calendar calendar3 = Calendar.getInstance();
+        calendar3.setTimeInMillis(System.currentTimeMillis());
+        calendar3.set(Calendar.HOUR_OF_DAY, 6);
+        calendar3.set(Calendar.MINUTE, 0);
+        calendar3.set(Calendar.SECOND, 0);
+        if (calendar3.before(calNow)) {
+            calendar3.add(Calendar.DATE, 1);
+        }
+
+        //Almoço 12
+        Calendar calendar4 = Calendar.getInstance();
+        calendar4.setTimeInMillis(System.currentTimeMillis());
+        calendar4.set(Calendar.HOUR_OF_DAY, 12);
+        calendar4.set(Calendar.MINUTE, 0);
+        calendar4.set(Calendar.SECOND, 0);
+        if (calendar4.before(calNow)) {
+            calendar4.add(Calendar.DATE, 1);
+        }
+        //Tarde 14
+
+        Calendar calendar5 = Calendar.getInstance();
+        calendar5.setTimeInMillis(System.currentTimeMillis());
+        calendar5.set(Calendar.HOUR_OF_DAY, 14);
+        calendar5.set(Calendar.MINUTE, 0);
+        calendar5.set(Calendar.SECOND, 0);
+        if (calendar5.before(calNow)) {
+            calendar5.add(Calendar.DATE, 1);
+        }
+        ArrayList<Calendar> myCal = new ArrayList<>();
+        myCal.add(calendar);
+        myCal.add(calendar2);
+        myCal.add(calendar3);
+        myCal.add(calendar4);
+        myCal.add(calendar5);
+
+        long timee = System.currentTimeMillis();
+
+
+        for (int i = 0; i < myCal.size(); i++) {
+            Intent alarmIntent = new Intent(this, AlarmReceiver.class);
+            myPi = PendingIntent.getBroadcast(this, i, alarmIntent, 0);
+            manager.set(AlarmManager.RTC_WAKEUP, myCal.get(i).getTimeInMillis(), myPi);
+        }
+
     }
 
     private Retrofit getRetrofitStreet() {

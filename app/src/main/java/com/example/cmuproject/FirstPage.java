@@ -1,20 +1,21 @@
 package com.example.cmuproject;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -22,7 +23,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toolbar;
 import android.widget.TextView;
@@ -33,12 +33,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.JsonParser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 
 public class FirstPage extends Fragment {
@@ -61,25 +63,39 @@ public class FirstPage extends Fragment {
     private TextView info;
 
 
+    private PendingIntent myPi;
+
+
     public FirstPage() {
-        // Required empty public constructor
     }
+
+
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //start serviço
-
         getLastLocation();
-        System.out.println(isMyServiceRunning(TrackService.class));
-        if (!isMyServiceRunning(TrackService.class)) {
 
-            Intent i = new Intent(getContext(), TrackService.class);
-            getContext().startService(i);
+
+        int permissionLocation = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
+        if (permissionLocation == PackageManager.PERMISSION_GRANTED) {
+
+            if (!isMyServiceRunning(TrackService.class)) {
+
+                Intent i = new Intent(getContext(), TrackService.class);
+                getContext().startService(i);
+            }
+
+
         }
 
+
+        int permissionMessage = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.SEND_SMS);
+        if (permissionMessage == PackageManager.PERMISSION_GRANTED) {
+            startAlarm();
+        }
 
         auth = FirebaseAuth.getInstance();
         mRootRef = FirebaseDatabase.getInstance().getReference();
@@ -114,6 +130,96 @@ public class FirstPage extends Fragment {
         });
 
 
+    }
+
+    private void getLastLocation() {
+       List<String> listPermissionsNeeded = new ArrayList<>();
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        }
+        if ((ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.SEND_SMS)) != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.SEND_SMS);
+        }
+        if (!listPermissionsNeeded.isEmpty()) {
+            ActivityCompat.requestPermissions(getActivity(), listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), 100);
+            return;
+        }
+
+
+    }
+
+    private void startAlarm() {
+        AlarmManager manager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+
+        ArrayList<PendingIntent> intentArray = new ArrayList<PendingIntent>();
+
+        Date dat = new Date();
+        Calendar calNow = Calendar.getInstance();
+        calNow.setTime(dat);
+
+
+        //jantar 20
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 20);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        if (calendar.before(calNow)) {
+            calendar.add(Calendar.DATE, 1);
+        }
+        //Noite 22
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTimeInMillis(System.currentTimeMillis());
+        calendar2.set(Calendar.HOUR_OF_DAY, 22);
+        calendar2.set(Calendar.MINUTE, 0);
+        calendar2.set(Calendar.SECOND, 0);
+        if (calendar2.before(calNow)) {
+            calendar2.add(Calendar.DATE, 1);
+        }
+        //Manha 6
+        Calendar calendar3 = Calendar.getInstance();
+        calendar3.setTimeInMillis(System.currentTimeMillis());
+        calendar3.set(Calendar.HOUR_OF_DAY, 6);
+        calendar3.set(Calendar.MINUTE, 0);
+        calendar3.set(Calendar.SECOND, 0);
+        if (calendar3.before(calNow)) {
+            calendar3.add(Calendar.DATE, 1);
+        }
+
+        //Almoço 12
+        Calendar calendar4 = Calendar.getInstance();
+        calendar4.setTimeInMillis(System.currentTimeMillis());
+        calendar4.set(Calendar.HOUR_OF_DAY, 12);
+        calendar4.set(Calendar.MINUTE, 0);
+        calendar4.set(Calendar.SECOND, 0);
+        if (calendar4.before(calNow)) {
+            calendar4.add(Calendar.DATE, 1);
+        }
+        //Tarde 14
+
+        Calendar calendar5 = Calendar.getInstance();
+        calendar5.setTimeInMillis(System.currentTimeMillis());
+        calendar5.set(Calendar.HOUR_OF_DAY, 14);
+        calendar5.set(Calendar.MINUTE, 0);
+        calendar5.set(Calendar.SECOND, 0);
+        if (calendar5.before(calNow)) {
+            calendar5.add(Calendar.DATE, 1);
+        }
+        ArrayList<Calendar> myCal = new ArrayList<>();
+        myCal.add(calendar);
+        myCal.add(calendar2);
+        myCal.add(calendar3);
+        myCal.add(calendar4);
+        myCal.add(calendar5);
+
+        long timee = System.currentTimeMillis();
+
+
+        for (int i = 0; i < myCal.size(); i++) {
+            Intent alarmIntent = new Intent(getActivity(), AlarmReceiver.class);
+            myPi = PendingIntent.getBroadcast(getActivity(), i, alarmIntent, 0);
+            manager.set(AlarmManager.RTC_WAKEUP, myCal.get(i).getTimeInMillis(), myPi);
+        }
     }
 
     @Override
@@ -195,16 +301,6 @@ public class FirstPage extends Fragment {
         mListener = null;
     }
 
-    private void getLastLocation() {
-        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions();
-            return;
-        }
-    }
-
-    private void requestPermissions() {
-        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_FINE_LOCATION);
-    }
 
     private boolean isMyServiceRunning(Class<?> serviceClass) {
         ActivityManager manager = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
@@ -226,6 +322,7 @@ public class FirstPage extends Fragment {
         void gerirTomas();
 
         void foodDetails();
+
         void loadRecipes();
 
     }

@@ -31,4 +31,6 @@ public interface MedicamentoDao {
     public void removeQuantidade(String name,int qtd);
 
 
+    @Query("SELECT * FROM Medicamento")
+    public List<Medicamento> loadAllMedicamentos2();
 }
