@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
 
     <application
         android:allowBackup="true"
@@ -17,11 +19,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <service
+            android:name=".TrackService"
+           ></service>
         <activity android:name=".RecipesActivity"
             android:configChanges="uiMode"></activity>
         <activity
             android:name=".SettingsActivity"
             android:configChanges="uiMode" />
+
         <activity android:name=".JogoMemoriaResultado" />
         <activity android:name=".JogoMemoria" />
         <activity android:name=".JogoAritmeticoResultado" />
@@ -32,11 +39,13 @@
         <activity android:name=".FoodActivity"
             android:configChanges="uiMode"/>
 
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
         <activity
+
             android:name=".FarmaciaMapsActivity"
             android:label="@string/title_activity_farmacia_maps" />
         <activity

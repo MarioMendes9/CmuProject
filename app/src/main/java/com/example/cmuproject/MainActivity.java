@@ -3,9 +3,12 @@ package com.example.cmuproject;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
@@ -18,7 +21,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -35,10 +38,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import java.sql.DatabaseMetaData;
+
 import java.text.SimpleDateFormat;
 
 import java.util.Arrays;
@@ -91,14 +92,14 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
         medicamentoViewModel.getallMedicamentos().observe(this, new Observer<List<Medicamento>>() {
             @Override
             public void onChanged(List<Medicamento> medicamentos) {
-                medis=medicamentos;
+                medis = medicamentos;
             }
         });
 
 
-        Login fragmentLogin=new Login();
-        FragmentManager fm=getSupportFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
+        Login fragmentLogin = new Login();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
 
         ft.replace(R.id.fragment_container, fragmentLogin);
         ft.commit();
