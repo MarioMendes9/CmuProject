@@ -76,6 +76,9 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     private PendingIntent myPi;
 
+    private static final int REQUEST_FINE_LOCATION = 100;
+    private FusedLocationProviderClient mFusedLocationClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -285,6 +288,15 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
                 });
     }
 
+    private void requestPermissions() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_FINE_LOCATION);
+    }
+    private void getLastLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions();
+            return;
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
