@@ -54,7 +54,6 @@
     <string name="semGluten">Sem Glúten</string>
 
 
-
     <string-array name="hours">
         <item>00</item>
         <item>1</item>
@@ -89,5 +88,6 @@
     </string-array>
     <string name="title_activity_farmacia_maps">Map</string>
     <string name="title_activity_settings">SettingsActivity</string>
+
 
 </resources>

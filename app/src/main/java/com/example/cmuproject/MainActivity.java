@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import androidx.fragment.app.FragmentManager;
@@ -13,11 +14,12 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
-
+import android.location.Location;
 import android.os.Bundle;
 
 import android.view.Menu;
@@ -28,6 +30,12 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.cmuproject.model.MedicamentosViewModel;
 import com.example.cmuproject.model.Medicamento;
 import com.example.cmuproject.model.Toma;
+import com.example.cmuproject.retrofit_models.RegionDetails;
+import com.example.cmuproject.services.OpenStreetService;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -37,6 +45,12 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements Login.OnFragmentLoginInteractionListener,
         RegistoFragment.OnFragmentRegisteInteractionListener,
@@ -49,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
     private Toolbar myToolbar;
     private SharedPreferences mSettings;
     private List<Medicamento> medis;
+    private static final int REQUEST_FINE_LOCATION = 100;
+    private FusedLocationProviderClient mFusedLocationClient;
 
 
     @Override
@@ -186,7 +202,9 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     public void addTomaDialog(String medicName, int quantidade) {
+        getLastLocation();
         medicamentoViewModel.removeQtd(medicName, quantidade);
+
 
 
         String pattern = "dd/MM/yyyy";
@@ -194,11 +212,42 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
         String hour = new SimpleDateFormat("HH:mm").format(new Date());
 
-        //Alterar o local
-        Toma newToma = new Toma(medicName, quantidade, dateInString, hour, "Felgueiras");
-        System.out.println(newToma.toString());
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        mFusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        if(location!=null){
+                            getApiStreet().getTown(location.getLatitude(), location.getLongitude())
+                                    .enqueue(new Callback<RegionDetails>() {
+                                        @Override
+                                        public void onResponse(Call<RegionDetails> call, Response<RegionDetails> response) {
+                                            String regi = response.body().getAddress().getCounty();
+                                            if (regi.split(" ").length > 0) {
+                                                regi.replace(" ", "-");
+                                            }
+                                            Toma newToma = new Toma(medicName, quantidade, dateInString, hour, regi);
+                                            System.out.println(newToma.toString());
 
-        medicamentoViewModel.inserToma(newToma);
+                                            medicamentoViewModel.inserToma(newToma);
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<RegionDetails> call, Throwable t) {
+                                            System.out.println(t.fillInStackTrace());
+
+                                        }
+                                    });
+
+                        }
+                    }
+                })
+                .addOnFailureListener(this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        System.out.println(e.fillInStackTrace());
+                    }
+                });
     }
 
     @Override
@@ -239,5 +288,25 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
         return 0;
     }
 
+    private void getLastLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions();
+            return;
+        }
+    }
 
+    private void requestPermissions() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_FINE_LOCATION);
+    }
+
+    private Retrofit getRetrofitStreet() {
+        return new Retrofit.Builder()
+                .baseUrl("https://nominatim.openstreetmap.org/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+    }
+
+    private OpenStreetService getApiStreet() {
+        return getRetrofitStreet().create(OpenStreetService.class);
+    }
 }
