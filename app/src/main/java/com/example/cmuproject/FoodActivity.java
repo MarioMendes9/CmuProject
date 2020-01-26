@@ -1,7 +1,6 @@
 package com.example.cmuproject;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -19,6 +18,7 @@ import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.cmuproject.retrofit_models.FoodDetails;
+import com.example.cmuproject.services.OpenFoodApi;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,18 +44,13 @@ public class FoodActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.ThemeLight);
         mSettings= getSharedPreferences("themeMode", MODE_PRIVATE);
         String s = mSettings.getString("mode","");
-        System.out.println("S ::::::::::::::::::::::::::::: " + s);
-        System.out.println("THEME :::::::::::::::::: " + getTheme());
         if(s.equals("light")){
-            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            System.out.println("ENTROU LIGHT");
-            //setTheme(R.style.ThemeLight);
+            setTheme(R.style.ThemeLight);
         } else if(s.equals("dark")){
-            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            System.out.println("ENTROU DARK");
-            //setTheme(R.style.ThemeDark);
+            setTheme(R.style.ThemeDark);
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
@@ -72,10 +67,13 @@ public class FoodActivity extends AppCompatActivity {
         fatButton = findViewById(R.id.fatButton);
         saturated_fatButton = findViewById(R.id.saturated_fatButton);
 
+
+
         myToolbar = findViewById(R.id.toolbar);
         myToolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.setting));
         setSupportActionBar(myToolbar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,9 +82,10 @@ public class FoodActivity extends AppCompatActivity {
                         .enqueue(new Callback<FoodDetails>() {
                             @Override
                             public void onResponse(Call<FoodDetails> call, Response<FoodDetails> response) {
+                                System.out.println(call.request());
                                 nameProduct.setText(response.body().getProduct().getProduct_name());
                                 sugarTextView.setText(response.body().getProduct().getNutriments().getSugars()+
-                                        response.body().getProduct().getNutriments().getSugar_unit() + " Sugars in " +
+                                        response.body().getProduct().getNutriments().getSugars_unit() + " Sugars in " +
                                         response.body().getProduct().getNutrient_levels().getSugars() + " quantity");
                                 sodiumTextView.setText(response.body().getProduct().getNutriments().getSodium()+
                                         response.body().getProduct().getNutriments().getSalt_unit() + " Salt in " +
@@ -176,6 +175,7 @@ public class FoodActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_def:
                 Intent mIntent = new Intent(this, SettingsActivity.class);
+                mIntent.putExtra("theme", mSettings.getString("mode",""));
                 startActivity(mIntent);
                 break;
             default:
@@ -183,5 +183,12 @@ public class FoodActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
 
 }

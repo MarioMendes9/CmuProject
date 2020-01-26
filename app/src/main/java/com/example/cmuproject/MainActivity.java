@@ -4,12 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityCompat;
+
 import androidx.core.content.ContextCompat;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+
 
 
 import android.Manifest;
@@ -20,6 +25,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 
+import android.graphics.Color;
+import android.location.Location;
 
 import android.os.Bundle;
 
@@ -31,6 +38,12 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.cmuproject.model.MedicamentosViewModel;
 import com.example.cmuproject.model.Medicamento;
 import com.example.cmuproject.model.Toma;
+import com.example.cmuproject.retrofit_models.RegionDetails;
+import com.example.cmuproject.services.OpenStreetService;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -43,6 +56,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class MainActivity extends AppCompatActivity implements Login.OnFragmentLoginInteractionListener,
         RegistoFragment.OnFragmentRegisteInteractionListener,
         FirstPage.OnFragmentFirstPageInteractionListener,
@@ -54,23 +73,21 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
     private Toolbar myToolbar;
     private SharedPreferences mSettings;
     private List<Medicamento> medis;
+
     private PendingIntent myPi;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mSettings = getSharedPreferences("themeMode", MODE_PRIVATE);
-        String s = mSettings.getString("mode", "");
-        System.out.println("S ::::::::::::::::::::::::::::: " + s);
-        System.out.println("THEME :::::::::::::::::: " + getTheme());
-        if (s.equals("light")) {
-            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            System.out.println("ENTROU LIGHT");
-            //setTheme(R.style.ThemeLight);
-        } else if (s.equals("dark")) {
-            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            System.out.println("ENTROU DARK");
-            //setTheme(R.style.ThemeDark);
+
+        System.out.println(getTheme());
+        setTheme(R.style.ThemeLight);
+        mSettings= getSharedPreferences("themeMode", MODE_PRIVATE);
+        String s = mSettings.getString("mode","");
+        if(s.equals("light")){
+            setTheme(R.style.ThemeLight);
+        } else if(s.equals("dark")){
+            setTheme(R.style.ThemeDark);
         }
         super.onCreate(savedInstanceState);
 
@@ -220,7 +237,9 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     public void addTomaDialog(String medicName, int quantidade) {
+        getLastLocation();
         medicamentoViewModel.removeQtd(medicName, quantidade);
+
 
 
         String pattern = "dd/MM/yyyy";
@@ -228,11 +247,42 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
         String hour = new SimpleDateFormat("HH:mm").format(new Date());
 
-        //Alterar o local
-        Toma newToma = new Toma(medicName, quantidade, dateInString, hour, "Felgueiras");
-        System.out.println(newToma.toString());
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        mFusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        if(location!=null){
+                            getApiStreet().getTown(location.getLatitude(), location.getLongitude())
+                                    .enqueue(new Callback<RegionDetails>() {
+                                        @Override
+                                        public void onResponse(Call<RegionDetails> call, Response<RegionDetails> response) {
+                                            String regi = response.body().getAddress().getCounty();
+                                            if (regi.split(" ").length > 0) {
+                                                regi.replace(" ", "-");
+                                            }
+                                            Toma newToma = new Toma(medicName, quantidade, dateInString, hour, regi);
+                                            System.out.println(newToma.toString());
 
-        medicamentoViewModel.inserToma(newToma);
+                                            medicamentoViewModel.inserToma(newToma);
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<RegionDetails> call, Throwable t) {
+                                            System.out.println(t.fillInStackTrace());
+
+                                        }
+                                    });
+
+                        }
+                    }
+                })
+                .addOnFailureListener(this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        System.out.println(e.fillInStackTrace());
+                    }
+                });
     }
 
     @Override
@@ -247,8 +297,21 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
             case R.id.action_def:
 
                 Intent mIntent = new Intent(this, SettingsActivity.class);
+                mIntent.putExtra("theme", mSettings.getString("mode",""));
                 startActivity(mIntent);
 
+                break;
+
+            case R.id.action_logout:
+                mAuth.signOut();
+                Login fragmentLogin = new Login();
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+
+                ft.replace(R.id.fragment_container, fragmentLogin);
+                ft.commit();
+                Intent i = new Intent(this, TrackService.class);
+                stopService(i);
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -345,6 +408,17 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
             myPi = PendingIntent.getBroadcast(this, i, alarmIntent, 0);
             manager.set(AlarmManager.RTC_WAKEUP, myCal.get(i).getTimeInMillis(), myPi);
         }
+
     }
 
+    private Retrofit getRetrofitStreet() {
+        return new Retrofit.Builder()
+                .baseUrl("https://nominatim.openstreetmap.org/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+    }
+
+    private OpenStreetService getApiStreet() {
+        return getRetrofitStreet().create(OpenStreetService.class);
+    }
 }

@@ -52,6 +52,7 @@ public class FirstPage extends Fragment {
     private Button btnFarmacias;
     private Button btnFood;
     private Button btnMeal;
+    private static final int REQUEST_FINE_LOCATION = 100;
 
     private Toolbar myToolbar;
     private Button btnTomas;
@@ -60,6 +61,7 @@ public class FirstPage extends Fragment {
     private DatabaseReference mRootRef;
     private DatabaseReference childRef;
     private TextView info;
+
 
     private PendingIntent myPi;
 
@@ -264,6 +266,7 @@ public class FirstPage extends Fragment {
         btnTomas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getLastLocation();
                 mListener.gerirTomas();
             }
         });
@@ -323,4 +326,5 @@ public class FirstPage extends Fragment {
         void loadRecipes();
 
     }
+
 }

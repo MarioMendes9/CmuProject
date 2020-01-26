@@ -6,7 +6,7 @@ public class Nutriments {
     private float sugars;
     private float sodium;
     private String salt_unit;
-    private String sugar_unit;
+    private String sugars_unit;
     private float fat;
     private String fat_unit;
 
@@ -17,11 +17,11 @@ public class Nutriments {
     private float saturated_fat;
 
 
-    public Nutriments(float sugars, float sodium, String salt_unit, String sugar_unit, float fat, String fat_unit, String saturated_fat_unit, float saturated_fat) {
+    public Nutriments(float sugars, float sodium, String salt_unit, String sugars_unit, float fat, String fat_unit, String saturated_fat_unit, float saturated_fat) {
         this.sugars = sugars;
         this.sodium = sodium;
         this.salt_unit = salt_unit;
-        this.sugar_unit = sugar_unit;
+        this.sugars_unit = sugars_unit;
         this.fat = fat;
         this.fat_unit = fat_unit;
         this.saturated_fat_unit = saturated_fat_unit;
@@ -32,8 +32,8 @@ public class Nutriments {
         return salt_unit;
     }
 
-    public String getSugar_unit() {
-        return sugar_unit;
+    public String getSugars_unit() {
+        return sugars_unit;
     }
 
     public float getSugars() {
@@ -66,7 +66,7 @@ public class Nutriments {
                 "sugars=" + sugars +
                 ", sodium=" + sodium +
                 ", salt_unit='" + salt_unit + '\'' +
-                ", sugar_unit='" + sugar_unit + '\'' +
+                ", sugars_unit='" + sugars_unit + '\'' +
                 ", fat=" + fat +
                 ", fat_unit='" + fat_unit + '\'' +
                 ", saturated_fat_unit='" + saturated_fat_unit + '\'' +

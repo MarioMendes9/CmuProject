@@ -1,4 +1,4 @@
-package com.example.cmuproject;
+package com.example.cmuproject.services;
 
 import com.example.cmuproject.retrofit_models.FoodDetails;
 
