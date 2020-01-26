@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
+    <uses-permission android:name="android.permission.SEND_SMS"/>
 
     <application
         android:allowBackup="true"
@@ -23,6 +23,10 @@
         <service
             android:name=".TrackService"
            ></service>
+
+
+        <receiver android:name=".AlarmReceiver">
+        </receiver>
         <activity android:name=".RecipesActivity"
             android:configChanges="uiMode"></activity>
         <activity

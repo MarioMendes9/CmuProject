@@ -24,4 +24,7 @@ public interface UserLocationDao {
 
     @Query("SELECT COUNT(*) FROM UserLocation")
     public int getCountLocations();
+
+    @Query("SELECT * FROM UserLocation WHERE date=:date ORDER BY id")
+    public List<UserLocation> getLastLocation(String date);
 }

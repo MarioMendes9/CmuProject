@@ -25,4 +25,8 @@ public interface TomaDao {
 
     @Query("SELECT * FROM Toma WHERE date=:date")
     public LiveData<List<Toma>> getTodayTomas(String date);
+
+    @Query("SELECT * FROM Toma WHERE date=:date")
+    public List<Toma> getTodayTomas2(String date);
+
 }

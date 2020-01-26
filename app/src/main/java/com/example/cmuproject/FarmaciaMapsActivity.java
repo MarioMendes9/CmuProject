@@ -12,6 +12,9 @@ import android.os.Bundle;
 import com.example.cmuproject.retrofit_models.FarmaciasPerto;
 import com.example.cmuproject.retrofit_models.RegionDetails;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -37,51 +40,58 @@ public class FarmaciaMapsActivity extends FragmentActivity implements OnMapReady
     private GoogleMap mMap;
     private static final int REQUEST_FINE_LOCATION = 100;
     private FusedLocationProviderClient mFusedLocationClient;
+    private LocationCallback mLocationCallback;
+    private LocationRequest mLocationRequest;
+
+    private  Location location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_farmacia_maps);
         getLastLocation();
+
+        mLocationRequest=new LocationRequest();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(3000);
+        mLocationRequest.setFastestInterval(5000);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        mFusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        if (location != null) {
-                            getApiStreet().getTown(location.getLatitude(), location.getLongitude())
-                                    .enqueue(new Callback<RegionDetails>() {
-                                        @Override
-                                        public void onResponse(Call<RegionDetails> call, Response<RegionDetails> response) {
-                                            String regi = response.body().getAddress().getCounty();
-                                            if (regi.split(" ").length > 0) {
-                                                regi.replace(" ", "-");
-                                            }
-                                            callFarmacias(regi);
+        mLocationCallback=new LocationCallback(){
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                if (locationResult != null) {
+                    if(location ==null ||location.getLongitude()!=locationResult.getLastLocation().getLongitude() || location.getLatitude()!=locationResult.getLastLocation().getLatitude()) {
+                        location=locationResult.getLastLocation();
+                        getApiStreet().getTown(location.getLatitude(), location.getLongitude())
+                                .enqueue(new Callback<RegionDetails>() {
+                                    @Override
+                                    public void onResponse(Call<RegionDetails> call, Response<RegionDetails> response) {
+                                        String regi = response.body().getAddress().getCounty();
+                                        if (regi.split(" ").length > 0) {
+                                            regi.replace(" ", "-");
                                         }
+                                        callFarmacias(regi);
+                                    }
 
-                                        @Override
-                                        public void onFailure(Call<RegionDetails> call, Throwable t) {
-                                            System.out.println(t.fillInStackTrace());
-                                        }
-                                    });
-
-                        }
+                                    @Override
+                                    public void onFailure(Call<RegionDetails> call, Throwable t) {
+                                        System.out.println(t.fillInStackTrace());
+                                    }
+                                });
                     }
-                })
-                .addOnFailureListener(this, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        System.out.println("FAILED");
-                    }
-                });
+                }
+            }
+        };
+        startLocationUpdates();
 
-
+    }
+    private void startLocationUpdates(){
+        mFusedLocationClient.requestLocationUpdates(mLocationRequest,mLocationCallback,null);
     }
 
     private void callFarmacias(String regiao) {
@@ -89,7 +99,6 @@ public class FarmaciaMapsActivity extends FragmentActivity implements OnMapReady
                 .enqueue(new Callback<List<FarmaciasPerto>>() {
                     @Override
                     public void onResponse(Call<List<FarmaciasPerto>> call, Response<List<FarmaciasPerto>> response) {
-                        System.out.println(call.request());
                         for (int i = 0; i < response.body().size(); i++) {
                             double lat = Double.parseDouble(response.body().get(i).getLat());
                             double lon = Double.parseDouble(response.body().get(i).getLon());
