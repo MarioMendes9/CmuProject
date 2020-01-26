@@ -60,8 +60,6 @@ public class FirstPage extends Fragment {
     private DatabaseReference childRef;
     private TextView info;
 
-    private static final int REQUEST_FINE_LOCATION = 100;
-
 
     public FirstPage() {
         // Required empty public constructor
@@ -232,15 +230,4 @@ public class FirstPage extends Fragment {
 
     }
 
-
-    private void getLastLocation() {
-        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions();
-            return;
-        }
-    }
-
-    private void requestPermissions() {
-        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_FINE_LOCATION);
-    }
 }

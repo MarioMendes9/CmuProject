@@ -4,67 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".SettingsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        >
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimaryDark"
-            app:title="@string/app_name"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            />
+            app:title="@string/app_name" />
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Apresentação"
-        android:textStyle="bold"
-        android:textSize="30dp"
         android:layout_marginTop="50dp"
-        />
+        android:text="Apresentação"
+        android:textSize="30dp"
+        android:textStyle="bold" />
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/radioGroup"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
 
-    <RadioButton
-        android:id="@+id/lightOption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Light Mode" />
+        <RadioButton
+            android:id="@+id/lightOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Light Mode" />
 
-    <RadioButton
-        android:id="@+id/darkOption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dark Mode"
-        android:layout_marginTop="10dp" />
+        <RadioButton
+            android:id="@+id/darkOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Dark Mode" />
 
     </RadioGroup>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sobre"
-        android:textStyle="bold"
-        android:textSize="30dp"
         android:layout_marginTop="50dp"
-        />
+        android:text="Mudar contacto de emergência"
+        android:textSize="30dp"
+        android:textStyle="bold" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
 
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            android:layout_marginLeft="10dp"/>
+
+    </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

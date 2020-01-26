@@ -1,7 +1,7 @@
 package com.example.cmuproject.Adapters;
 
 import android.content.Context;
-import android.util.Log;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +9,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cmuproject.R;
+import com.example.cmuproject.RecipeDetailsFragment;
 import com.example.cmuproject.retrofit_models.Recipe;
 import com.example.cmuproject.retrofit_models.Recipes;
 
@@ -48,6 +52,40 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
         TextView servings = holder.servings;
         servings.setText("Servings: "+rec.getServings());
+
+        Button details = holder.details;
+        details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*
+                FragmentManager manager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+                RecipeDetailsFragment changeFrag = new RecipeDetailsFragment();
+
+                FragmentTransaction tr = manager.beginTransaction();
+                Bundle args = new Bundle();
+                args.putString("id", String.valueOf(rec.getId()));
+
+                changeFrag.setArguments(args);
+                tr.replace(R.id.fragment_container, changeFrag);
+                tr.addToBackStack(null);
+                tr.commit();
+
+                 */
+                FragmentManager manager=((AppCompatActivity)mContext).getSupportFragmentManager();
+                RecipeDetailsFragment frag=new RecipeDetailsFragment();
+
+                Bundle args=new Bundle();
+
+                args.putString("id",String.valueOf(rec.getId()));
+                frag.setArguments(args);
+
+                FragmentTransaction tr = manager.beginTransaction();
+
+                tr.replace(R.id.fragment_container, frag);
+                tr.addToBackStack(null);
+                tr.commit();
+            }
+        });
     }
 
     @Override
