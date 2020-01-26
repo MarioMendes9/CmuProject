@@ -23,6 +23,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.ThemeLight);
         Bundle bundle = getIntent().getExtras();
         String s = bundle.getString("theme");
         if(s.equals("light")){

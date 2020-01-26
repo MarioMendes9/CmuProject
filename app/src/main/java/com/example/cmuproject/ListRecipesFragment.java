@@ -43,7 +43,7 @@ public class ListRecipesFragment extends Fragment {
     private OnFragmentListInteractionListener mListener;
     private RecipeAdapter rAdapter;
     private RecyclerView mRecyclerView;
-    private TextView txt;
+
 
     public ListRecipesFragment() {
         // Required empty public constructor
@@ -93,10 +93,6 @@ public class ListRecipesFragment extends Fragment {
                         mRecyclerView = view.findViewById(R.id.mRecyclerView);
                         mRecyclerView.setAdapter(rAdapter);
                         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
-
-
                     }
 
                     @Override
@@ -144,6 +140,7 @@ public class ListRecipesFragment extends Fragment {
      */
     public interface OnFragmentListInteractionListener {
         void onFragmentListInteraction(Uri uri);
+        void getDetails(String id);
     }
 
     private Retrofit getRetrofitMeal() {

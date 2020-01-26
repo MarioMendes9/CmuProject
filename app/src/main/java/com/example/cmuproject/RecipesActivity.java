@@ -14,7 +14,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class RecipesActivity extends AppCompatActivity implements  FilterFragment.OnFragmentFilterInteractionListener, ListRecipesFragment.OnFragmentListInteractionListener {
+public class RecipesActivity extends AppCompatActivity implements  FilterFragment.OnFragmentFilterInteractionListener, ListRecipesFragment.OnFragmentListInteractionListener, RecipeDetailsFragment.OnFragmentDetailsInteractionListener {
 
 
 
@@ -24,6 +24,7 @@ public class RecipesActivity extends AppCompatActivity implements  FilterFragmen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.ThemeLight);
         mSettings= getSharedPreferences("themeMode", MODE_PRIVATE);
         String s = mSettings.getString("mode","");
         if(s.equals("light")){
@@ -110,6 +111,29 @@ public class RecipesActivity extends AppCompatActivity implements  FilterFragmen
     @Override
     public void onFragmentListInteraction(Uri uri) {
         ListRecipesFragment changeFrag = new ListRecipesFragment();
+
+        FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
+        tr.replace(R.id.fragment_container, changeFrag);
+        tr.addToBackStack(null);
+        tr.commit();
+    }
+
+    @Override
+    public void getDetails(String id) {
+        RecipeDetailsFragment changeFrag = new RecipeDetailsFragment();
+
+        FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
+        Bundle args = new Bundle();
+        args.putString("id", id);
+        changeFrag.setArguments(args);
+        tr.replace(R.id.fragment_container, changeFrag);
+        tr.addToBackStack(null);
+        tr.commit();
+    }
+
+    @Override
+    public void onFragmentDetailsInteraction(Uri uri) {
+        RecipeDetailsFragment changeFrag = new RecipeDetailsFragment();
 
         FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
         tr.replace(R.id.fragment_container, changeFrag);
