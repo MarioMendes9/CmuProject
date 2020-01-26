@@ -26,7 +26,6 @@ public class JogoPalavras extends AppCompatActivity {
     private TextView respostasCorretas;
     private int a = 0;
     private int count = 0;
-    private String replace;
     private String palavra;
 
     String listaPalavras[] = {
@@ -43,6 +42,7 @@ public class JogoPalavras extends AppCompatActivity {
             "filosofo"
 
     };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +69,7 @@ public class JogoPalavras extends AppCompatActivity {
                     palavra();
                     value.setText("");
                 } else {
-                    Intent intent = new Intent(getApplicationContext(), JogoPalavrasResultado.class);
+                    Intent intent = new Intent(JogoPalavras.this, JogoPalavrasResultado.class);
                     System.out.println(count);
                     intent.putExtra("count", count);
                     startActivity(intent);

@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     public void loadGames() {
-        Intent myIntent = new Intent(this, MenuJogos.class);
+        Intent myIntent = new Intent(this, Jogos.class);
         startActivity(myIntent);
     }
 
@@ -135,16 +135,16 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     public void addTomaDialog(String medicName, int quantidade) {
-        medicamentoViewModel.removeQtd(medicName,quantidade);
+        medicamentoViewModel.removeQtd(medicName, quantidade);
 
 
         String pattern = "dd/MM/yyyy";
-        String dateInString =new SimpleDateFormat(pattern).format(new Date());
+        String dateInString = new SimpleDateFormat(pattern).format(new Date());
 
-        String hour=new SimpleDateFormat("HH:mm").format(new Date());
+        String hour = new SimpleDateFormat("HH:mm").format(new Date());
 
         //Alterar o local
-        Toma newToma=new Toma(medicName,quantidade,dateInString,hour,"Felgueiras");
+        Toma newToma = new Toma(medicName, quantidade, dateInString, hour, "Felgueiras");
         System.out.println(newToma.toString());
 
         medicamentoViewModel.inserToma(newToma);
