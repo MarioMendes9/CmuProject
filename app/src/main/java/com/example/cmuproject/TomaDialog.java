@@ -1,9 +1,11 @@
 package com.example.cmuproject;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.cmuproject.model.PendentToma;
@@ -34,24 +37,24 @@ public class TomaDialog extends DialogFragment {
         medicamento = args.getString("medicamento");
         quantityMed = mListener.checkQuantity(medicamento);
         b.setTitle("Adicionar Toma");
-        if(quantityMed>0){
-        b.setPositiveButton("Adicionar", new DialogInterface.OnClickListener() {
+        if (quantityMed > 0) {
+            b.setPositiveButton("Adicionar", new DialogInterface.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (Integer.parseInt(qtdTomar.getText().toString()) > 0) {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (Integer.parseInt(qtdTomar.getText().toString()) > 0) {
 
-                    if (Integer.parseInt(qtdTomar.getText().toString()) > quantityMed) {
-                        Toast.makeText(getActivity(), "Toma invalida", Toast.LENGTH_LONG).show();
+                        if (Integer.parseInt(qtdTomar.getText().toString()) > quantityMed) {
+                            Toast.makeText(getActivity(), "Toma invalida", Toast.LENGTH_LONG).show();
+                        } else {
+                            mListener.addTomaDialog(medicamento, Integer.parseInt(qtdTomar.getText().toString()));
+                        }
                     } else {
-
-                        mListener.addTomaDialog(medicamento, Integer.parseInt(qtdTomar.getText().toString()));
+                        Toast.makeText(getActivity(), "Toma invalida", Toast.LENGTH_LONG).show();
                     }
-                } else {
-                    Toast.makeText(getActivity(), "Toma invalida", Toast.LENGTH_LONG).show();
                 }
-            }
-        });}
+            });
+        }
         b.setNegativeButton("Cancelar",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
@@ -90,6 +93,7 @@ public class TomaDialog extends DialogFragment {
         super.onDetach();
         mListener = null;
     }
+
 
     public interface TomaListernerInterface {
         void addTomaDialog(String medicName, int quantidade);

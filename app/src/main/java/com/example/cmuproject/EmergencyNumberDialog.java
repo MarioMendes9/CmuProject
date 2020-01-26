@@ -55,7 +55,7 @@ public class EmergencyNumberDialog extends DialogFragment {
                    // Map<String,Map> userinfo=new HashMap<String,Map>();
                     Map<String,String> userDados=new HashMap<String,String>();
                     userDados.put("EmergencyNumber",mNumber.getText().toString());
-                    userDados.put("LastLocat","");
+                    userDados.put("LastLocat","null");
                     //userinfo.put(email,userDados);
                    // mRootRef.push().setValue(email);
                     mRootRef.child(email).setValue(userDados);

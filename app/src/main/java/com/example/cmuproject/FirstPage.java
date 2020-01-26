@@ -1,9 +1,11 @@
 package com.example.cmuproject;
 
+import android.Manifest;
 import android.content.Context;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 
@@ -11,6 +13,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -46,6 +49,7 @@ public class FirstPage extends Fragment {
     private Button btnFarmacias;
     private Button btnFood;
     private Button btnMeal;
+    private static final int REQUEST_FINE_LOCATION = 100;
 
     private Toolbar myToolbar;
     private Button btnTomas;
@@ -142,6 +146,7 @@ public class FirstPage extends Fragment {
         btnTomas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getLastLocation();
                 mListener.gerirTomas();
             }
         });
@@ -188,5 +193,17 @@ public class FirstPage extends Fragment {
         void foodDetails();
         void loadRecipes();
 
+    }
+
+
+    private void getLastLocation() {
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions();
+            return;
+        }
+    }
+
+    private void requestPermissions() {
+        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_FINE_LOCATION);
     }
 }

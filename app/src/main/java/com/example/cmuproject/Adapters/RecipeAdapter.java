@@ -1,9 +1,11 @@
 package com.example.cmuproject.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +32,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         LayoutInflater inflater = LayoutInflater.from(context);
 
         View recipeView = inflater.inflate(R.layout.item_recipe, parent, false);
+
         return new RecipeViewHolder(recipeView);
     }
 
@@ -52,17 +55,22 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         return mRecipe.getResults().size();
     }
 
-    public class RecipeViewHolder extends RecyclerView.ViewHolder {
+
+
+    public class RecipeViewHolder extends RecyclerView.ViewHolder{
         public TextView title;
         public TextView ready;
         public TextView servings;
+        public Button details;
 
         public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
             this.title=itemView.findViewById(R.id.title);
             this.ready=itemView.findViewById(R.id.ready);
             this.servings = itemView.findViewById(R.id.servings);
+            this.details = itemView.findViewById(R.id.detailsRecipe);
 
         }
+
     }
 }
