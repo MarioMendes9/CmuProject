@@ -266,6 +266,18 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
                 startActivity(mIntent);
 
                 break;
+
+            case R.id.action_logout:
+                mAuth.signOut();
+                Login fragmentLogin = new Login();
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+
+                ft.replace(R.id.fragment_container, fragmentLogin);
+                ft.commit();
+                Intent i = new Intent(this, TrackService.class);
+                stopService(i);
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }

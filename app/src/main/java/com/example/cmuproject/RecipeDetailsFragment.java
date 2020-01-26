@@ -88,7 +88,6 @@ public class RecipeDetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString("id");
-            System.out.println("ARH1 ::::::::::::::::::: " + mParam1);
         }
     }
 
