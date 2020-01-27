@@ -68,7 +68,7 @@ public class TomaAdapter extends RecyclerView.Adapter<TomaAdapter.TomasViewHolde
             theAltura="Almoço";
         }else if(thehora>=14 && thehora<20){
             theAltura="Tarde";
-        }else if(thehora>=20 && thehora<23){
+        }else if(thehora>=20 && thehora<=23){
             theAltura="Jantar";
         }else{
             theAltura="Noite";

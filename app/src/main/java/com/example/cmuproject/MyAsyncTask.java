@@ -46,6 +46,7 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
     private String previousAltura;
     private String altura;
     private List<Medicamento> previousAlturaMedis;
+    private String todayIS;
 
     private FirebaseAuth auth;
     private DatabaseReference mRootRef;
@@ -70,7 +71,7 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
         String hour = (new SimpleDateFormat("HH:mm").format(new Date())).split(":")[0];
         altura = getAltura(hour);
         System.out.println(altura);
-
+        todayIS=getDayOfWeek();
         if (altura.equals("Manha")) {
             previousAltura = "Noite";
         } else if (altura.equals("Almoço")) {
@@ -84,10 +85,15 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
         }
 
         System.out.println(previousAltura);
+        Date mydate=new Date();
+        if(previousAltura.equals("Jantar")){
+            mydate = new Date(mydate.getTime() - 86400000); // 7 * 24 * 60 * 60 * 1000
+        }
+        System.out.println(":::::::::::::::::::::::::::::::: "+mydate);
         auth = FirebaseAuth.getInstance();
         mRootRef = FirebaseDatabase.getInstance().getReference();
         String pattern = "dd/MM/yyyy";
-        String dateInString = new SimpleDateFormat(pattern).format(new Date());
+        String dateInString = new SimpleDateFormat(pattern).format(mydate);
         MedicamentosDB mydb = MedicamentosDB.getDatabase(context);
         MedicamentoDao mydao = mydb.getMedicamentosDao();
         TomaDao tomaDao = mydb.getTomasDao();
@@ -98,6 +104,35 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
         /**
          * Ver se existem medicamentos na proxima hora para enviar notificaçao a dizer que tem
          */
+
+        String tempTodayis=todayIS;
+
+        if(previousAltura.equals("Jantar")){
+            switch (todayIS) {
+                case "Segunda":
+                    tempTodayis = "Domingo";
+                    break;
+                case "Terça":
+                    tempTodayis = "Segunda";
+                    break;
+                case "Quarta":
+                    tempTodayis = "Terça";
+                    break;
+                case "Quinta":
+                    tempTodayis = "Quarta";
+                    break;
+                case "Sexta":
+                    tempTodayis = "Quinta";
+                    break;
+                case "Sabado":
+                    tempTodayis = "Sexta";
+                    break;
+                case "Domingo":
+                    tempTodayis = "Sabado";
+                    break;
+            }
+        }
+
         boolean havenext = false;
         for (int i = 0; i < mymedis.size() && !havenext; i++) {
             String tempDays = mymedis.get(i).days;
@@ -105,8 +140,8 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
             tempDays = tempDays.substring(1, tempDays.length() - 1);
             String[] thisDays = tempDays.split(",");
             for (int j = 0; j< thisDays.length && !havenext; j++) {
-                System.out.println("COMPARA DIAS:"+thisDays[j]+" "+getDayOfWeek());
-                if (thisDays[j].equals(getDayOfWeek())) {
+                System.out.println("COMPARA DIAS:"+thisDays[j]+" "+todayIS);
+                if (thisDays[j].equals(todayIS)) {
                     String tempAlturas = mymedis.get(i).alturas;
                     tempAlturas = tempAlturas.replace(" ", "");
                     tempAlturas = tempAlturas.substring(1, tempAlturas.length() - 1);
@@ -127,18 +162,23 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
          * Ver se foram feitas todas as tomas
          */
 
+
+
         for (int i = 0; i < mymedis.size(); i++) {
             String tempDays = mymedis.get(i).days;
             tempDays = tempDays.replace(" ", "");
             tempDays = tempDays.substring(1, tempDays.length() - 1);
             String[] thisDays = tempDays.split(",");
             for (int j = 0;j < thisDays.length; j++) {
-                if (thisDays[j].equals(getDayOfWeek())) {
+                System.out.println(thisDays[j]+" :::::::::::::: "+tempTodayis);
+                if (thisDays[j].equals(tempTodayis)) {
                     String tempAlturas = mymedis.get(i).alturas;
                     tempAlturas = tempAlturas.replace(" ", "");
                     tempAlturas = tempAlturas.substring(1, tempAlturas.length() - 1);
                     String[] thisAlturas = tempAlturas.split(",");
                     for (int k = 0; k < thisAlturas.length; k++) {
+                        System.out.println(thisAlturas[k]+" :::::::::::::: "+previousAltura);
+
                         if (thisAlturas[k].equals(previousAltura)) {
                             previousAlturaMedis.add(mymedis.get(i));
                             break;
@@ -167,7 +207,7 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
                 boolean done = false;
                 for (int j = 0; j < todayTomas.size() && !done; j++) {
 
-                    if (todayTomas.get(j).medicamentoName == previousAlturaMedis.get(i).name) {
+                    if (todayTomas.get(j).medicamentoName.equals(previousAlturaMedis.get(i).name)) {
                         if (previousAltura.equals(getAltura(todayTomas.get(j).hora))) {
                             done = true;
                             break;
@@ -313,7 +353,7 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
         } else if (thehora >= 14 && thehora < 20) {
             return "Tarde";
 
-        } else if (thehora >= 20 && thehora < 22) {
+        } else if (thehora >= 20 && thehora <= 23) {
             return "Jantar";
 
         } else {

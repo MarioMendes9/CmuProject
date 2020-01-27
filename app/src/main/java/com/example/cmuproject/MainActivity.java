@@ -367,10 +367,10 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
         if (calendar.before(calNow)) {
             calendar.add(Calendar.DATE, 1);
         }
-        //Noite 22
+        //Noite 0
         Calendar calendar2 = Calendar.getInstance();
         calendar2.setTimeInMillis(System.currentTimeMillis());
-        calendar2.set(Calendar.HOUR_OF_DAY, 22);
+        calendar2.set(Calendar.HOUR_OF_DAY, 0);
         calendar2.set(Calendar.MINUTE, 0);
         calendar2.set(Calendar.SECOND, 0);
         if (calendar2.before(calNow)) {

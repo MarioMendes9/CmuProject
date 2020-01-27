@@ -190,7 +190,7 @@ public class GerirTomas extends Fragment {
             return "Almoço";
         } else if (thehora >= 14 && thehora < 20) {
             return "Tarde";
-        } else if (thehora >= 20 && thehora < 23) {
+        } else if (thehora >= 20 && thehora <=23) {
             return "Jantar";
         } else {
             return "Noite";
