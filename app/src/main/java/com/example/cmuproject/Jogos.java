@@ -39,8 +39,12 @@ public class Jogos extends AppCompatActivity implements MenuJogosF.OnFragmentMen
 
     @Override
     public void jogoMemoria() {
-        Intent myIntent = new Intent(this, JogoMemoriaF.class);
-        startActivity(myIntent);
+        MenuJogosF changeFrag=new MenuJogosF();
+
+        FragmentTransaction tr=getSupportFragmentManager().beginTransaction();
+        tr.replace(R.id.fragment_container,changeFrag);
+        tr.addToBackStack(null);
+        tr.commit();
     }
 
     @Override
