@@ -141,7 +141,7 @@ public class TrackService extends Service {
             MedicamentosDB.databaseWriteExecutor.execute(() -> {
                 userLastLoc = new UserLocation(location.getLatitude(), location.getLongitude(), dateInString, hour);
                 userLocationDao.insertLocation(new UserLocation(location.getLatitude(), location.getLongitude(), dateInString, hour));
-                childRef.setValue("lat:"+location.getLatitude()+",long:"+location.getLongitude());
+                childRef.setValue("{lat:"+location.getLatitude()+",long:"+location.getLongitude()+"}");
             });
 
 

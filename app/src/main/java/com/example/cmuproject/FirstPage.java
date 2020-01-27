@@ -52,7 +52,6 @@ public class FirstPage extends Fragment {
     private Button btnFarmacias;
     private Button btnFood;
     private Button btnMeal;
-    private static final int REQUEST_FINE_LOCATION = 100;
 
     private Toolbar myToolbar;
     private Button btnTomas;
@@ -167,10 +166,10 @@ public class FirstPage extends Fragment {
         if (calendar.before(calNow)) {
             calendar.add(Calendar.DATE, 1);
         }
-        //Noite 22
+        //Noite 00
         Calendar calendar2 = Calendar.getInstance();
         calendar2.setTimeInMillis(System.currentTimeMillis());
-        calendar2.set(Calendar.HOUR_OF_DAY, 22);
+        calendar2.set(Calendar.HOUR_OF_DAY, 0);
         calendar2.set(Calendar.MINUTE, 0);
         calendar2.set(Calendar.SECOND, 0);
         if (calendar2.before(calNow)) {
