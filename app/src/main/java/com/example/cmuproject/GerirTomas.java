@@ -184,13 +184,13 @@ public class GerirTomas extends Fragment {
         String[] tempHora = hora.split(":");
 
         int thehora = Integer.parseInt(tempHora[0]);
-        if (thehora > 6 && thehora < 12) {
+        if (thehora >= 6 && thehora < 12) {
             return "Manha";
         } else if (thehora >= 12 && thehora < 14) {
             return "Almoço";
         } else if (thehora >= 14 && thehora < 20) {
             return "Tarde";
-        } else if (thehora >= 20 && thehora < 23) {
+        } else if (thehora >= 20 && thehora <=23) {
             return "Jantar";
         } else {
             return "Noite";

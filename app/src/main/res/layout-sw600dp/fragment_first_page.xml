@@ -38,7 +38,6 @@
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_weight="1"
                 android:text="@string/RegistarTomas"
-                android:theme="@style/ThemeOverlay.MyDarkButton"
                 android:drawableTop="@drawable/tomas_icon"/>
 
             <Button
@@ -49,7 +48,6 @@
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_weight="1"
                 android:text="@string/GerirMedicamentos"
-                android:theme="@style/ThemeOverlay.MyDarkButton"
                 android:drawableTop="@drawable/med_icon"/>
 
 
@@ -68,7 +66,6 @@
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_weight="1"
                 android:text="@string/jogos"
-                android:theme="@style/ThemeOverlay.MyDarkButton"
                 android:drawableTop="@drawable/game_icon"/>
             <Button
                 android:id="@+id/farmaciaMap"
@@ -78,7 +75,6 @@
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_weight="1"
                 android:text="@string/farmaciaMap"
-                android:theme="@style/ThemeOverlay.MyDarkButton"
                 android:drawableTop="@drawable/location_icon"/>
 
 
@@ -97,7 +93,6 @@
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_weight="1"
                 android:text="@string/foodDetails"
-                android:theme="@style/ThemeOverlay.MyDarkButton"
                 android:drawableTop="@drawable/food_icon"
                 />
 
@@ -109,7 +104,6 @@
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_weight="1"
                 android:text="@string/mealDetails"
-                android:theme="@style/ThemeOverlay.MyDarkButton"
                 android:drawableTop="@drawable/meal_icon"
                 />
 
