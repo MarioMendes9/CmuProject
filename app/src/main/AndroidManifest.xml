@@ -33,13 +33,7 @@
             android:name=".SettingsActivity"
             android:configChanges="uiMode" />
 
-        <activity android:name=".JogoMemoriaResultado" />
-        <activity android:name=".JogoMemoria" />
-        <activity android:name=".JogoAritmeticoResultado" />
-        <activity android:name=".JogoAritmetico" />
-        <activity android:name=".MenuJogos" />
-        <activity android:name=".JogoPalavras" />
-        <activity android:name=".JogoPalavrasResultado" />
+        <activity android:name=".Jogos" />
         <activity android:name=".FoodActivity"
             android:configChanges="uiMode"/>
 

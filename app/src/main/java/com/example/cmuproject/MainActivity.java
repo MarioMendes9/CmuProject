@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     public void loadGames() {
-        Intent myIntent = new Intent(this, MenuJogos.class);
+        Intent myIntent = new Intent(this, Jogos.class);
         startActivity(myIntent);
     }
 
