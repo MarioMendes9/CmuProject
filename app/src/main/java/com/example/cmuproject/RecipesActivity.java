@@ -33,7 +33,7 @@ public class RecipesActivity extends AppCompatActivity implements  FilterFragmen
             setTheme(R.style.ThemeDark);
         }
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipies);
+        setContentView(R.layout.activity_recipes);
 
 
         myToolbar = findViewById(R.id.toolbar);

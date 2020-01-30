@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 
 import androidx.core.content.ContextCompat;
@@ -19,13 +17,13 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
 import android.app.AlarmManager;
+import android.app.Fragment;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 
-import android.graphics.Color;
 import android.location.Location;
 
 import android.os.Bundle;
@@ -73,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
     private Toolbar myToolbar;
     private SharedPreferences mSettings;
     private List<Medicamento> medis;
+    private Menu menu;
 
     private PendingIntent myPi;
 
@@ -82,42 +81,59 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        System.out.println(getTheme());
-        setTheme(R.style.ThemeLight);
-        mSettings= getSharedPreferences("themeMode", MODE_PRIVATE);
-        String s = mSettings.getString("mode","");
-        if(s.equals("light")){
-            setTheme(R.style.ThemeLight);
-        } else if(s.equals("dark")){
-            setTheme(R.style.ThemeDark);
-        }
         super.onCreate(savedInstanceState);
 
+
+
         setContentView(R.layout.activity_main);
-        myToolbar = findViewById(R.id.toolbar);
-        myToolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.setting));
-        setSupportActionBar(myToolbar);
+        String menuFragment = getIntent().getStringExtra("fragment");
 
-        mAuth = FirebaseAuth.getInstance();
+        if(menuFragment!=null){
 
-        medicamentoViewModel = new ViewModelProvider(this).get(MedicamentosViewModel.class);
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            GerirTomas gt = new GerirTomas();
 
-        medicamentoViewModel.getallMedicamentos().observe(this, new Observer<List<Medicamento>>() {
-            @Override
-            public void onChanged(List<Medicamento> medicamentos) {
-                medis = medicamentos;
+            FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
+            tr.replace(R.id.fragment_container, gt);
+            tr.addToBackStack(null);
+            tr.commit();
+
+
+
+        }else {
+            System.out.println(getTheme());
+            setTheme(R.style.ThemeLight);
+            mSettings = getSharedPreferences("themeMode", MODE_PRIVATE);
+            String s = mSettings.getString("mode", "");
+            if (s.equals("light")) {
+                setTheme(R.style.ThemeLight);
+            } else if (s.equals("dark")) {
+                setTheme(R.style.ThemeDark);
             }
-        });
+
+            myToolbar = findViewById(R.id.toolbar);
+            myToolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.setting));
+            setSupportActionBar(myToolbar);
+
+            mAuth = FirebaseAuth.getInstance();
+
+            medicamentoViewModel = new ViewModelProvider(this).get(MedicamentosViewModel.class);
+
+            medicamentoViewModel.getallMedicamentos().observe(this, new Observer<List<Medicamento>>() {
+                @Override
+                public void onChanged(List<Medicamento> medicamentos) {
+                    medis = medicamentos;
+                }
+            });
 
 
-        Login fragmentLogin = new Login();
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
+            Login fragmentLogin = new Login();
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
 
-        ft.replace(R.id.fragment_container, fragmentLogin);
-        ft.commit();
-
+            ft.replace(R.id.fragment_container, fragmentLogin);
+            ft.commit();
+        }
     }
 
     @Override
@@ -148,6 +164,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     public void onFragmentLoginInteraction(FirebaseUser user) {
+
         FirstPage changeFrag = new FirstPage();
 
         FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
@@ -160,12 +177,12 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     public void onFragmentRegistInteraction() {
-
         RegistoFragment changeFrag = new RegistoFragment();
 
         FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
         tr.replace(R.id.fragment_container, changeFrag);
         tr.addToBackStack(null);
+
         tr.commit();
     }
 
@@ -191,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     public void loadGames() {
-        Intent myIntent = new Intent(this, Jogos.class);
+        Intent myIntent = new Intent(this, JogosActivity.class);
         startActivity(myIntent);
     }
 
@@ -300,11 +317,13 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        this.menu = menu;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         switch (item.getItemId()) {
             case R.id.action_def:
 
