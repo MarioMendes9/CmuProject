@@ -52,15 +52,11 @@ public class EmergencyNumberDialog extends DialogFragment {
                     String email=auth.getCurrentUser().getEmail();
                     email=email.replace(".",",");
 
-                   // Map<String,Map> userinfo=new HashMap<String,Map>();
                     Map<String,String> userDados=new HashMap<String,String>();
                     userDados.put("EmergencyNumber",mNumber.getText().toString());
                     userDados.put("LastLocat","null");
-                    //userinfo.put(email,userDados);
-                   // mRootRef.push().setValue(email);
                     mRootRef.child(email).setValue(userDados);
 
-                    //mRootRef.push().setValue(userinfo);
 
                 }
 

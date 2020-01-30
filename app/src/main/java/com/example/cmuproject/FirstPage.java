@@ -1,7 +1,6 @@
 package com.example.cmuproject;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -25,7 +24,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toolbar;
-import android.widget.TextView;
+
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -34,8 +33,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -59,7 +56,7 @@ public class FirstPage extends Fragment {
     private FirebaseAuth auth;
     private DatabaseReference mRootRef;
     private DatabaseReference childRef;
-    private TextView info;
+
 
 
     private PendingIntent myPi;
@@ -101,7 +98,7 @@ public class FirstPage extends Fragment {
         mRootRef = FirebaseDatabase.getInstance().getReference();
         String email = auth.getCurrentUser().getEmail();
         email = email.replace(".", ",");
-        childRef = mRootRef.child(email);
+        childRef = mRootRef.child(email).child("EmergencyNumber");
         childRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -111,15 +108,6 @@ public class FirstPage extends Fragment {
                     EmergencyNumberDialog dialog = new EmergencyNumberDialog();
 
                     dialog.show(manager, "dialog");
-                } else {
-                    try {
-                        JSONObject myobject = new JSONObject(dataSnapshot.getValue().toString());
-
-                        // System.out.println(myobject.getString("EmergencyNumber"));
-                        info.setText(myobject.getString("EmergencyNumber"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
                 }
             }
 
@@ -235,7 +223,7 @@ public class FirstPage extends Fragment {
         btnTomas = view.findViewById(R.id.tomasMedicamentos);
         btnFood = view.findViewById(R.id.foodDetails);
         btnMeal = view.findViewById(R.id.mealDetails);
-        info = view.findViewById(R.id.info);
+
 
 
         btnGerirMedic.setOnClickListener(new View.OnClickListener() {

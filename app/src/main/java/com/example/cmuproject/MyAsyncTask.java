@@ -71,7 +71,7 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
         String hour = (new SimpleDateFormat("HH:mm").format(new Date())).split(":")[0];
         altura = getAltura(hour);
         System.out.println(altura);
-        todayIS=getDayOfWeek();
+        todayIS = getDayOfWeek();
         if (altura.equals("Manha")) {
             previousAltura = "Noite";
         } else if (altura.equals("Almoço")) {
@@ -85,11 +85,11 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
         }
 
         System.out.println(previousAltura);
-        Date mydate=new Date();
-        if(previousAltura.equals("Jantar")){
+        Date mydate = new Date();
+        if (previousAltura.equals("Jantar")) {
             mydate = new Date(mydate.getTime() - 86400000); // 7 * 24 * 60 * 60 * 1000
         }
-        System.out.println(":::::::::::::::::::::::::::::::: "+mydate);
+        System.out.println(":::::::::::::::::::::::::::::::: " + mydate);
         auth = FirebaseAuth.getInstance();
         mRootRef = FirebaseDatabase.getInstance().getReference();
         String pattern = "dd/MM/yyyy";
@@ -105,9 +105,9 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
          * Ver se existem medicamentos na proxima hora para enviar notificaçao a dizer que tem
          */
 
-        String tempTodayis=todayIS;
+        String tempTodayis = todayIS;
 
-        if(previousAltura.equals("Jantar")){
+        if (previousAltura.equals("Jantar")) {
             switch (todayIS) {
                 case "Segunda":
                     tempTodayis = "Domingo";
@@ -139,15 +139,15 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
             tempDays = tempDays.replace(" ", "");
             tempDays = tempDays.substring(1, tempDays.length() - 1);
             String[] thisDays = tempDays.split(",");
-            for (int j = 0; j< thisDays.length && !havenext; j++) {
-                System.out.println("COMPARA DIAS:"+thisDays[j]+" "+todayIS);
+            for (int j = 0; j < thisDays.length && !havenext; j++) {
+                System.out.println("COMPARA DIAS:" + thisDays[j] + " " + todayIS);
                 if (thisDays[j].equals(todayIS)) {
                     String tempAlturas = mymedis.get(i).alturas;
                     tempAlturas = tempAlturas.replace(" ", "");
                     tempAlturas = tempAlturas.substring(1, tempAlturas.length() - 1);
                     String[] thisAlturas = tempAlturas.split(",");
                     for (int k = 0; k < thisAlturas.length; k++) {
-                        System.out.println("COMPARA ALTURAS: "+thisAlturas[k].equals(altura));
+                        System.out.println("COMPARA ALTURAS: " + thisAlturas[k].equals(altura));
                         if (thisAlturas[k].equals(altura)) {
                             havenext = true;
                             break;
@@ -163,21 +163,20 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
          */
 
 
-
         for (int i = 0; i < mymedis.size(); i++) {
             String tempDays = mymedis.get(i).days;
             tempDays = tempDays.replace(" ", "");
             tempDays = tempDays.substring(1, tempDays.length() - 1);
             String[] thisDays = tempDays.split(",");
-            for (int j = 0;j < thisDays.length; j++) {
-                System.out.println(thisDays[j]+" :::::::::::::: "+tempTodayis);
+            for (int j = 0; j < thisDays.length; j++) {
+                System.out.println(thisDays[j] + " :::::::::::::: " + tempTodayis);
                 if (thisDays[j].equals(tempTodayis)) {
                     String tempAlturas = mymedis.get(i).alturas;
                     tempAlturas = tempAlturas.replace(" ", "");
                     tempAlturas = tempAlturas.substring(1, tempAlturas.length() - 1);
                     String[] thisAlturas = tempAlturas.split(",");
                     for (int k = 0; k < thisAlturas.length; k++) {
-                        System.out.println(thisAlturas[k]+" :::::::::::::: "+previousAltura);
+                        System.out.println(thisAlturas[k] + " :::::::::::::: " + previousAltura);
 
                         if (thisAlturas[k].equals(previousAltura)) {
                             previousAlturaMedis.add(mymedis.get(i));
@@ -246,13 +245,8 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
                     SmsManager sms = SmsManager.getDefault();
                     sms.sendTextMessage(myobject.getString("EmergencyNumber"), null, message, null, null);
 
-                    //Intent intent = new Intent(context,smsReceiver.class);
-                    //intent.setData(Uri.parse("smsto:"+ myobject.getString("EmergencyNumber")));  // This ensures only SMS apps respond
-                    //intent.putExtra("sms_body", message);
 
                     System.out.println("vai enviar");
-                 //   context.sendBroadcast(intent);
-
 
 
                 } catch (JSONException e) {
@@ -271,19 +265,18 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
     }
 
     private void sendNotification() {
-        System.out.println("ENVIOU A NOTIFICAÇAO");
         builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.meal_icon)
                 .setContentTitle("Medicaçao")
                 .setContentText("Tem medicaçao para tomar nas proximas horas")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-        // builder.setDeleteIntent(getDeleteIntent());
-        Intent resultIntent = new Intent(Intent.ACTION_VIEW);
-        resultIntent.setData(Uri.parse("sms:"));
-        PendingIntent resultPedingIntent = PendingIntent.getActivity(context, 0, resultIntent, 0);
+        builder.setDeleteIntent(getDeleteIntent());
+        Intent resultIntent = new Intent(context, MainActivity.class);
+        resultIntent.putExtra("fragment", "tomas");
+        PendingIntent resultPedingIntent = PendingIntent.getActivity(context, 60, resultIntent, 0);
 
 
-        //builder.addAction(R.drawable.myimage_background,"mensage",resultPedingIntent);
+        builder.addAction(R.drawable.med_icon, "Abrir tomas", resultPedingIntent);
 
         notificationManager = NotificationManagerCompat.from(context);
 
@@ -361,5 +354,11 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
 
         }
 
+    }
+
+    protected PendingIntent getDeleteIntent() {
+        Intent intent = new Intent(context, MainActivity.class);
+        PendingIntent r = PendingIntent.getActivity(context, 0, intent, 0);
+        return r;
     }
 }
