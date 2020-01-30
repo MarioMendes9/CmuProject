@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,6 +39,8 @@ public class Login extends Fragment {
     private Button btnRegisto;
     private EditText userEmail;
     private EditText userPass;
+
+    private TextView tvRecuperarpass;
 
 
     public Login() {
@@ -70,6 +73,7 @@ public class Login extends Fragment {
 
         userEmail = view.findViewById(R.id.fieldEmail);
         userPass = view.findViewById(R.id.fieldPassword);
+        tvRecuperarpass=view.findViewById(R.id.recuPaswd);
 
 
         //mAuth = FirebaseAuth.getInstance();
@@ -88,7 +92,28 @@ public class Login extends Fragment {
                 }
             });
         }
+        tvRecuperarpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println(userEmail.getText());
 
+                if(userEmail.getText().toString().matches("")){
+                    Toast.makeText(getActivity(),"Insira o email",Toast.LENGTH_LONG).show();
+                }else{
+                   mAuth.sendPasswordResetEmail(userEmail.getText().toString())
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(getActivity(),"Verifique o seu email",Toast.LENGTH_LONG).show();
+                                    }else{
+                                        Toast.makeText(getActivity(),"Email errado",Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                }
+            }
+        });
 
         return view;
     }
