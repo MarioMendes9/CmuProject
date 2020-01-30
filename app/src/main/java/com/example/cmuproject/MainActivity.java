@@ -82,42 +82,57 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        System.out.println(getTheme());
-        setTheme(R.style.ThemeLight);
-        mSettings= getSharedPreferences("themeMode", MODE_PRIVATE);
-        String s = mSettings.getString("mode","");
-        if(s.equals("light")){
-            setTheme(R.style.ThemeLight);
-        } else if(s.equals("dark")){
-            setTheme(R.style.ThemeDark);
-        }
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        myToolbar = findViewById(R.id.toolbar);
-        myToolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.setting));
-        setSupportActionBar(myToolbar);
+        String menuFragment = getIntent().getStringExtra("fragment");
 
-        mAuth = FirebaseAuth.getInstance();
+        if(menuFragment!=null){
 
-        medicamentoViewModel = new ViewModelProvider(this).get(MedicamentosViewModel.class);
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            GerirTomas gt = new GerirTomas();
 
-        medicamentoViewModel.getallMedicamentos().observe(this, new Observer<List<Medicamento>>() {
-            @Override
-            public void onChanged(List<Medicamento> medicamentos) {
-                medis = medicamentos;
+            FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
+            tr.replace(R.id.fragment_container, gt);
+            tr.addToBackStack(null);
+            tr.commit();
+
+
+
+        }else {
+            System.out.println(getTheme());
+            setTheme(R.style.ThemeLight);
+            mSettings = getSharedPreferences("themeMode", MODE_PRIVATE);
+            String s = mSettings.getString("mode", "");
+            if (s.equals("light")) {
+                setTheme(R.style.ThemeLight);
+            } else if (s.equals("dark")) {
+                setTheme(R.style.ThemeDark);
             }
-        });
+
+            myToolbar = findViewById(R.id.toolbar);
+            myToolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.setting));
+            setSupportActionBar(myToolbar);
+
+            mAuth = FirebaseAuth.getInstance();
+
+            medicamentoViewModel = new ViewModelProvider(this).get(MedicamentosViewModel.class);
+
+            medicamentoViewModel.getallMedicamentos().observe(this, new Observer<List<Medicamento>>() {
+                @Override
+                public void onChanged(List<Medicamento> medicamentos) {
+                    medis = medicamentos;
+                }
+            });
 
 
-        Login fragmentLogin = new Login();
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
+            Login fragmentLogin = new Login();
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
 
-        ft.replace(R.id.fragment_container, fragmentLogin);
-        ft.commit();
-
+            ft.replace(R.id.fragment_container, fragmentLogin);
+            ft.commit();
+        }
     }
 
     @Override

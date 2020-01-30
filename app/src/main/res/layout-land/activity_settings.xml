@@ -74,6 +74,7 @@
         <EditText
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:id="@+id/etGuardar"
 
             />
 
@@ -81,7 +82,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Guardar"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:id="@+id/guardar"/>
 
     </LinearLayout>
     </LinearLayout>
