@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 
 import androidx.core.content.ContextCompat;
@@ -19,13 +17,13 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
 import android.app.AlarmManager;
+import android.app.Fragment;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 
-import android.graphics.Color;
 import android.location.Location;
 
 import android.os.Bundle;
@@ -73,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
     private Toolbar myToolbar;
     private SharedPreferences mSettings;
     private List<Medicamento> medis;
+    private Menu menu;
 
     private PendingIntent myPi;
 
@@ -93,6 +92,8 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
             setTheme(R.style.ThemeDark);
         }
         super.onCreate(savedInstanceState);
+
+
 
         setContentView(R.layout.activity_main);
         myToolbar = findViewById(R.id.toolbar);
@@ -148,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     public void onFragmentLoginInteraction(FirebaseUser user) {
+
         FirstPage changeFrag = new FirstPage();
 
         FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
@@ -160,12 +162,12 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     public void onFragmentRegistInteraction() {
-
         RegistoFragment changeFrag = new RegistoFragment();
 
         FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
         tr.replace(R.id.fragment_container, changeFrag);
         tr.addToBackStack(null);
+
         tr.commit();
     }
 
@@ -191,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     public void loadGames() {
-        Intent myIntent = new Intent(this, Jogos.class);
+        Intent myIntent = new Intent(this, JogosActivity.class);
         startActivity(myIntent);
     }
 
@@ -300,11 +302,13 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        this.menu = menu;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         switch (item.getItemId()) {
             case R.id.action_def:
 

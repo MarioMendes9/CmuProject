@@ -6,38 +6,43 @@
     tools:context=".ResultadoNumberFragment">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:orientation="vertical"
-        >
-    <TextView
-        android:id="@+id/tituloResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="86dp"
-        android:layout_marginTop="119dp"
-        android:layout_marginEnd="86dp"
-        android:text="No total obteve:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+        android:layout_marginTop="20dp">
 
-    <TextView
-        android:id="@+id/respostasCertas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="151dp"
-        android:layout_marginTop="65dp"
-        android:layout_marginEnd="151dp"
-        android:text="RespostasCertas" />
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="50dp"
+            android:src="@drawable/congrats"/>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="125dp"
-        android:layout_marginEnd="159dp"
-        android:layout_marginBottom="309dp"
-        android:text="Jogar Novamente"/>
+        <TextView
+            android:id="@+id/tituloResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No total obteve:"
+            android:layout_gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+        <TextView
+            android:id="@+id/respostasCertas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_marginTop="20dp"
+            android:text="RespostasCertas" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:text="Jogar novamente"/>
 
     </LinearLayout>
 </FrameLayout>

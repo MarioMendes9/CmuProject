@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
@@ -52,6 +53,7 @@ public class RegistoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_registo, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
         userEmail=view.findViewById(R.id.fieldEmailRegisto);
         userPass=view.findViewById(R.id.fieldPasswordRegisto);

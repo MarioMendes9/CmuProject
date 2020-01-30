@@ -33,7 +33,7 @@
             android:name=".SettingsActivity"
             android:configChanges="uiMode" />
 
-        <activity android:name=".Jogos" />
+        <activity android:name=".JogosActivity" />
         <activity android:name=".FoodActivity"
             android:configChanges="uiMode"/>
 

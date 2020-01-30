@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".JogosMenuFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/jogoPalavras"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Jogo das Palavras"
+            android:drawableLeft="@drawable/word_game_icon"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"/>
+
+        <Button
+            android:id="@+id/jogoAritmetico"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Jogo Aritmético"
+            android:drawableLeft="@drawable/number_game_icon"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="50dp"/>
+
+        <Button
+            android:id="@+id/jogoMemoria"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Jogo da Memória"
+            android:drawableLeft="@drawable/memory_game_icon"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="50dp"/>
+
+
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -28,7 +28,6 @@ public class ResultadoMemoryFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private Button jogarNovamente;
-    private Button menuJogos;
 
 
     private OnFragmentMemoryResultInteractionListener mListener;
@@ -66,7 +65,6 @@ public class ResultadoMemoryFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_resultado_memory, container, false);
         jogarNovamente=v.findViewById(R.id.button4);
-        menuJogos=v.findViewById(R.id.button5);
         jogarNovamente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

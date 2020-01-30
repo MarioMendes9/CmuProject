@@ -228,6 +228,7 @@ public class FirstPage extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_first_page, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
         img = view.findViewById(R.id.principalImage);
         btnGerirMedic = view.findViewById(R.id.gerirMedicamentos);
         btnFarmacias = view.findViewById(R.id.farmaciaMap);
