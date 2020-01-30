@@ -17,6 +17,10 @@ import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,6 +46,9 @@ public class SettingsActivity extends AppCompatActivity {
     private DatabaseReference mRootRef;
     private DatabaseReference childRef;
     private DatabaseReference chiilRef2;
+    private EditText passEt;
+    private Button btnPass;
+    private EditText oldpwd;
 
 
     @Override
@@ -95,6 +102,10 @@ public class SettingsActivity extends AppCompatActivity {
 
         rg=findViewById(R.id.radioGroup);
 
+        oldpwd=findViewById(R.id.oldpasswd);
+        passEt=findViewById(R.id.ETchangePasswd);
+        btnPass=findViewById(R.id.changePasswd);
+
         btnGuardar=findViewById(R.id.guardar);
         etGuardar=findViewById(R.id.etGuardar);
 
@@ -138,6 +149,38 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btnPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AuthCredential credential = EmailAuthProvider
+                        .getCredential(auth.getCurrentUser().getEmail(),oldpwd.getText().toString());
+
+            auth.getCurrentUser().reauthenticate(credential)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            auth.getCurrentUser().updatePassword(passEt.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(getApplication(),"Password alterada com sucesso",Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(getApplication(),"Ocorreu um erro",Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                        } else {
+                            Toast.makeText(getApplication(),"Dados incorretos",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+            }
+
+
+        });
+
     }
 
 
