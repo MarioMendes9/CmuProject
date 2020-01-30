@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -61,6 +62,7 @@ public class FilterFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_filter,container,false);
 
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
         btnSearch = view.findViewById(R.id.search_recipe);
         chipAler = view.findViewById(R.id.chipGroupIntolerancias);
         chipDiet = view.findViewById(R.id.chipGroupDiet);

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ResultadoMemoryFragment">
+    tools:context=".ResultadoWordFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,22 +13,31 @@
         android:layout_marginTop="20dp">
 
         <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="500dp"
+            android:layout_height="500dp"
             android:layout_gravity="center"
             android:layout_marginBottom="50dp"
             android:src="@drawable/congrats"/>
 
         <TextView
-            android:id="@+id/tempo"
+            android:id="@+id/Result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Parabéns! "
+            android:text="No total obteve:"
             android:layout_gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_marginTop="20dp"
+            android:text="RespostasCertas" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/jogarNovamente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -36,4 +45,5 @@
             android:text="Jogar novamente"/>
 
     </LinearLayout>
+
 </FrameLayout>
