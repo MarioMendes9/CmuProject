@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
         myToolbar = findViewById(R.id.toolbar);
         myToolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.setting));
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mAuth = FirebaseAuth.getInstance();
 

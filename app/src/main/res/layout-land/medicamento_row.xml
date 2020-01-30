@@ -6,13 +6,15 @@
     android:layout_height="wrap_content">
 
 
+
     <TextView
         android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="name"
-        android:layout_marginLeft="5dp"/>
+        android:layout_marginLeft="5dp"
+        android:gravity="center"/>
 
     <View
         android:layout_width="1dp"
@@ -29,6 +31,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="quantidade"
+        android:gravity="center"
         />
 
     <View
@@ -43,6 +46,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:gravity="center"
         android:text="dias" />
     <View
         android:layout_width="1dp"
@@ -54,6 +58,7 @@
         android:id="@+id/altura"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:layout_weight="1"
         android:text="altura" />
     <View
