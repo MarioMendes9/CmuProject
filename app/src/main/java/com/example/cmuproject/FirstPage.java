@@ -110,15 +110,6 @@ public class FirstPage extends Fragment {
                     EmergencyNumberDialog dialog = new EmergencyNumberDialog();
 
                     dialog.show(manager, "dialog");
-                } else {
-                    try {
-                        JSONObject myobject = new JSONObject(dataSnapshot.getValue().toString());
-
-                        // System.out.println(myobject.getString("EmergencyNumber"));
-                        info.setText(myobject.getString("EmergencyNumber"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
                 }
             }
 
@@ -234,7 +225,6 @@ public class FirstPage extends Fragment {
         btnTomas = view.findViewById(R.id.tomasMedicamentos);
         btnFood = view.findViewById(R.id.foodDetails);
         btnMeal = view.findViewById(R.id.mealDetails);
-        info = view.findViewById(R.id.info);
 
 
         btnGerirMedic.setOnClickListener(new View.OnClickListener() {
