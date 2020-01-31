@@ -74,14 +74,16 @@
         <EditText
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-
+            android:inputType="number"
+            android:id="@+id/etGuardar"
             />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Guardar"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:id="@+id/guardar"/>
 
     </LinearLayout>
 
@@ -92,6 +94,28 @@
             android:text="Mudar password"
             android:textSize="30dp"
             android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Password antiga"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:hint="Insira a password antiga"/>
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/oldpasswd"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Password nova"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:hint="Insira a nova password"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -101,16 +125,18 @@
             <EditText
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-
+                android:id="@+id/ETchangePasswd"
                 />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Guardar"
-                android:layout_marginLeft="10dp"/>
+                android:text="Alterar"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/changePasswd"/>
 
         </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

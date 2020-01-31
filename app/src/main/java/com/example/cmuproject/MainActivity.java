@@ -84,18 +84,35 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        System.out.println(getTheme());
-        setTheme(R.style.ThemeLight);
-        mSettings= getSharedPreferences("themeMode", MODE_PRIVATE);
-        String s = mSettings.getString("mode","");
-        if(s.equals("light")){
-            setTheme(R.style.ThemeLight);
-        } else if(s.equals("dark")){
-            setTheme(R.style.ThemeDark);
-        }
         super.onCreate(savedInstanceState);
 
+
+
+        setContentView(R.layout.activity_main);
+        String menuFragment = getIntent().getStringExtra("fragment");
+
+        if(menuFragment!=null){
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            GerirTomas gt = new GerirTomas();
+
+            FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
+            tr.replace(R.id.fragment_container, gt);
+            tr.addToBackStack(null);
+            tr.commit();
+
+
+
+        }else {
+            System.out.println(getTheme());
+            setTheme(R.style.ThemeLight);
+            mSettings = getSharedPreferences("themeMode", MODE_PRIVATE);
+            String s = mSettings.getString("mode", "");
+            if (s.equals("light")) {
+                setTheme(R.style.ThemeLight);
+            } else if (s.equals("dark")) {
+                setTheme(R.style.ThemeDark);
+            }
 
 
         setContentView(R.layout.activity_main);
@@ -104,25 +121,25 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mAuth = FirebaseAuth.getInstance();
+            mAuth = FirebaseAuth.getInstance();
 
-        medicamentoViewModel = new ViewModelProvider(this).get(MedicamentosViewModel.class);
+            medicamentoViewModel = new ViewModelProvider(this).get(MedicamentosViewModel.class);
 
-        medicamentoViewModel.getallMedicamentos().observe(this, new Observer<List<Medicamento>>() {
-            @Override
-            public void onChanged(List<Medicamento> medicamentos) {
-                medis = medicamentos;
-            }
-        });
+            medicamentoViewModel.getallMedicamentos().observe(this, new Observer<List<Medicamento>>() {
+                @Override
+                public void onChanged(List<Medicamento> medicamentos) {
+                    medis = medicamentos;
+                }
+            });
 
 
-        Login fragmentLogin = new Login();
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
+            Login fragmentLogin = new Login();
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
 
-        ft.replace(R.id.fragment_container, fragmentLogin);
-        ft.commit();
-
+            ft.replace(R.id.fragment_container, fragmentLogin);
+            ft.commit();
+        }
     }
 
     @Override

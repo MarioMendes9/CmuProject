@@ -1,15 +1,35 @@
 package com.example.cmuproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -20,6 +40,16 @@ public class SettingsActivity extends AppCompatActivity {
     private SharedPreferences mSettings;
     private RadioButton light;
     private RadioButton dark;
+    private FirebaseAuth auth;
+    private Button btnGuardar;
+    private EditText etGuardar;
+    private DatabaseReference mRootRef;
+    private DatabaseReference childRef;
+    private DatabaseReference chiilRef2;
+    private EditText passEt;
+    private Button btnPass;
+    private EditText oldpwd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +64,38 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        auth = FirebaseAuth.getInstance();
+        mRootRef = FirebaseDatabase.getInstance().getReference();
+        String email = auth.getCurrentUser().getEmail();
+        email = email.replace(".", ",");
+        childRef = mRootRef.child(email);
+        chiilRef2=childRef.child("EmergencyNumber");
+
+        childRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.getValue() == null) {
+                    FragmentManager manager =getSupportFragmentManager();
+                    EmergencyNumberDialog dialog = new EmergencyNumberDialog();
+                    dialog.show(manager, "dialog");
+                } else {
+                    try {
+                        JSONObject myobject = new JSONObject(dataSnapshot.getValue().toString());
+
+                        // System.out.println(myobject.getString("EmergencyNumber"));
+                        etGuardar.setText(myobject.getString("EmergencyNumber"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -41,6 +103,13 @@ public class SettingsActivity extends AppCompatActivity {
         rg=findViewById(R.id.radioGroup);
         light = findViewById(R.id.lightOption);
         dark = findViewById(R.id.darkOption);
+
+        oldpwd=findViewById(R.id.oldpasswd);
+        passEt=findViewById(R.id.ETchangePasswd);
+        btnPass=findViewById(R.id.changePasswd);
+
+        btnGuardar=findViewById(R.id.guardar);
+        etGuardar=findViewById(R.id.etGuardar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -73,6 +142,52 @@ public class SettingsActivity extends AppCompatActivity {
             }
 
         });
+
+        btnGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Long.parseLong(etGuardar.getText().toString()) < 900000000 || Long.parseLong(etGuardar.getText().toString())>1000000000){
+                    Toast.makeText(getApplication(),"Numbero invalido",Toast.LENGTH_LONG).show();
+
+                }else{
+                    chiilRef2.setValue(etGuardar.getText().toString());
+                    Toast.makeText(getApplication(),"Numero alterado com sucesso",Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
+
+        btnPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AuthCredential credential = EmailAuthProvider
+                        .getCredential(auth.getCurrentUser().getEmail(),oldpwd.getText().toString());
+
+            auth.getCurrentUser().reauthenticate(credential)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            auth.getCurrentUser().updatePassword(passEt.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(getApplication(),"Password alterada com sucesso",Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(getApplication(),"Ocorreu um erro",Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                        } else {
+                            Toast.makeText(getApplication(),"Dados incorretos",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+            }
+
+
+        });
+
     }
 
 
