@@ -83,7 +83,6 @@ public class SettingsActivity extends AppCompatActivity {
                     try {
                         JSONObject myobject = new JSONObject(dataSnapshot.getValue().toString());
 
-                        // System.out.println(myobject.getString("EmergencyNumber"));
                         etGuardar.setText(myobject.getString("EmergencyNumber"));
                     } catch (JSONException e) {
                         e.printStackTrace();

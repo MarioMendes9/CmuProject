@@ -20,7 +20,7 @@
     <string name="MedicamentosName">Nome do medicamento</string>
     <string name="Quantidade">Quantidade</string>
     <string name="PeriodoDeTempo">Dias em que toma a medicaçao:</string>
-    <string name="dayStamp">Altura do dia que toma a madicaçao:</string>
+    <string name="dayStamp">Altura do dia que toma a medicaçao:</string>
 
     <string name="Segunda">Segunda</string>
     <string name="Terça">Terça</string>

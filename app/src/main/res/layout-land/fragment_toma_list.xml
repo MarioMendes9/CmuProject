@@ -38,7 +38,7 @@
             android:text="Medicamento"
             android:textStyle="bold"
             android:gravity="center"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginLeft="70dp"/>
 
         <View
             android:layout_width="1dp"
@@ -62,8 +62,8 @@
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@android:color/darker_gray"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="90dp"/>
 
         <TextView
             android:layout_width="0dp"
@@ -72,6 +72,7 @@
             android:layout_weight="3"
             android:gravity="center"
             android:text="Validar Toma"
+            android:layout_marginLeft="100dp"
             />
 
     </LinearLayout>

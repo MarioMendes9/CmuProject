@@ -1,25 +1,12 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.DayNight">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/cardview_dark_background</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-
-    <!-- Dark Buttons
-
-    <style name="ThemeOverlay.MyDarkButton" parent="ThemeOverlay.AppCompat.Dark">
-        <item name="colorButtonNormal">@color/grey_500</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:layout_marginRight">4dp</item>
-        <item name="android:layout_marginLeft">4dp</item>
-        <item name="android:textColor">@android:color/white</item>
-    </style>
-    -->
 
     <style name="ThemeLight" parent="ThemeOverlay.AppCompat.Light">
         <item name="colorPrimaryDark">#6200EE</item>
@@ -41,6 +28,7 @@
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textColorHint">#FFFFFF</item>
         <item name="android:popupTheme">@style/ThemeOverlay.Dark</item>
+        <item name ="android:alertDialogStyle">@style/DialogDark</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -54,5 +42,11 @@
         <item name="android:colorBackground">#FFFFFF</item>
         <item name="android:textColorPrimary">#121212</item>
     </style>
+
+    <style name="DialogDark" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:colorBackground">#121212</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+    </style>
+
 
 </resources>

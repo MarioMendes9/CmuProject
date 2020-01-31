@@ -13,20 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link OnFragmentMenuJogosInteractionListener} interface
- * to handle interaction events.
- * create an instance of this fragment.
- */
 public class JogosMenuFragment extends Fragment {
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
 
     private Button iniciarJogoPalavras;
     private Button iniciarJogoAritmetico;

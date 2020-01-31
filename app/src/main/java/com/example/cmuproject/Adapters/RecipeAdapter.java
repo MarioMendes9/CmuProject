@@ -57,20 +57,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                FragmentManager manager = ((AppCompatActivity)mContext).getSupportFragmentManager();
-                RecipeDetailsFragment changeFrag = new RecipeDetailsFragment();
 
-                FragmentTransaction tr = manager.beginTransaction();
-                Bundle args = new Bundle();
-                args.putString("id", String.valueOf(rec.getId()));
-
-                changeFrag.setArguments(args);
-                tr.replace(R.id.fragment_container, changeFrag);
-                tr.addToBackStack(null);
-                tr.commit();
-
-                 */
                 FragmentManager manager=((AppCompatActivity)mContext).getSupportFragmentManager();
                 RecipeDetailsFragment frag=new RecipeDetailsFragment();
 

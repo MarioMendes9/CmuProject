@@ -24,14 +24,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link OnFragmentListInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ListRecipesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ListRecipesFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -49,14 +41,6 @@ public class ListRecipesFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ListRecipesFragment.
-     */
     public static ListRecipesFragment newInstance(String param1, String param2) {
         ListRecipesFragment fragment = new ListRecipesFragment();
         Bundle args = new Bundle();
@@ -86,9 +70,6 @@ public class ListRecipesFragment extends Fragment {
                 .enqueue(new Callback<Recipes>() {
                     @Override
                     public void onResponse(Call<Recipes> call, Response<Recipes> response) {
-                        System.out.println("ESTA FIXE");
-                        System.out.println(call.request());
-                        System.out.println(response.body().toString());
                         rAdapter = new RecipeAdapter(getContext(), response.body());
                         mRecyclerView = view.findViewById(R.id.mRecyclerView);
                         mRecyclerView.setAdapter(rAdapter);
@@ -97,9 +78,9 @@ public class ListRecipesFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<Recipes> call, Throwable t) {
-                        System.out.println("ESTA MAU");
-                        System.out.println(call.request());
-                        System.out.println(t.toString());
+
+                        System.out.println(t.fillInStackTrace());
+
                     }
                 });
         return view;
@@ -128,16 +109,6 @@ public class ListRecipesFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentListInteractionListener {
         void onFragmentListInteraction(Uri uri);
         void getDetails(String id);

@@ -5,6 +5,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,15 +54,12 @@ public class TomaAdapter extends RecyclerView.Adapter<TomaAdapter.TomasViewHolde
     @Override
     public void onBindViewHolder(TomasViewHolder holder, int position) {
         PendentToma ptoma=mTomas.get(position);
-        System.out.println(ptoma.toString());
         holder.medicamento.setText(ptoma.getMedicamento());
         holder.alturaDoDia.setText(ptoma.getAltura());
         String theAltura="";
         String hour=new SimpleDateFormat("HH:mm").format(new Date());
         int thehora=Integer.parseInt(hour.split(":")[0]);
 
-
-        //FAZ SENTIDO????????????????????????????????????????????????
 
         if(thehora>=6 && thehora<12){
             theAltura="Manha";
@@ -75,6 +74,8 @@ public class TomaAdapter extends RecyclerView.Adapter<TomaAdapter.TomasViewHolde
         }
 
         if(theAltura.equals(ptoma.getAltura())){
+            holder.btnVerificar.setEnabled(true);
+            holder.btnVerificar.getBackground().setColorFilter(holder.btnVerificar.getContext().getResources().getColor(R.color.enableButton), PorterDuff.Mode.MULTIPLY);
         holder.btnVerificar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -90,6 +91,7 @@ public class TomaAdapter extends RecyclerView.Adapter<TomaAdapter.TomasViewHolde
             });
         }else{
            holder.btnVerificar.setEnabled(false);
+           holder.btnVerificar.getBackground().setColorFilter(holder.btnVerificar.getContext().getResources().getColor(R.color.grey_100), PorterDuff.Mode.MULTIPLY);
         }
 
 

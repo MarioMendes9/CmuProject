@@ -113,7 +113,6 @@ public class FarmaciaMapsActivity extends FragmentActivity implements OnMapReady
 
                     @Override
                     public void onFailure(Call<List<FarmaciasPerto>> call, Throwable t) {
-                        System.out.println(call.request());
                         System.out.println(t.fillInStackTrace());
                     }
                 });

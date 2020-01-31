@@ -71,6 +71,7 @@ public class GerirTomas extends Fragment {
                 myMedicamentos = medicamentos;
             }
         });
+        /*
         medicamentosViewModel.getAllTomas().observe(getActivity(), new Observer<List<Toma>>() {
             @Override
             public void onChanged(List<Toma> tomas) {
@@ -78,12 +79,11 @@ public class GerirTomas extends Fragment {
                     System.out.println(tomas.get(i).toString());
                 }
             }
-        });
+        });*/
 
         medicamentosViewModel.getPendentTomas().observe(getActivity(), new Observer<List<PendentToma>>() {
             @Override
             public void onChanged(List<PendentToma> pendentTomas) {
-
                 pententTomas = pendentTomas;
                 tomaAdapter.setmTomas(pendentTomas);
             }
@@ -91,10 +91,6 @@ public class GerirTomas extends Fragment {
         medicamentosViewModel.getTodayTomas(dateInString).observe(getActivity(), new Observer<List<Toma>>() {
             @Override
             public void onChanged(List<Toma> tomas) {
-                System.out.println("today tomas");
-                for (int i = 0; i < tomas.size(); i++) {
-                    System.out.println(tomas.get(i).toString());
-                }
                 createTomas(tomas);
             }
         });
@@ -165,7 +161,6 @@ public class GerirTomas extends Fragment {
                                 }
                             }
                             if (!found) {
-                                System.out.println("adicionou");
                                 pententTomas.add(new PendentToma(thisAlturas[k], myMedicamentos.get(i).name));
                             }
                         }
@@ -173,7 +168,6 @@ public class GerirTomas extends Fragment {
                     }
                 }
             }
-            System.out.println("tamanho " + pententTomas.size());
             medicamentosViewModel.setPendentTomas(pententTomas);
         }
 
@@ -201,8 +195,6 @@ public class GerirTomas extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        //   mListener = (OnListFragmentInteractionListener) context;
-
     }
 
     @Override

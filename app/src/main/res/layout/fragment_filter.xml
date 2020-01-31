@@ -31,11 +31,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <!--<LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginRight="40dp">-->
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipLact"
                     android:layout_width="match_parent"
@@ -75,13 +70,6 @@
                     android:theme="@style/Theme.MaterialComponents.Light"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     />
-                <!--</LinearLayout>
-
-                <LearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginRight="40dp">-->
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipAmendoim"
                     android:layout_width="match_parent"
@@ -123,12 +111,6 @@
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     />
 
-                <!--</LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">-->
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipSoja"
@@ -172,7 +154,6 @@
                     android:theme="@style/Theme.MaterialComponents.Light"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     />
-                <!--</LinearLayout>-->
 
             </com.google.android.material.chip.ChipGroup>
         </LinearLayout>>

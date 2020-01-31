@@ -44,7 +44,6 @@ public class FoodActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.ThemeLight);
         mSettings= getSharedPreferences("themeMode", MODE_PRIVATE);
         String s = mSettings.getString("mode","");
         if(s.equals("light")){
@@ -82,7 +81,6 @@ public class FoodActivity extends AppCompatActivity {
                         .enqueue(new Callback<FoodDetails>() {
                             @Override
                             public void onResponse(Call<FoodDetails> call, Response<FoodDetails> response) {
-                                System.out.println(call.request());
                                 nameProduct.setText(response.body().getProduct().getProduct_name());
                                 sugarTextView.setText(response.body().getProduct().getNutriments().getSugars()+
                                         response.body().getProduct().getNutriments().getSugars_unit() + " Sugars in " +
@@ -102,7 +100,6 @@ public class FoodActivity extends AppCompatActivity {
                                 } else if(response.body().getProduct().getNutrient_levels().getSugars().equals("high")){
                                     sugarButton.setBackgroundResource(R.drawable.buttonshapehigh);
                                     Toast.makeText(getApplicationContext(), "To much SUGAR!", Toast.LENGTH_LONG).show();
-                                    //new AlertDialog.Builder(getApplicationContext()).setTitle("Too much Sugar!").setMessage("This product have too much sugar!").setNeutralButton("Close", null).show();
                                 } else {
                                     sugarButton.setBackgroundResource(R.drawable.buttonshapemoderate);
                                 }
@@ -112,7 +109,6 @@ public class FoodActivity extends AppCompatActivity {
                                 } else if(response.body().getProduct().getNutrient_levels().getSalt().equals("high")){
                                     sodiumButton.setBackgroundResource(R.drawable.buttonshapehigh);
                                     Toast.makeText(getApplicationContext(), "To much SALT!", Toast.LENGTH_LONG).show();
-                                    //new AlertDialog.Builder(getApplicationContext()).setTitle("Too much Salt!").setMessage("This product have too much salt!").setNeutralButton("Close", null).show();
                                 } else {
                                     sodiumButton.setBackgroundResource(R.drawable.buttonshapemoderate);
                                 }
@@ -122,7 +118,6 @@ public class FoodActivity extends AppCompatActivity {
                                 } else if(response.body().getProduct().getNutrient_levels().getFat().equals("high")){
                                     fatButton.setBackgroundResource(R.drawable.buttonshapehigh);
                                     Toast.makeText(getApplicationContext(), "To much FAT!", Toast.LENGTH_LONG).show();
-                                   //new AlertDialog.Builder(getApplicationContext()).setTitle("Too much Fat!").setMessage("This product have too much fat!").setNeutralButton("Close", null).show();
                                 } else {
                                     fatButton.setBackgroundResource(R.drawable.buttonshapemoderate);
                                 }
@@ -132,8 +127,7 @@ public class FoodActivity extends AppCompatActivity {
                                 } else if(response.body().getProduct().getNutrient_levels().getSaturated_fat().equals("high")){
                                     saturated_fatButton.setBackgroundResource(R.drawable.buttonshapehigh);
                                     Toast.makeText(getApplicationContext(), "To much SATURATED FAT!", Toast.LENGTH_LONG).show();
-                                    //new AlertDialog.Builder(getApplicationContext()).setTitle("Too much Saturated Fat!").setMessage("This product have too much saturated fat!").setNeutralButton("Close", null).show();
-                                } else {
+                               } else {
                                     saturated_fatButton.setBackgroundResource(R.drawable.buttonshapemoderate);
                                 }
 
@@ -141,7 +135,6 @@ public class FoodActivity extends AppCompatActivity {
 
                             @Override
                             public void onFailure(Call<FoodDetails> call, Throwable t) {
-                                System.out.println("ESTA MAU");
                                 System.out.println(call.request());
                             }
                         });

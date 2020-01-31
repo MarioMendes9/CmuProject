@@ -10,4 +10,8 @@
 
     <color name="textInputOutlineColor">#9E9E9E</color>
 
+    <color name="enableButton">#BF40C4FF</color>
+
+    <color name ="transparent">#80000000</color>
+
 </resources>

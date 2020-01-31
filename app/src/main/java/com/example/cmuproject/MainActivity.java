@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.ThemeLight);
         mSettings = getSharedPreferences("themeMode", MODE_PRIVATE);
         String s = mSettings.getString("mode", "");
         if (s.equals("light")) {
@@ -285,14 +286,14 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
                                                 regi.replace(" ", "-");
                                             }
                                             Toma newToma = new Toma(medicName, quantidade, dateInString, hour, regi);
-                                            System.out.println(newToma.toString());
-
                                             medicamentoViewModel.inserToma(newToma);
                                         }
 
                                         @Override
                                         public void onFailure(Call<RegionDetails> call, Throwable t) {
                                             System.out.println(t.fillInStackTrace());
+                                            Toma newToma = new Toma(medicName, quantidade, dateInString, hour, "notFound");
+                                            medicamentoViewModel.inserToma(newToma);
 
                                         }
                                     });
