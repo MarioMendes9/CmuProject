@@ -59,7 +59,6 @@ public class FirstPage extends Fragment {
     private FirebaseAuth auth;
     private DatabaseReference mRootRef;
     private DatabaseReference childRef;
-    private TextView info;
 
 
     private PendingIntent myPi;

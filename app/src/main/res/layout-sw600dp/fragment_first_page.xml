@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="320dp"
             tools:src="@drawable/logo"
+            android:tint="#78909C"
             android:contentDescription="TODO"
             android:layout_gravity="center"/>
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -32,6 +33,7 @@ public class RegistoFragment extends Fragment {
     private EditText userEmail;
     private EditText userPass;
     private Button btnRegisto;
+    private Button btnCancel;
 
 
 
@@ -58,6 +60,7 @@ public class RegistoFragment extends Fragment {
         userEmail=view.findViewById(R.id.fieldEmailRegisto);
         userPass=view.findViewById(R.id.fieldPasswordRegisto);
         btnRegisto=view.findViewById(R.id.createNewAcc);
+        btnCancel=view.findViewById(R.id.cancelRegisto);
 
         btnRegisto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,9 +69,18 @@ public class RegistoFragment extends Fragment {
             }
         });
 
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getFragmentManager();
+                fm.popBackStack();
+            }
+        });
+
 
         return view;
     }
+
 
     @Override
     public void onAttach(Context context) {

@@ -10,30 +10,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
 
             <ImageView
                 android:id="@+id/principalImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
                 android:layout_gravity="center"
+                android:tint="#78909C"
                 android:contentDescription="TODO"
                 tools:src="@drawable/logo" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="LOGIN efetuado com sucesso!" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:layout_gravity="center">
 
                 <Button
                     android:id="@+id/tomasMedicamentos"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/button_horizontal_margin"
                     android:layout_marginEnd="@dimen/button_horizontal_margin"
@@ -44,7 +41,7 @@
 
                 <Button
                     android:id="@+id/foodDetails"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/button_horizontal_margin"
                     android:layout_marginEnd="@dimen/button_horizontal_margin"
@@ -53,16 +50,10 @@
                     android:text="@string/foodDetails" />
 
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/jogos"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/button_horizontal_margin"
                     android:layout_marginEnd="@dimen/button_horizontal_margin"
@@ -72,23 +63,17 @@
 
                 <Button
                     android:id="@+id/mealDetails"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/button_horizontal_margin"
                     android:layout_marginEnd="@dimen/button_horizontal_margin"
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/meal_icon"
                     android:text="@string/mealDetails" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/farmaciaMap"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/button_horizontal_margin"
                     android:layout_marginEnd="@dimen/button_horizontal_margin"
@@ -98,7 +83,7 @@
 
                 <Button
                     android:id="@+id/gerirMedicamentos"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/button_horizontal_margin"
                     android:layout_marginEnd="@dimen/button_horizontal_margin"
@@ -108,12 +93,6 @@
 
 
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
 
 
         </LinearLayout>
