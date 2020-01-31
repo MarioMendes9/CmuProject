@@ -39,18 +39,29 @@
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_weight="1"
                 android:text="@string/RegistarTomas"
-                android:drawableTop="@drawable/tomas_icon"/>
+                android:drawableLeft="@drawable/tomas_icon"/>
+
+
 
             <Button
-                android:id="@+id/gerirMedicamentos"
+                android:id="@+id/foodDetails"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/button_horizontal_margin"
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_weight="1"
-                android:text="@string/GerirMedicamentos"
-                android:drawableTop="@drawable/med_icon"/>
+                android:text="@string/foodDetails"
+                android:drawableLeft="@drawable/food_icon"
+                />
 
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <Button
                 android:id="@+id/jogos"
                 android:layout_width="0dp"
@@ -59,8 +70,18 @@
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_weight="1"
                 android:text="@string/jogos"
-                android:drawableTop="@drawable/game_icon"/>
+                android:drawableLeft="@drawable/game_icon"/>
 
+            <Button
+                android:id="@+id/mealDetails"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/button_horizontal_margin"
+                android:layout_marginEnd="@dimen/button_horizontal_margin"
+                android:layout_weight="1"
+                android:text="@string/mealDetails"
+                android:drawableLeft="@drawable/meal_icon"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -75,29 +96,20 @@
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_weight="1"
                 android:text="@string/farmaciaMap"
-                android:drawableTop="@drawable/location_icon"/>
+                android:drawableLeft="@drawable/location_icon"/>
 
             <Button
-                android:id="@+id/foodDetails"
+                android:id="@+id/gerirMedicamentos"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/button_horizontal_margin"
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_weight="1"
-                android:text="@string/foodDetails"
-                android:drawableTop="@drawable/food_icon"
-                />
+                android:text="@string/GerirMedicamentos"
+                android:drawableLeft="@drawable/med_icon"/>
 
-            <Button
-                android:id="@+id/mealDetails"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/button_horizontal_margin"
-                android:layout_marginEnd="@dimen/button_horizontal_margin"
-                android:layout_weight="1"
-                android:text="@string/mealDetails"
-                android:drawableTop="@drawable/meal_icon"
-                />
+
+
         </LinearLayout>
 
         <TextView
