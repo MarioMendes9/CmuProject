@@ -130,12 +130,16 @@
             <EditText
                 android:id="@+id/ETchangePasswd"
                 android:layout_width="300dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                />
 
             <EditText
                 android:id="@+id/oldpasswd"
                 android:layout_width="300dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                />
             <Button
                 android:id="@+id/changePasswd"
                 android:layout_width="wrap_content"

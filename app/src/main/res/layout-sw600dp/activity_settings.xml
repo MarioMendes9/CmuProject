@@ -105,6 +105,8 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:id="@+id/oldpasswd"
+            android:inputType="textPassword"
+
             />
 
         <TextView
@@ -125,6 +127,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/ETchangePasswd"
+                android:inputType="textPassword"
                 />
 
             <Button

@@ -95,13 +95,27 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
         super.onCreate(savedInstanceState);
 
 
-
         setContentView(R.layout.activity_main);
         String menuFragment = getIntent().getStringExtra("fragment");
 
-        if(menuFragment!=null){
 
-            FragmentManager fragmentManager = getSupportFragmentManager();
+        setContentView(R.layout.activity_main);
+        myToolbar = findViewById(R.id.toolbar);
+        myToolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.setting));
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        medicamentoViewModel = new ViewModelProvider(this).get(MedicamentosViewModel.class);
+
+        medicamentoViewModel.getallMedicamentos().observe(this, new Observer<List<Medicamento>>() {
+            @Override
+            public void onChanged(List<Medicamento> medicamentos) {
+                medis = medicamentos;
+            }
+        });
+        if (menuFragment != null) {
             GerirTomas gt = new GerirTomas();
 
             FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
@@ -110,26 +124,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
             tr.commit();
 
 
-
-        }else {
-
-        setContentView(R.layout.activity_main);
-        myToolbar = findViewById(R.id.toolbar);
-        myToolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.setting));
-        setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-            mAuth = FirebaseAuth.getInstance();
-
-            medicamentoViewModel = new ViewModelProvider(this).get(MedicamentosViewModel.class);
-
-            medicamentoViewModel.getallMedicamentos().observe(this, new Observer<List<Medicamento>>() {
-                @Override
-                public void onChanged(List<Medicamento> medicamentos) {
-                    medis = medicamentos;
-                }
-            });
-
+        } else {
 
             Login fragmentLogin = new Login();
             FragmentManager fm = getSupportFragmentManager();
@@ -139,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
             ft.commit();
         }
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

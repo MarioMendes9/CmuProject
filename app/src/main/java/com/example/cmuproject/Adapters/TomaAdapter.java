@@ -91,7 +91,7 @@ public class TomaAdapter extends RecyclerView.Adapter<TomaAdapter.TomasViewHolde
             });
         }else{
            holder.btnVerificar.setEnabled(false);
-           holder.btnVerificar.getBackground().setColorFilter(holder.btnVerificar.getContext().getResources().getColor(R.color.grey_100), PorterDuff.Mode.MULTIPLY);
+           holder.btnVerificar.getBackground().setColorFilter(holder.btnVerificar.getContext().getResources().getColor(R.color.disableButton), PorterDuff.Mode.MULTIPLY);
         }
 
 

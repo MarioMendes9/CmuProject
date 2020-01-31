@@ -85,6 +85,7 @@ public class GerirTomas extends Fragment {
             @Override
             public void onChanged(List<PendentToma> pendentTomas) {
                 pententTomas = pendentTomas;
+
                 tomaAdapter.setmTomas(pendentTomas);
             }
         });

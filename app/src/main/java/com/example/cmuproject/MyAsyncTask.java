@@ -243,7 +243,7 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
 
     private void sendNotification() {
         builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.meal_icon)
+                .setSmallIcon(R.drawable.med_icon)
                 .setContentTitle("Medicaçao")
                 .setContentText("Tem medicaçao para tomar nas proximas horas")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
