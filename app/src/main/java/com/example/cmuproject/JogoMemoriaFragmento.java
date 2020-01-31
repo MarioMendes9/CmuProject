@@ -99,7 +99,7 @@ public class JogoMemoriaFragmento extends Fragment {
             @Override
             public void onClick(View v) {
                 int theCard=Integer.parseInt(v.getTag().toString());
-                System.out.println("THE CARD1::::: " + theCard);
+
                 mostrarCartas(img1,theCard);
             }
         });
@@ -108,7 +108,7 @@ public class JogoMemoriaFragmento extends Fragment {
             @Override
             public void onClick(View v) {
                 int theCard=Integer.parseInt(v.getTag().toString());
-                System.out.println("THE CARD2::::: " + theCard);
+
                 mostrarCartas(img2,theCard);
             }
         });
@@ -116,7 +116,7 @@ public class JogoMemoriaFragmento extends Fragment {
             @Override
             public void onClick(View v) {
                 int theCard=Integer.parseInt(v.getTag().toString());
-                System.out.println("THE CARD3::::: " + theCard);
+
                 mostrarCartas(img3,theCard);
             }
         });
@@ -124,7 +124,7 @@ public class JogoMemoriaFragmento extends Fragment {
             @Override
             public void onClick(View v) {
                 int theCard=Integer.parseInt(v.getTag().toString());
-                System.out.println("THE CARD4::::: " + theCard);
+
                 mostrarCartas(img4,theCard);
             }
         });
@@ -132,7 +132,7 @@ public class JogoMemoriaFragmento extends Fragment {
             @Override
             public void onClick(View v) {
                 int theCard=Integer.parseInt(v.getTag().toString());
-                System.out.println("THE CARD5::::: " + theCard);
+
                 mostrarCartas(img5,theCard);
             }
         });
@@ -140,7 +140,7 @@ public class JogoMemoriaFragmento extends Fragment {
             @Override
             public void onClick(View v) {
                 int theCard=Integer.parseInt(v.getTag().toString());
-                System.out.println("THE CARD6::::: " + theCard);
+
                 mostrarCartas(img6,theCard);
             }
         });
@@ -148,7 +148,7 @@ public class JogoMemoriaFragmento extends Fragment {
             @Override
             public void onClick(View v) {
                 int theCard=Integer.parseInt(v.getTag().toString());
-                System.out.println("THE CARD7::::: " + theCard);
+
                 mostrarCartas(img7,theCard);
             }
         });
@@ -156,7 +156,7 @@ public class JogoMemoriaFragmento extends Fragment {
             @Override
             public void onClick(View v) {
                 int theCard=Integer.parseInt( v.getTag().toString());
-                System.out.println("THE CARD8::::: " + theCard);
+
                 mostrarCartas(img8,theCard);
             }
         });
@@ -164,7 +164,7 @@ public class JogoMemoriaFragmento extends Fragment {
             @Override
             public void onClick(View v) {
                 int theCard=Integer.parseInt(v.getTag().toString());
-                System.out.println("THE CARD9::::: " + theCard);
+
                 mostrarCartas(img9,theCard);
             }
         });
@@ -172,7 +172,7 @@ public class JogoMemoriaFragmento extends Fragment {
             @Override
             public void onClick(View v) {
                 int theCard=Integer.parseInt(v.getTag().toString());
-                System.out.println("THE CARD10::::: " + theCard);
+
                 mostrarCartas(img10,theCard);
             }
         });
@@ -180,7 +180,7 @@ public class JogoMemoriaFragmento extends Fragment {
             @Override
             public void onClick(View v) {
                 int theCard=Integer.parseInt(v.getTag().toString());
-                System.out.println("THE CARD11::::: " + theCard);
+
                 mostrarCartas(img11,theCard);
             }
         });
@@ -188,7 +188,7 @@ public class JogoMemoriaFragmento extends Fragment {
             @Override
             public void onClick(View v) {
                 int theCard=Integer.parseInt((String) v.getTag());
-                System.out.println("THE CARD12::::: " + theCard);
+
                 mostrarCartas(img12,theCard);
 
             }
@@ -217,7 +217,6 @@ public class JogoMemoriaFragmento extends Fragment {
 
 
     public interface OnFragmentJogoMemoriaListener {
-        // TODO: Update argument type and name
         void onFragmentJogoMemoriaListener(Uri uri);
         void resultadoMemoria();
     }
@@ -242,51 +241,51 @@ public class JogoMemoriaFragmento extends Fragment {
         if (numeros[card] == 101) {
             image.setImageResource(carta101);
             image.setClickable(false);
-            System.out.println(numeros[card] + " entrou");
+
         } else if (numeros[card] == 102) {
             image.setImageResource(carta102);
             image.setClickable(false);
-            System.out.println(numeros[card] + " entrou");
+
         } else if (numeros[card] == 103) {
             image.setImageResource(carta103);
             image.setClickable(false);
-            System.out.println(numeros[card] + " entrou");
+
         } else if (numeros[card] == 104) {
             image.setImageResource(carta104);
             image.setClickable(false);
-            System.out.println(numeros[card] + " entrou");
+
         } else if (numeros[card] == 105) {
             image.setImageResource(carta105);
             image.setClickable(false);
-            System.out.println(numeros[card] + " entrou");
+
         } else if (numeros[card] == 106) {
             image.setImageResource(carta106);
             image.setClickable(false);
-            System.out.println(numeros[card] + " entrou");
+
         } else if (numeros[card] == 201) {
             image.setImageResource(carta201);
             image.setClickable(false);
-            System.out.println(numeros[card] + " entrou");
+
         } else if (numeros[card] == 202) {
             image.setImageResource(carta202);
             image.setClickable(false);
-            System.out.println(numeros[card] + " entrou");
+
         } else if (numeros[card] == 203) {
             image.setImageResource(carta203);
             image.setClickable(false);
-            System.out.println(numeros[card] + " entrou");
+
         } else if (numeros[card] == 204) {
             image.setImageResource(carta204);
             image.setClickable(false);
-            System.out.println(numeros[card] + " entrou");
+
         } else if (numeros[card] == 205) {
             image.setImageResource(carta205);
             image.setClickable(false);
-            System.out.println(numeros[card] + " entrou");
+
         } else if (numeros[card] == 206) {
             image.setImageResource(carta206);
             image.setClickable(false);
-            System.out.println(numeros[card] + " entrou");
+
         }
         System.out.println(numeros[card]);
         if (cardNumber == 1) {

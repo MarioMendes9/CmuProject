@@ -6,8 +6,93 @@
     android:layout_height="match_parent"
     tools:context=".GerirTomas">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:hint="Tomas"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:text="Medicamento"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginRight="75dp"
+            android:layout_marginLeft="60dp"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="40dp"
+            />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginRight="52dp"
+            android:layout_marginLeft="5dp"
+            android:text="Altura do dia"
+
+            />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="90dp"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="Validar Toma"
+            android:layout_marginLeft="25dp"
+
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tomaRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    </LinearLayout>
+    </LinearLayout>
+
+    </LinearLayout>
 </FrameLayout>

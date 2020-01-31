@@ -16,9 +16,10 @@
             android:id="@+id/principalImage"
             android:layout_width="wrap_content"
             android:layout_height="320dp"
-            tools:src="@drawable/logo"
+            android:layout_gravity="center"
             android:contentDescription="TODO"
-            android:layout_gravity="center"/>
+            android:tint="#78909C"
+            tools:src="@drawable/logo" />
 
 
         <LinearLayout
@@ -33,44 +34,9 @@
                 android:layout_marginStart="@dimen/button_horizontal_margin"
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_weight="1"
-                android:text="@string/RegistarTomas"
-                android:drawableTop="@drawable/tomas_icon"/>
+                android:drawableLeft="@drawable/tomas_icon"
+                android:text="@string/RegistarTomas" />
 
-            <Button
-                android:id="@+id/gerirMedicamentos"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/button_horizontal_margin"
-                android:layout_marginEnd="@dimen/button_horizontal_margin"
-                android:layout_weight="1"
-                android:text="@string/GerirMedicamentos"
-                android:drawableTop="@drawable/med_icon"/>
-
-            <Button
-                android:id="@+id/jogos"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/button_horizontal_margin"
-                android:layout_marginEnd="@dimen/button_horizontal_margin"
-                android:layout_weight="1"
-                android:text="@string/jogos"
-                android:drawableTop="@drawable/game_icon"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/farmaciaMap"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/button_horizontal_margin"
-                android:layout_marginEnd="@dimen/button_horizontal_margin"
-                android:layout_weight="1"
-                android:text="@string/farmaciaMap"
-                android:drawableTop="@drawable/location_icon"/>
 
             <Button
                 android:id="@+id/foodDetails"
@@ -79,9 +45,26 @@
                 android:layout_marginStart="@dimen/button_horizontal_margin"
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_weight="1"
-                android:text="@string/foodDetails"
-                android:drawableTop="@drawable/food_icon"
-                />
+                android:drawableLeft="@drawable/food_icon"
+                android:text="@string/foodDetails" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/jogos"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/button_horizontal_margin"
+                android:layout_marginEnd="@dimen/button_horizontal_margin"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/game_icon"
+                android:text="@string/jogos" />
 
             <Button
                 android:id="@+id/mealDetails"
@@ -90,18 +73,42 @@
                 android:layout_marginStart="@dimen/button_horizontal_margin"
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_weight="1"
-                android:text="@string/mealDetails"
-                android:drawableTop="@drawable/meal_icon"
-                />
+                android:drawableLeft="@drawable/meal_icon"
+                android:text="@string/mealDetails" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/farmaciaMap"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/button_horizontal_margin"
+                android:layout_marginEnd="@dimen/button_horizontal_margin"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/location_icon"
+                android:text="@string/farmaciaMap" />
+
+            <Button
+                android:id="@+id/gerirMedicamentos"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/button_horizontal_margin"
+                android:layout_marginEnd="@dimen/button_horizontal_margin"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/med_icon"
+                android:text="@string/GerirMedicamentos" />
+
+
         </LinearLayout>
 
 
 
 
     </LinearLayout>
-
-
-
 
 
 </FrameLayout>

@@ -76,7 +76,6 @@ public class Login extends Fragment {
         tvRecuperarpass=view.findViewById(R.id.recuPaswd);
 
 
-        //mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if (currentUser != null) {
@@ -95,7 +94,6 @@ public class Login extends Fragment {
         tvRecuperarpass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println(userEmail.getText());
 
                 if(userEmail.getText().toString().matches("")){
                     Toast.makeText(getActivity(),"Insira o email",Toast.LENGTH_LONG).show();
@@ -187,11 +185,6 @@ public class Login extends Fragment {
 
     public interface OnFragmentLoginInteractionListener {
 
-        /**
-         * Metodo para mudar de fragmento quando o login é realizado com sucesso
-         *
-         * @param user utilizador que fez login
-         */
         void onFragmentLoginInteraction(FirebaseUser user);
 
         void onFragmentRegistInteraction();

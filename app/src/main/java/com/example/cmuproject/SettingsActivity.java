@@ -83,7 +83,6 @@ public class SettingsActivity extends AppCompatActivity {
                     try {
                         JSONObject myobject = new JSONObject(dataSnapshot.getValue().toString());
 
-                        // System.out.println(myobject.getString("EmergencyNumber"));
                         etGuardar.setText(myobject.getString("EmergencyNumber"));
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -101,6 +100,8 @@ public class SettingsActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         rg=findViewById(R.id.radioGroup);
+        light = findViewById(R.id.lightOption);
+        dark = findViewById(R.id.darkOption);
 
         oldpwd=findViewById(R.id.oldpasswd);
         passEt=findViewById(R.id.ETchangePasswd);
@@ -111,8 +112,13 @@ public class SettingsActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        if(s.equals("light")){
+            light.setChecked(true);
+        } else if(s.equals("dark")){
+            dark.setChecked(true);
+        }
+
         mSettings= getSharedPreferences("themeMode", MODE_PRIVATE);
-        System.out.println(mSettings.getString("mode",""));
 
         final SharedPreferences.Editor mEditor = mSettings.edit();
 

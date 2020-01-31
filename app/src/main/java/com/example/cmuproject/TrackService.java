@@ -88,9 +88,9 @@ public class TrackService extends Service {
 
         mLocationRequest = new LocationRequest();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        //de 10 em 10 min
-        mLocationRequest.setInterval(3000);
-        mLocationRequest.setFastestInterval(3000);
+        //de 5 em 5 min
+        mLocationRequest.setInterval(5000);
+        mLocationRequest.setFastestInterval(5000);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -129,8 +129,6 @@ public class TrackService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        System.out.println("vai ser destruido");
-
     }
 
     private void onNewLocation(Location location) {

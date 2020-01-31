@@ -5,7 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
+
 import android.os.AsyncTask;
 import android.os.Build;
 import android.telephony.SmsManager;
@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 
 import com.example.cmuproject.Database.MedicamentosDB;
@@ -67,10 +66,9 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... voids) {
 
-        System.out.println("doInBackground");
         String hour = (new SimpleDateFormat("HH:mm").format(new Date())).split(":")[0];
         altura = getAltura(hour);
-        System.out.println(altura);
+
         todayIS = getDayOfWeek();
         if (altura.equals("Manha")) {
             previousAltura = "Noite";
@@ -84,12 +82,10 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
             previousAltura = "Jantar";
         }
 
-        System.out.println(previousAltura);
         Date mydate = new Date();
         if (previousAltura.equals("Jantar")) {
             mydate = new Date(mydate.getTime() - 86400000); // 7 * 24 * 60 * 60 * 1000
         }
-        System.out.println(":::::::::::::::::::::::::::::::: " + mydate);
         auth = FirebaseAuth.getInstance();
         mRootRef = FirebaseDatabase.getInstance().getReference();
         String pattern = "dd/MM/yyyy";
@@ -140,14 +136,12 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
             tempDays = tempDays.substring(1, tempDays.length() - 1);
             String[] thisDays = tempDays.split(",");
             for (int j = 0; j < thisDays.length && !havenext; j++) {
-                System.out.println("COMPARA DIAS:" + thisDays[j] + " " + todayIS);
                 if (thisDays[j].equals(todayIS)) {
                     String tempAlturas = mymedis.get(i).alturas;
                     tempAlturas = tempAlturas.replace(" ", "");
                     tempAlturas = tempAlturas.substring(1, tempAlturas.length() - 1);
                     String[] thisAlturas = tempAlturas.split(",");
                     for (int k = 0; k < thisAlturas.length; k++) {
-                        System.out.println("COMPARA ALTURAS: " + thisAlturas[k].equals(altura));
                         if (thisAlturas[k].equals(altura)) {
                             havenext = true;
                             break;
@@ -169,14 +163,12 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
             tempDays = tempDays.substring(1, tempDays.length() - 1);
             String[] thisDays = tempDays.split(",");
             for (int j = 0; j < thisDays.length; j++) {
-                System.out.println(thisDays[j] + " :::::::::::::: " + tempTodayis);
                 if (thisDays[j].equals(tempTodayis)) {
                     String tempAlturas = mymedis.get(i).alturas;
                     tempAlturas = tempAlturas.replace(" ", "");
                     tempAlturas = tempAlturas.substring(1, tempAlturas.length() - 1);
                     String[] thisAlturas = tempAlturas.split(",");
                     for (int k = 0; k < thisAlturas.length; k++) {
-                        System.out.println(thisAlturas[k] + " :::::::::::::: " + previousAltura);
 
                         if (thisAlturas[k].equals(previousAltura)) {
                             previousAlturaMedis.add(mymedis.get(i));
@@ -188,13 +180,6 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
 
         }
 
-
-        System.out.println("**********************************");
-        System.out.println("medis size: " + mymedis.size());
-        System.out.println("tomastoday: " + todayTomas.size());
-        System.out.println("TEM NEXT: " + havenext);
-        System.out.println("Medis da toma anterior: " + previousAlturaMedis.size());
-        System.out.println("**********************************+");
 
         if (havenext) {
             sendNotification();
@@ -215,9 +200,6 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
                 }
                 if (!done) {
                     //send message
-                    // Toast.makeText(context,"Nao fez esta toma",Toast.LENGTH_SHORT).show();
-                    System.out.println("NAO FEZ ESTA TOMA ***************************");
-                    System.out.println(previousAltura + " " + previousAlturaMedis.get(i).name);
                     sendSMS(i);
 
                 }
@@ -239,14 +221,9 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
                 try {
                     JSONObject myobject = new JSONObject(dataSnapshot.getValue().toString());
                     String message = "O utilizador " + auth.getCurrentUser().getEmail() + " nao tomou o medicamento " + previousAlturaMedis.get(i).name + " na altura " + previousAltura;
-                    System.out.println("MESSAGE ::::::::::::::::::::::::: " + message);
-                    System.out.println("NUMERO :::::::::::::::" + myobject.getString("EmergencyNumber"));
 
                     SmsManager sms = SmsManager.getDefault();
                     sms.sendTextMessage(myobject.getString("EmergencyNumber"), null, message, null, null);
-
-
-                    System.out.println("vai enviar");
 
 
                 } catch (JSONException e) {
@@ -266,7 +243,7 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
 
     private void sendNotification() {
         builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.meal_icon)
+                .setSmallIcon(R.drawable.med_icon)
                 .setContentTitle("Medicaçao")
                 .setContentText("Tem medicaçao para tomar nas proximas horas")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);

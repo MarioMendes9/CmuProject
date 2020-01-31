@@ -61,7 +61,6 @@ public class GerirMedicamentos extends Fragment {
         medicAdapter=new MedicamentoAdpter();
         rc.setAdapter(medicAdapter);
 
-     //   medicamentoViewModel.inserToma(new Toma("xanax",12,"23/01/2020","16:49","felgueiras"));
         medicamentoViewModel.getallMedicamentos().observe(getActivity(), new Observer<List<Medicamento>>() {
             @Override
             public void onChanged(List<Medicamento> medicamentos) {
@@ -86,8 +85,6 @@ public class GerirMedicamentos extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        mListener=(OnFragmentGMInteractionListener) context;
-
     }
 
     @Override

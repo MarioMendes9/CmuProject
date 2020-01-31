@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.app.AlarmManager;
 import android.app.Fragment;
 import android.app.PendingIntent;
@@ -24,6 +25,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 
 import android.os.Bundle;
@@ -81,16 +84,38 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.ThemeLight);
+        mSettings = getSharedPreferences("themeMode", MODE_PRIVATE);
+        String s = mSettings.getString("mode", "");
+        if (s.equals("light")) {
+            setTheme(R.style.ThemeLight);
+        } else if (s.equals("dark")) {
+            setTheme(R.style.ThemeDark);
+        }
         super.onCreate(savedInstanceState);
-
 
 
         setContentView(R.layout.activity_main);
         String menuFragment = getIntent().getStringExtra("fragment");
 
-        if(menuFragment!=null){
 
-            FragmentManager fragmentManager = getSupportFragmentManager();
+        setContentView(R.layout.activity_main);
+        myToolbar = findViewById(R.id.toolbar);
+        myToolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.setting));
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        medicamentoViewModel = new ViewModelProvider(this).get(MedicamentosViewModel.class);
+
+        medicamentoViewModel.getallMedicamentos().observe(this, new Observer<List<Medicamento>>() {
+            @Override
+            public void onChanged(List<Medicamento> medicamentos) {
+                medis = medicamentos;
+            }
+        });
+        if (menuFragment != null) {
             GerirTomas gt = new GerirTomas();
 
             FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
@@ -99,33 +124,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
             tr.commit();
 
 
-
-        }else {
-            System.out.println(getTheme());
-            setTheme(R.style.ThemeLight);
-            mSettings = getSharedPreferences("themeMode", MODE_PRIVATE);
-            String s = mSettings.getString("mode", "");
-            if (s.equals("light")) {
-                setTheme(R.style.ThemeLight);
-            } else if (s.equals("dark")) {
-                setTheme(R.style.ThemeDark);
-            }
-
-            myToolbar = findViewById(R.id.toolbar);
-            myToolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.setting));
-            setSupportActionBar(myToolbar);
-
-            mAuth = FirebaseAuth.getInstance();
-
-            medicamentoViewModel = new ViewModelProvider(this).get(MedicamentosViewModel.class);
-
-            medicamentoViewModel.getallMedicamentos().observe(this, new Observer<List<Medicamento>>() {
-                @Override
-                public void onChanged(List<Medicamento> medicamentos) {
-                    medis = medicamentos;
-                }
-            });
-
+        } else {
 
             Login fragmentLogin = new Login();
             FragmentManager fm = getSupportFragmentManager();
@@ -135,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
             ft.commit();
         }
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -282,14 +282,14 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
                                                 regi.replace(" ", "-");
                                             }
                                             Toma newToma = new Toma(medicName, quantidade, dateInString, hour, regi);
-                                            System.out.println(newToma.toString());
-
                                             medicamentoViewModel.inserToma(newToma);
                                         }
 
                                         @Override
                                         public void onFailure(Call<RegionDetails> call, Throwable t) {
                                             System.out.println(t.fillInStackTrace());
+                                            Toma newToma = new Toma(medicName, quantidade, dateInString, hour, "notFound");
+                                            medicamentoViewModel.inserToma(newToma);
 
                                         }
                                     });

@@ -10,6 +10,7 @@
         android:layout_height="match_parent"
         android:layout_weight="3"
         android:text="Medicamento"
+        android:gravity="center"
         android:layout_marginLeft="5dp"/>
 
     <View
@@ -25,6 +26,7 @@
         android:id="@+id/alturaDoDia"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:layout_weight="3"
         android:text="Altura do dia"
         />

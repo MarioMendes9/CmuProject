@@ -23,12 +23,10 @@ import java.util.Map;
 
 public class EmergencyNumberDialog extends DialogFragment {
 
-    //private  emListernerInterface mListener;
     private EditText mNumber;
 
     private FirebaseAuth auth;
     private DatabaseReference mRootRef;
-    private DatabaseReference childRef;
 
     public EmergencyNumberDialog() {
     }
@@ -77,14 +75,12 @@ public class EmergencyNumberDialog extends DialogFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-     //   mListener = (emListernerInterface) context;
 
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-       // mListener = null;
     }
 
     public interface emListernerInterface {

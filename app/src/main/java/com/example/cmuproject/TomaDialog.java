@@ -1,26 +1,20 @@
 package com.example.cmuproject;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.cmuproject.model.PendentToma;
 
 public class TomaDialog extends DialogFragment {
 
-    // private PendentToma ptoma;
     private String medicamento;
     private TomaListernerInterface mListener;
     private EditText qtdTomar;
@@ -65,7 +59,6 @@ public class TomaDialog extends DialogFragment {
         LayoutInflater i = getActivity().getLayoutInflater();
 
         View v = i.inflate(R.layout.dialog_addtoma, null);
-        System.out.println("Toma name: " + medicamento);
         medicamentoTomar = v.findViewById(R.id.medicamentoTomar);
         medicamentoTomar.setText(medicamento);
         medicamentoTomar.setFocusable(false);
