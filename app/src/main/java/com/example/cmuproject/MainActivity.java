@@ -84,6 +84,13 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mSettings = getSharedPreferences("themeMode", MODE_PRIVATE);
+        String s = mSettings.getString("mode", "");
+        if (s.equals("light")) {
+            setTheme(R.style.ThemeLight);
+        } else if (s.equals("dark")) {
+            setTheme(R.style.ThemeDark);
+        }
         super.onCreate(savedInstanceState);
 
 
@@ -104,16 +111,6 @@ public class MainActivity extends AppCompatActivity implements Login.OnFragmentL
 
 
         }else {
-            System.out.println(getTheme());
-            setTheme(R.style.ThemeLight);
-            mSettings = getSharedPreferences("themeMode", MODE_PRIVATE);
-            String s = mSettings.getString("mode", "");
-            if (s.equals("light")) {
-                setTheme(R.style.ThemeLight);
-            } else if (s.equals("dark")) {
-                setTheme(R.style.ThemeDark);
-            }
-
 
         setContentView(R.layout.activity_main);
         myToolbar = findViewById(R.id.toolbar);
