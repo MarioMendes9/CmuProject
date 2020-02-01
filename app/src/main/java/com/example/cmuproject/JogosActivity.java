@@ -21,6 +21,10 @@ public class JogosActivity extends AppCompatActivity implements JogosMenuFragmen
     private SharedPreferences mSettings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        setTheme(R.style.ThemeLight);
+
+
         mSettings= getSharedPreferences("themeMode", MODE_PRIVATE);
         String s = mSettings.getString("mode","");
         if(s.equals("light")){

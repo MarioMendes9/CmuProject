@@ -28,17 +28,46 @@ public class JogoPalavrasFragmento extends Fragment {
 
     String listaPalavras[] = {
             "carro",
-            "carrocel",
-            "pera",
             "laranja",
-            "limao",
-            "caracol",
             "papagaio",
             "azul",
             "elefante",
-            "policia",
-            "filosofo"
-
+            "cenoura",
+            "papel",
+            "tinta",
+            "tomate",
+            "pepino",
+            "correr",
+            "saltar",
+            "corda",
+            "coentros",
+            "salsa",
+            "dinossauro",
+            "comer",
+            "sopa",
+            "prato",
+            "marido",
+            "cadeira",
+            "vassoura",
+            "almofada",
+            "cabelo",
+            "boca",
+            "nariz",
+            "bolacha",
+            "sapato",
+            "sapatilha",
+            "inteligente",
+            "calças",
+            "casaco",
+            "camisola",
+            "saber",
+            "cozinhar",
+            "tapete",
+            "mesa",
+            "anel",
+            "pulseira",
+            "caneta",
+            "martelo"
     };
     private OnFragmentJogoPalavrasListener mListener;
 
@@ -85,6 +114,8 @@ public class JogoPalavrasFragmento extends Fragment {
                     palavra();
                     value.setText("");
                 } else {
+
+
 
                     mListener.resultadoWord(String.valueOf(count));
 

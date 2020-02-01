@@ -383,7 +383,7 @@ public class JogoMemoriaFragmento extends Fragment {
                 img10.setVisibility(View.INVISIBLE);
             }else if(segundaCartaSelecionada==10){
                 img11.setVisibility(View.INVISIBLE);
-            }else if(primeiraCartaSelecionada==11){
+            }else if(segundaCartaSelecionada==11){
                 img12.setVisibility(View.INVISIBLE);
             }
 
