@@ -106,7 +106,7 @@ public class JogoPalavrasFragmento extends Fragment {
             @Override
             public void onClick(View v) {
                 String s1 = value.getText().toString();
-                System.out.println("PALAVRA::::::  " + palavra);
+
                 boolean equals = s1.equals(palavra);
                 if (equals == true) {
                     count++;
@@ -114,6 +114,7 @@ public class JogoPalavrasFragmento extends Fragment {
                     palavra();
                     value.setText("");
                 } else {
+
 
 
                     mListener.resultadoWord(String.valueOf(count));

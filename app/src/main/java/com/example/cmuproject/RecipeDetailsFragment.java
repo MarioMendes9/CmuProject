@@ -27,14 +27,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link OnFragmentDetailsInteractionListener} interface
- * to handle interaction events.
- * Use the {@link RecipeDetailsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class RecipeDetailsFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -68,13 +60,7 @@ public class RecipeDetailsFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @return A new instance of fragment RecipeDetailsFragment.
-     */
+
     public static RecipeDetailsFragment newInstance(String param1) {
         RecipeDetailsFragment fragment = new RecipeDetailsFragment();
         Bundle args = new Bundle();
@@ -128,7 +114,6 @@ public class RecipeDetailsFragment extends Fragment {
                         readyInMinutes.setText("Ready In Minutes: "+response.body().getReadyInMinutes());
                         servings.setText("Servings: "+response.body().getServings());
                         healthScore.setText("Health Score: "+response.body().getHealthScore());
-                        System.out.println(response.body().isGlutenFree());
                         if(!response.body().isVegetarian()){
                             vegatarian.setVisibility(View.GONE);
                         }
@@ -157,8 +142,7 @@ public class RecipeDetailsFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<RecipeDetails> call, Throwable t) {
-                        System.out.println("ESTA MAU");
-                        System.out.println(call.request());
+                        System.out.println(t.fillInStackTrace());
                     }
                 });
         return v;
@@ -198,16 +182,6 @@ public class RecipeDetailsFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentDetailsInteractionListener {
         void onFragmentDetailsInteraction(Uri uri);
 

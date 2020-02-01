@@ -17,6 +17,10 @@ import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,6 +46,9 @@ public class SettingsActivity extends AppCompatActivity {
     private DatabaseReference mRootRef;
     private DatabaseReference childRef;
     private DatabaseReference chiilRef2;
+    private EditText passEt;
+    private Button btnPass;
+    private EditText oldpwd;
 
 
     @Override
@@ -76,7 +83,6 @@ public class SettingsActivity extends AppCompatActivity {
                     try {
                         JSONObject myobject = new JSONObject(dataSnapshot.getValue().toString());
 
-                        // System.out.println(myobject.getString("EmergencyNumber"));
                         etGuardar.setText(myobject.getString("EmergencyNumber"));
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -94,14 +100,25 @@ public class SettingsActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         rg=findViewById(R.id.radioGroup);
+        light = findViewById(R.id.lightOption);
+        dark = findViewById(R.id.darkOption);
+
+        oldpwd=findViewById(R.id.oldpasswd);
+        passEt=findViewById(R.id.ETchangePasswd);
+        btnPass=findViewById(R.id.changePasswd);
 
         btnGuardar=findViewById(R.id.guardar);
         etGuardar=findViewById(R.id.etGuardar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        if(s.equals("light")){
+            light.setChecked(true);
+        } else if(s.equals("dark")){
+            dark.setChecked(true);
+        }
+
         mSettings= getSharedPreferences("themeMode", MODE_PRIVATE);
-        System.out.println(mSettings.getString("mode",""));
 
         final SharedPreferences.Editor mEditor = mSettings.edit();
 
@@ -138,6 +155,38 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btnPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AuthCredential credential = EmailAuthProvider
+                        .getCredential(auth.getCurrentUser().getEmail(),oldpwd.getText().toString());
+
+            auth.getCurrentUser().reauthenticate(credential)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            auth.getCurrentUser().updatePassword(passEt.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(getApplication(),"Password alterada com sucesso",Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(getApplication(),"Ocorreu um erro",Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                        } else {
+                            Toast.makeText(getApplication(),"Dados incorretos",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+            }
+
+
+        });
+
     }
 
 

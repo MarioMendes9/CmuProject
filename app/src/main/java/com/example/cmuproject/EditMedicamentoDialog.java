@@ -107,7 +107,6 @@ public class EditMedicamentoDialog extends DialogFragment {
         for (int j = 0; j < tempDias.length; j++) {
             for (int k = 0; k < chipDias.getChildCount(); k++) {
                 Chip tempChip=(Chip) chipDias.getChildAt(k);
-                System.out.println(tempChip.getText().toString()+" "+tempDias[j]);
                 if(tempDias[j].equals(tempChip.getText().toString())){
                     tempChip.setChecked(true);
                 }

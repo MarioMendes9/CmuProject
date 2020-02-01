@@ -1,8 +1,6 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.DayNight">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/cardview_dark_background</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -10,39 +8,45 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <!-- Dark Buttons
-
-    <style name="ThemeOverlay.MyDarkButton" parent="ThemeOverlay.AppCompat.Dark">
-        <item name="colorButtonNormal">@color/grey_500</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:layout_marginRight">4dp</item>
-        <item name="android:layout_marginLeft">4dp</item>
-        <item name="android:textColor">@android:color/white</item>
-    </style>
-    -->
-
     <style name="ThemeLight" parent="ThemeOverlay.AppCompat.Light">
         <item name="colorPrimaryDark">#6200EE</item>
-        <item name="colorButtonNormal">#03DAC5</item>
+        <item name="colorButtonNormal">#8040C4FF</item>
         <item name="android:windowBackground">#FFFFFF</item>
-        <item name="colorAccent">#03DAC5</item>
+        <item name="colorAccent">#BF40C4FF</item>
         <item name="android:textColor">#000000</item>
         <item name="android:textColorHint">#000000</item>
+        <item name="android:popupTheme">@style/ThemeOverlay.Light</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-
     </style>
 
     <style name="ThemeDark" parent="ThemeOverlay.AppCompat.Dark">
         <item name="colorPrimaryDark">#3C3C46</item>
-        <item name="colorButtonNormal">#BB86FC</item>
+        <item name="colorButtonNormal">#80BB86FC</item>
         <item name="android:windowBackground">#121212</item>
-        <item name="colorAccent">#BB86FC</item>
+        <item name="colorAccent">#BFBB86FC</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textColorHint">#FFFFFF</item>
-        <item name="editTextBackground">@color/grey_500</item>
+        <item name="android:popupTheme">@style/ThemeOverlay.Dark</item>
+        <item name ="android:alertDialogStyle">@style/DialogDark</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="ThemeOverlay.Dark" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:colorBackground">#121212</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+    </style>
+
+    <style name="ThemeOverlay.Light" parent="@style/ThemeOverlay.AppCompat.Dark">
+        <item name="android:colorBackground">#FFFFFF</item>
+        <item name="android:textColorPrimary">#121212</item>
+    </style>
+
+    <style name="DialogDark" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:colorBackground">#121212</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+    </style>
+
 
 </resources>
